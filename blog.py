@@ -8,6 +8,10 @@ from jinja2 import Environment, FileSystemLoader
 OUTPUT_DIR = '../public_html'
 STATIC_DIR = 'static'
 POSTS_DIR = 'posts'
+
+# For S3 upload, don't use an extension
+EXTENSION = '' # '.html'
+
 POST_OUTPUT_DIR = os.path.join(OUTPUT_DIR, POSTS_DIR)
 
 def generate():
@@ -64,7 +68,7 @@ def generate():
         html = post_template.render(context) 
 
         # remove any previous file extension (ie, post.md)
-        output_filepath = os.path.join(POST_OUTPUT_DIR, "%s.html" % os.path.splitext(post)[0])
+        output_filepath = os.path.join(POST_OUTPUT_DIR, '{}{}'.format(os.path.splitext(post)[0], EXTENSION))
 
         with codecs.open(output_filepath, "w", encoding="utf-8") as output_file:
             output_file.write(html)
