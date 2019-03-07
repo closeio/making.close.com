@@ -1,7 +1,7 @@
 export AWS_DEFAULT_PROFILE=closeio
 export AWS_DEFAULT_REGION=us-west-2
 
-BUCKET=hack.close.io
+BUCKET=hack.close.com
 
 aws s3 sync ../public_html/posts s3://$BUCKET/posts \
     --content-type text/html \
