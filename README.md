@@ -1,5 +1,5 @@
-hack.close.io
-=============
+hack.close.com
+==============
 
 1. Make a post in Markdown and put it in posts/
 2. Run `python blog.py`
