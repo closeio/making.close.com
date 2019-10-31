@@ -1,11 +1,19 @@
-hack.close.com
-==============
+# Close Engineering Blog
 
-1. Make a post in Markdown and put it in posts/
-2. Run `python blog.py`
-3. The files will be in `../public_html`, ready to view on the interwebs.
-4. To sync files to the cloud, make sure you have your own AWS credentials in
-   `~/.aws/config` under `[profile closeio]`, and then run `./sync_s3.sh`.
+https://engineering.close.com
 
+## Overview
 
-Simple, right?
+This is an extremely simple [Jekyll](https://jekyllrb.com/) blog. Jekyll was chosen because of the built-in support with GitHub Pages, so we don't even need a build step. We're using the default [minima](https://github.com/jekyll/minima) theme which we've customized only slightly.
+
+## Run in dev
+
+Dependencies: Docker
+
+```sh
+docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll jekyll serve
+```
+
+Open:
+
+https://localhost:4000/

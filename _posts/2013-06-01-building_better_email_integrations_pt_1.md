@@ -1,8 +1,11 @@
 ---
-Title: Building better email integrations Pt. 1
-Date: June 21, 2013
-Published: True
+layout: post
+title: Building better email integrations
+date: 2013-06-21
+permalink: posts/building_better_email_integrations_pt_1
+author: anemitz
 ---
+
 Building better email integration Pt. 1
 =======================================
 This is the first part in an on-going series about the email backend in Close.  We'll cover a variety of high and low-level tricks we use to ensure you get the best possible email integration out there.  Shoot us an email (engineering@) if you'd like to have us cover any particular aspects of our email integration.
@@ -136,5 +139,3 @@ imap.append(sent_mailbox, message, flags=['\\Seen'], msg_time=email.date_created
 email.message_ids.append(message.msgId)
 email.save()
 ```
-
--anemitz
