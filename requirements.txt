@@ -1,4 +1,0 @@
-Markdown
-Jinja2
-Pygments
-python-dateutil

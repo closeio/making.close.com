@@ -1,0 +1,13 @@
+# You must restart 'jekyll serve' when making edits to this file.
+
+title: Close Engineering Blog
+
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: close
+github_username:  closeio
+
+# Build settings
+theme: minima # https://github.com/jekyll/minima
+plugins:
+  - jekyll-feed
