@@ -4,9 +4,13 @@ https://engineering.close.com
 
 ## Overview
 
-This is an extremely simple [Jekyll](https://jekyllrb.com/) blog. Jekyll was chosen because of the built-in support with GitHub Pages, so we don't even need a build step. We're using the default [minima](https://github.com/jekyll/minima) theme which we've customized only slightly.
+This is an extremely simple [Jekyll](https://jekyllrb.com/) blog. Jekyll was chosen because of the built-in support with GitHub Pages, so we don't even need build or deployment scripts. We're using the default [minima](https://github.com/jekyll/minima) theme which we've customized only slightly.
 
-## Run in dev
+To write a new blog post, simply follow the existing pattern inside [_posts/](_posts/). GitHub will automatically build and deploy anything in `master`, thanks to GitHub Pages. Note: It may take a bit for changes to appear live.
+
+## Development
+
+Optionally, you can build and serve the site locally to preview your work, make changes to the layout, etc.
 
 Dependencies: Docker
 
