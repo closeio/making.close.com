@@ -17,7 +17,7 @@ A couple of common examples:
 
 One option is to track as the result of a user interaction, say a button click. This gives you information about exactly what the user is doing:
 
-```javascript
+```jsx
 const handleClick = e => {
   analytics.track('Button clicked');
   // ...whatever happens next
@@ -33,7 +33,7 @@ The problem with this (apart from that you probably don't want it in your UI cod
 
 To find out about state changes, you might want to do something like the below. You might even add an object diff lib to give you more granular details about what actually changed:
 
-```javascript
+```jsx
 // usePrevious tracks previous values - https://usehooks.com/usePrevious/
 const prevState = usePrevious(someState);
 
@@ -62,7 +62,7 @@ There's a great third-party repo containing a bunch of custom hooks at [react-us
 
 Compatibility with Redux middleware is pretty cool in itself and I'd be intrigued to experiment with trying it out with something like [`redux-saga`](https://github.com/redux-saga/redux-saga), but really we just wanted to have the ability to write a custom middleware, which we did:
 
-```javascript
+```jsx
 // `store` is an object that gives access to the state via `store.getState()`
 // `next` is either the next middleware in the chain or the `dispatch` function
 // `action` is the action object that `dispatch` has been called with in your React code
@@ -85,7 +85,7 @@ const customMiddleware = store => next => action => {
 
 Using this was then as simple as updating our context to the following:
 
-```javascript
+```jsx
 import React, { createContext, useContext } from 'react';
 import { createReducer } from 'react-use';
 
