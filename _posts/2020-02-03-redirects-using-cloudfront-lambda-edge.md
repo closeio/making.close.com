@@ -218,6 +218,8 @@ On the Lambda page, scroll down to find "Execution role" which gives you a link 
 }
 ```
 
+If your S3 bucket isn't public, you may need to change its policy too.
+
 #### Publish
 
 From your Lambda function's page:
