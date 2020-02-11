@@ -3,7 +3,7 @@ layout: post
 title: Building better email integrations
 date: 2013-06-21
 permalink: posts/building_better_email_integrations_pt_1
-author: anemitz
+author: Anthony Nemitz
 ---
 
 Building better email integration Pt. 1
