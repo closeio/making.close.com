@@ -243,7 +243,13 @@ location: /resources/followup
 
 #### Continuous deployment
 
-Finally, just make sure `redirects.json` is uploaded to your S3 bucket (if it's not already) as part of your regular deployment process. 
+Finally, just make sure that your regular deployment process uploads `redirects.json` to your S3 bucket (if it's not already) and that a Cloudfront invalidatoin is created. For us that meant having a few lines in our deployment script like:
+
+```
+aws s3 cp config/redirects.json s3://example.com/config/
+aws configure set preview.cloudfront true
+aws cloudfront create-invalidation --distribution-id THE_ID_HERE --paths '/*'
+```
 
 Doing so has allowed our marketing team to have simple control over server-side redirects on our site.
 
