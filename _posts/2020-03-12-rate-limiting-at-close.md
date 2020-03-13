@@ -8,7 +8,6 @@ author: Joe Kemp
 
 Our [REST API](https://developer.close.com/) is a critical part of our service that enables customers to build sophisticated integrations to our CRM. As the number of API users increased, we experienced more and more situations where we wished we could limit the rate they accessed it. As it turns out, what started out as a quick fix to control access to our API evolved into flexible approach to rate limit many processes across our stack.
 
-
 ## API Rate Limits
 
 It had become too easy for a customer to write an integration script that hit our API many times per second. Container technologies like Mesos and Kubernetes have made it easy for customers to scale workers to the point they would “attack” our infrastructure. Without some controls, one customer could adversely impact others and slow down our entire infrastructure.
@@ -47,7 +46,6 @@ Some basic refactoring of our API rate limiting logic allowed us to pull out a p
 
 As we started needing Throttles in more places, we pulled the core logic out and published it as [LimitLion](https://github.com/closeio/limitlion). One of our most recent uses was to solve an issue related to our recently shipped [calendar syncing feature](https://blog.close.com/introducing-meeting-sync). Google calendars can be watched so that notifications are sent to a HTTP endpoint if anything has changed. Simple enough but it turns out Google doesn’t rate limit or even de-dupe these notifications which can result in a huge burst of notifications for the same calendar. To protect the underlying MySQL database we added a LimitLion throttle to the existing [Nylas endpoint](https://github.com/closeio/nylas/blob/082b18bfed00e28335084d5c8162336e3f33a719/inbox/webhooks/gpush_notifications.py#L85-L105) that handles these notifications. The `limitlion.throttle()` call with a `rps=.5` using the default window of 5 seconds allows up to 3 notifications to be processed every 5 seconds for each calendar. Anything beyond that is ignored.
 
-
     @app.route('/calendar_update/<calendar_public_id>', methods=['POST'])
     def event_update(calendar_public_id):
         request.environ\['log_context'\]['calendar_public_id'] = calendar_public_id
@@ -69,6 +67,7 @@ As we started needing Throttles in more places, we pulled the core logic out and
         except NoResultFound:
             raise NotFoundError("Couldn't find calendar `{0}`"
                                 .format(calendar_public_id))
+
 ## Governor
 
 We have a re-indexing process that basically scans our Mongo database, and indexes documents into ElasticSearch. We need this process to run as fast as possible without overloading either data stores or impacting critical workloads. We really needed a way to throttle up/down based on the current infrastructure load.
@@ -90,4 +89,4 @@ The following graph shows loads on our primary mongo instances during one of the
 
 ## Summary
 
-Our rate limiting strategies continue to evolve as we get more experience tuning our workloads. [LimitLion](https://prometheus.io/) has made it easy to implement a throttle whenever we need to control a specific process. We have also started to categorize workloads into tiers which allows us to share throttles across similar workloads. LimitLion throttles have become a useful tool in our toolkit to help achieve equilibrium across our infrastructure.
+Our rate limiting strategies continue to evolve as we get more experience tuning our workloads. [LimitLion](https://github.com/closeio/limitlion) has made it easy to implement a throttle whenever we need to control a specific process. We have also started to categorize workloads into tiers which allows us to share throttles across similar workloads. LimitLion throttles have become a useful tool in our toolkit to help achieve equilibrium across our infrastructure.
