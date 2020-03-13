@@ -30,13 +30,11 @@ With our rate limits in place, we thought we were good — until some of our cus
 
 The following graph is an example of a typical rate limited access pattern. The Y axis is the count of `200` and `429` responses per minute for one API key. The requests quickly jump up to the maximum rate of 2,400 RPM (40 RPS) and then start getting  `429` rate limit responses. The yellow `429` “snow caps” on the large blue `200` spikes suggest a well behaved client script that backs off when it sees it has hit the limit. This also looks like it roughly triggers every 30 minutes so it is likely something like a cronjob that may cycle like this 24 hours a day.
 
-![/assets/rate-limiting/api.png](/assets/rate-limiting/api.png)
-
+[![api limiting](/assets/rate-limiting/api.png)](/assets/rate-limiting/api.png)
 
 The next graph is an example of a misbehaving client integration using an invalid API key. You can see the red `401`s come up to about 40 RPS (`ops`  Y axis) and then the large spike up to 600 RPS for `429`s. The integration script is most likely retrying immediately on errors (e.g. `4XX` responses) and ignoring the `rate_reset` value in the `429` response that indicates how long they should wait before making another request.
 
-
-![/assets/rate-limiting/401.png](/assets/rate-limiting/401.png)
+[![401 limiting](/assets/rate-limiting/401.png)](/assets/rate-limiting/401.png)
 
 
 In this case there is limited impact to our infrastructure because most of the processing is done in a dedicated Redis instance and the app servers can quickly return the `429`s once it gets the limit response from Redis. Of course we rather customers stop trying to use deactivated API keys but that is separate challenge.
@@ -87,8 +85,7 @@ Calibrating the Governor was quite a challenge (there are literally [books writt
 The following graph shows loads on our primary mongo instances during one of these reindexing operations. The Governor was configured to keep the Mongo instance loads at 2. Up to about 1217Z, the reindexing process is cruising along at its maximum allowed rate and causing almost no load on our Mongo cluster. But then as seen by the large spike at 1217Z the process transitioned from easy to index documents to very complex documents (e.g. email documents that have a single recipient versus emails that BCCed 1,000 recipients). The spike triggers the circuit breaker which quickly brings the loads down by setting the RPS to zero. At the 12:25 mark you can see the instance load indicated by the red line slowly come up to a load of about 2. The Governor then does a pretty good job managing the throttles and keeping the loads for the two instances at about 2 versus what we saw during the spike which would have been loads of 10+ if left unchecked.
 
 
-![/assets/rate-limiting/gov.png](/assets/rate-limiting/gov.png)
-
+[![governor](/assets/rate-limiting/gov.png)](/assets/rate-limiting/gov.png)
 
 
 ## Summary
