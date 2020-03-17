@@ -31,12 +31,14 @@ to make sure the TTL is reliably set once so the key expires and resets the
 counter to `0`. This can be guaranteed by placing the `incr` and `expire`
 commands in the same script like this:
 
-    local current_count
-    current_count = redis.call("incr",KEYS[1])
-    if tonumber(current_count) == 1 then
-        redis.call("expire",KEYS[1],ARGV[1])
-    end
-    return current_count
+```lua
+local current_count
+current_count = redis.call("incr",KEYS[1])
+if tonumber(current_count) == 1 then
+    redis.call("expire",KEYS[1],ARGV[1])
+end
+return current_count
+```
 
 Our Python Flask app simply checked the returned count to see if it was over the
 threshold, if so it returned a
@@ -137,27 +139,29 @@ that handles these notifications. The `limitlion.throttle()` call with a
 `rps=.5` using the default window of 5 seconds allows up to 3 notifications to
 be processed every 5 seconds for each calendar. Anything beyond that is ignored.
 
-    @app.route('/calendar_update/<calendar_public_id>', methods=['POST'])
-    def event_update(calendar_public_id):
-        request.environ\['log_context'\]['calendar_public_id'] = calendar_public_id
-        try:
-            valid_public_id(calendar_public_id)
-            allowed, tokens, sleep = limitlion.throttle(
-                'gcal:{}'.format(calendar_public_id), rps=.5
-            )
-            if allowed:
-                with global_session_scope() as db_session:
-                    calendar = db_session.query(Calendar) \
-                        .filter(Calendar.public_id == calendar_public_id) \
-                        .one()
-                    calendar.handle_gpush_notification()
-                    db_session.commit()
-            return resp(200)
-        except ValueError:
-            raise InputError('Invalid public ID')
-        except NoResultFound:
-            raise NotFoundError("Couldn't find calendar `{0}`"
-                                .format(calendar_public_id))
+```py
+@app.route('/calendar_update/<calendar_public_id>', methods=['POST'])
+def event_update(calendar_public_id):
+    request.environ\['log_context'\]['calendar_public_id'] = calendar_public_id
+    try:
+        valid_public_id(calendar_public_id)
+        allowed, tokens, sleep = limitlion.throttle(
+            'gcal:{}'.format(calendar_public_id), rps=.5
+        )
+        if allowed:
+            with global_session_scope() as db_session:
+                calendar = db_session.query(Calendar) \
+                    .filter(Calendar.public_id == calendar_public_id) \
+                    .one()
+                calendar.handle_gpush_notification()
+                db_session.commit()
+        return resp(200)
+    except ValueError:
+        raise InputError('Invalid public ID')
+    except NoResultFound:
+        raise NotFoundError("Couldn't find calendar `{0}`"
+                            .format(calendar_public_id))
+```
 
 ## Governor
 
