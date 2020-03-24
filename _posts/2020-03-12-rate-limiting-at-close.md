@@ -142,7 +142,7 @@ be processed every 5 seconds for each calendar. Anything beyond that is ignored.
 ```py
 @app.route('/calendar_update/<calendar_public_id>', methods=['POST'])
 def event_update(calendar_public_id):
-    request.environ\['log_context'\]['calendar_public_id'] = calendar_public_id
+    request.environ['log_context']['calendar_public_id'] = calendar_public_id
     try:
         valid_public_id(calendar_public_id)
         allowed, tokens, sleep = limitlion.throttle(
