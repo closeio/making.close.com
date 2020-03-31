@@ -1,18 +1,18 @@
 ---
 layout: post
-title: Introducing useInfiniteScroll&#58; a simple React hook for infinite scroll experience
+title: 'Introducing useInfiniteScroll: a simple React hook for infinite scroll experience'
 date: 2020-03-31
 permalink: posts/introducting-use-infinite-scroll-react-hook
 author: Vitor Buzinaro
 ---
 
-**Project link:** https://github.com/closeio/use-infinite-scroll
+**Project link:** [https://github.com/closeio/use-infinite-scroll](https://github.com/closeio/use-infinite-scroll)
 
 We’re excited to introduce the newest addition to our frontend-related open source projects. `useInfiniteScroll` is a super simple React hook for creating an infinite scroll experience based on the `IntersectionObserver` API.
 
 [Check the live DEMO](https://closeio.github.io/use-infinite-scroll/).
 
-We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called [`react-custom-scroller`](https://github.com/closeio/react-custom-scroller), which allows use to have cross-browser and cross-device scrollbars.
+We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called [react-custom-scroller](https://github.com/closeio/react-custom-scroller), which allows use to have cross-browser and cross-device scrollbars.
 
 ## In a gist
 
