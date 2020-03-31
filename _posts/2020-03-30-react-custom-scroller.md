@@ -1,18 +1,18 @@
 ---
 layout: post
-title: Introducing react-custom-scroller&#58; a simple React component for creating custom scrollbars
+title: 'Introducing react-custom-scroller: a simple React component for creating custom scrollbars'
 date: 2020-03-30
 permalink: posts/introducting-react-custom-scroller-component
 author: Vitor Buzinaro
 ---
 
-**Project link:** https://github.com/closeio/react-custom-scroller
+**Project link:** [https://github.com/closeio/react-custom-scroller](https://github.com/closeio/react-custom-scroller)
 
 We’re excited to introduce the newest addition to our frontend-related open source projects. `react-custom-scroller` is a super simple React component for creating a custom scrollbar cross-browser and cross-devices.
 
 [Check the live DEMO](https://closeio.github.io/react-custom-scroller/).
 
-We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called `[use-infinite-scroll](https://github.com/closeio/use-infinite-scroll)`, which allows us to employ a smooth content-viewing experience.
+We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called [use-infinite-scroll](https://github.com/closeio/use-infinite-scroll), which allows us to employ a smooth content-viewing experience.
 
 ## In a gist
 
