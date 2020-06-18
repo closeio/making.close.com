@@ -14,7 +14,7 @@ We’re excited to introduce the newest addition to our frontend-related open so
 
 We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called [react-custom-scroller](https://github.com/closeio/react-custom-scroller), which allows use to have cross-browser and cross-device scrollbars.
 
-## In a gist
+## Summary
 
 - Extremely lightweight (less than 1KB minzipped).
 - It uses the `IntersectionObserver` API, so it doesn't need to listen to `scroll` events, which are known to cause performance issues.
@@ -72,12 +72,12 @@ export default function MyComponent() {
   useEffect(async () => {
     const data = await myApiCall({ page });
     setHasMore(data.hasMore);
-    setItems(prev => [...prev, data.items]);
+    setItems((prev) => [...prev, data.items]);
   }, [page]);
 
   return (
     <div ref={scrollerRef}>
-      {items.map(item => (
+      {items.map((item) => (
         <div key={item.id}>{item.name}</div>
       ))}
       {hasMore && <div ref={loaderRef}>Loading…</div>}

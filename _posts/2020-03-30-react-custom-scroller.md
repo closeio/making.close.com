@@ -14,7 +14,7 @@ We’re excited to introduce the newest addition to our frontend-related open so
 
 We are taking advantage of this tiny library in our [Pipeline View](https://close.com/pipeline/) feature (Trello-like board), where there are multiple columns, each scrollable separately. In the Pipeline View, we also use another library that we open sourced called [use-infinite-scroll](https://github.com/closeio/use-infinite-scroll), which allows us to employ a smooth content-viewing experience.
 
-## In a gist
+## Summary
 
 - Extremely lightweight (less than 2KB minzipped).
 - It uses the native scroll events, so all the events work and are smooth (mouse wheel, space, page down, page up, arrows etc).

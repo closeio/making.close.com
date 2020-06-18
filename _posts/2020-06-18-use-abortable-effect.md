@@ -14,7 +14,7 @@ We’re excited to introduce the newest addition to our frontend-related open so
 
 We are taking advantage of this tiny library mainly in our [Pipeline View](https://close.com/pipeline/) and [Reporting](https://close.com/reporting/) features (and numerous other features), where there are multiple ways to filter and view the data. Using `useAbortableEffect`, we can safely fetch all the necessary data with support of aborting previous unfinished requests and also aborting whenever the user navigates away from the page. No more memory leaks with `setState` happening after component unmount!
 
-## In a gist
+## Summary
 
 - Extremely lightweight (less than 500B minzipped).
 - It uses the [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) API and it is compatible with the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) API.
