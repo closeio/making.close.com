@@ -9,7 +9,7 @@ author: Lukáš Mladý
 As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we have started seeing our CI-run tests occasionally failing with “out of memory” errors.
 
 ```
-    FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
 ```
 
 But these happened _only in the CI_ and _only occasionally_.
@@ -23,7 +23,7 @@ We've tried increasing memory allocation to see if the tests just take too much 
 When looking around for advice, we’ve found an article about [Jest memory leaks](https://chanind.github.io/javascript/2019/10/12/jest-tests-memory-leak.html) and went ahead and ran the following command:
 
 ```
-    node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
+node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
 ```
 
 You have to run the tests sequentially (`--runInBand`) and log heap usage (`--logHeapUsage`).
@@ -31,23 +31,23 @@ You have to run the tests sequentially (`--runInBand`) and log heap usage (`--lo
 Below is an excerpt of the run (file names mangled):
 
 ```jsx
-    // …
-    PASS js/015.test.js (309 MB heap size)
-    PASS js/016.test.js (295 MB heap size)
-    PASS js/017.test.js (308 MB heap size)
-    PASS js/018.test.js (308 MB heap size)
-    PASS js/019.test.js (308 MB heap size)
-    PASS js/021.test.js (321 MB heap size) // memory usage starts increasing
-    PASS js/022.test.js (334 MB heap size)
-    PASS js/023.test.js (347 MB heap size)
-    PASS js/024.test.js (360 MB heap size)
-    PASS js/025.test.js (373 MB heap size)
-    PASS js/026.test.js (386 MB heap size)
-    PASS js/027.test.js (399 MB heap size)
-    PASS js/028.test.js (412 MB heap size)
-    PASS js/029.test.js (425 MB heap size)
-    PASS js/031.test.js (438 MB heap size)
-    // … a couple hundred more tests
+// …
+PASS js/015.test.js (309 MB heap size)
+PASS js/016.test.js (295 MB heap size)
+PASS js/017.test.js (308 MB heap size)
+PASS js/018.test.js (308 MB heap size)
+PASS js/019.test.js (308 MB heap size)
+PASS js/021.test.js (321 MB heap size) // memory usage starts increasing
+PASS js/022.test.js (334 MB heap size)
+PASS js/023.test.js (347 MB heap size)
+PASS js/024.test.js (360 MB heap size)
+PASS js/025.test.js (373 MB heap size)
+PASS js/026.test.js (386 MB heap size)
+PASS js/027.test.js (399 MB heap size)
+PASS js/028.test.js (412 MB heap size)
+PASS js/029.test.js (425 MB heap size)
+PASS js/031.test.js (438 MB heap size)
+// … a couple hundred more tests
 ```
 
 At some point (with file `021.js`) the memory usage started increasing by ~13MB with each new test being run. _Fun fact_: if we re-ran the command, a _different_ test “marked” the start of memory leaking. That made it pretty hard to pinpoint the problematic test file.
@@ -57,7 +57,7 @@ At some point (with file `021.js`) the memory usage started increasing by ~13MB 
 We went ahead and brought in Chrome to inspect the node process that runs the tests:
 
 ```
-    node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
+node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
 ```
 
 Then go to Chrome -> enter `chrome://inspect` and connect the debugger.
