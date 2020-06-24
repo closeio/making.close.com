@@ -108,6 +108,6 @@ We suspect this mock was carried over to other tests as it was touching on a glo
 
 ## Closing thoughts
 
-Memory leaks can be nasty and pretty hard to find. We found that the hard way. We should always make sure to clean after ourselves in our tests when mocking, even though Jest runs each test file in a separate process.
+Memory leaks can be nasty and pretty hard to find. We found that the hard way. We should always make sure to clean up after ourselves in our tests when mocking, even though Jest runs each test file in a separate process.
 
 We hope the process for finding the cause of a memory leak outlined in this article will help you fix issues like that in your projects.
