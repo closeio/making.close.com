@@ -6,7 +6,7 @@ permalink: posts/finding-the-cause-of-a-memory-leak-in-jest
 author: Lukáš Mladý
 ---
 
-As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we have started seeing our CI-run tests occasionally failing with “out of memory” errors.
+As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we started seeing our CI-run tests occasionally failing with “out of memory” errors.
 
 ```
 FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
@@ -14,13 +14,13 @@ FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaS
 
 But these happened _only in the CI_ and _only occasionally_.
 
-We've managed to fix the problem after a couple of hours, and we’d like to share the process of how we found the cause of a memory leak. Read on!
+We’ve managed to fix the problem after a couple of hours, and we’d like to share the process of how we found the cause of a memory leak. Read on!
 
 ## Running tests with heap usage recording
 
-We've tried increasing memory allocation to see if the tests just take too much memory, but in a steady manner. That did not work which showed us that we’ve got a memory leak in our tests.
+We tried increasing memory allocation to see if the tests just take too much memory, but in a steady manner. That did not work which showed us that we’ve got a memory leak in our tests.
 
-When looking around for advice, we’ve found an article about [Jest memory leaks](https://chanind.github.io/javascript/2019/10/12/jest-tests-memory-leak.html) and went ahead and ran the following command:
+When looking around for advice, we found an article about [Jest memory leaks](https://chanind.github.io/javascript/2019/10/12/jest-tests-memory-leak.html) and went ahead and ran the following command:
 
 ```
 node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
@@ -62,7 +62,7 @@ node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsa
 
 Then go to Chrome -> enter `chrome://inspect` and connect the debugger.
 
-We took 3 heap snapshots, compared what was increasing disproportionally (array constructor) and dug deeper.
+We took 3 heap snapshots, compared what was increasing disproportionately (array constructor) and dug deeper.
 
 [![Heap Snapshot 1](/assets/finding-the-cause-of-a-memory-leak-in-jest/heap-snapshot-1.png)](/assets/finding-the-cause-of-a-memory-leak-in-jest/heap-snapshot-1.png)
 [![Heap Snapshot 2](/assets/finding-the-cause-of-a-memory-leak-in-jest/heap-snapshot-2.png)](/assets/finding-the-cause-of-a-memory-leak-in-jest/heap-snapshot-2.png)
@@ -74,8 +74,8 @@ There was a series of same-memory-allocation blocks (see the **Shallow Size** co
 
 ## The root cause & solution
 
-When `grep`-ing for `localStorageSetItemSpy`, we got a couple of test files having that reference.
-In one of those files, there was a missing `.mockRestore` call (note that `.mockReset` only resets call counts etc.):
+We found a couple of test files referencing `localStorageSetItemSpy`.
+In one of those files, there was a missing [`.mockRestore`](https://jestjs.io/docs/en/mock-function-api#mockfnmockrestore) call (note that [`.mockReset`](https://jestjs.io/docs/en/mock-function-api#mockfnmockreset) only resets call counts etc.):
 
 ```jsx
 // …
@@ -96,7 +96,7 @@ afterEach(() => {
 // …
 ```
 
-To fix the memory leak, we had to add an `afterAll` block that restored the mock:
+To fix the memory leak, we had to add an [`afterAll`](https://jestjs.io/docs/en/api#afterallfn-timeout) block that restored the mock:
 
 ```jsx
 afterAll(() => {
@@ -110,4 +110,4 @@ We suspect this mock was carried over to other tests as it was touching on a glo
 
 Memory leaks can be nasty and pretty hard to find. We found that the hard way. We should always make sure to clean up after ourselves in our tests when mocking, even though Jest runs each test file in a separate process.
 
-We hope the process for finding the cause of a memory leak outlined in this article will help you fix issues like that in your projects.
+We hope the process for finding the cause of a memory leak outlined in this article will help you fix similar issues in your projects.
