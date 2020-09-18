@@ -23,7 +23,7 @@ First, you need to be using compression-capable versions of MongoDB and of your 
 1. Create your MongoDB instances with `--networkMessageCompressors snappy`
 2. Pass `compressors='snappy'` into PyMongo's `MongoClient` (look up how to enable snappy in your specific client library if you are not using PyMongo)
 
-Depending on your library, you might also need to install dependencies for it to support the compression algorithm you chose. For PyMongo to support the snappy compression, you'll have to install `python-snappy`, which in turn depends on the `libsnappy` development headers being available to compile its modules.
+Depending on your library, you might also need to install dependencies for it to support the compression algorithm you chose. For PyMongo to support the snappy compression, you'll have to install [`python-snappy`](https://pypi.org/project/python-snappy/), which in turn depends on the `libsnappy` development headers being available to compile its modules.
 
 Even if you are not yet ready to enable compression between clients and instances, you can still enable compression just in communication between instances (if they are part of a replica set or a sharded cluster) by doing step 1 from above. That will already have an impact on your bottom line depending on how heavy the traffic between those instances is. MongoDB will not compress traffic if the client does not support or accept it.
 
