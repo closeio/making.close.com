@@ -1,11 +1,10 @@
 // https://github.com/netlify-templates/gatsby-starter-netlify-cms/blob/master/src/templates/blog-post.js
 
-import React from "react";
+import React, { Fragment } from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
-import Content, { HTMLContent } from '../components/content'
+import Content, { HTMLContent } from '../components/content';
 import Layout from "../components/layout";
-import { Fragment } from "react";
 
 export const BlogPostTemplate = ({
   content,
@@ -18,7 +17,7 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <React.Fragment>
+    <Fragment>
       {helmet || ''}
       <div className="blog-post-container">
         <article className="post">
@@ -40,7 +39,7 @@ export const BlogPostTemplate = ({
           <PostContent content={content} className="blog-post-content" />
         </article>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 
@@ -50,7 +49,7 @@ const BlogPost = ({ data }) => {
   const { frontmatter, html } = markdownRemark;
 
   return (
-    <Layout>
+    <Layout title={siteMetadata.title}>
       <BlogPostTemplate
         content={html}
         contentComponent={HTMLContent}
@@ -61,6 +60,7 @@ const BlogPost = ({ data }) => {
           </Helmet>
         }
         title={frontmatter.title}
+        thumbnail={frontmatter.thumbnail}
       />
     </Layout>
   )
@@ -68,8 +68,8 @@ const BlogPost = ({ data }) => {
 
 export default BlogPost;
 
-export const pageQuery = graphql`
-  query($path: String!) {
+export const pageQuery = graphql` 
+  query BlogPostByPath($path: String!) {
     site {
       siteMetadata {
         title

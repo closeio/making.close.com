@@ -1,5 +1,7 @@
-import CMS from 'netlify-cms-app'
+import CMS from 'netlify-cms-app';
 
-import BlogPostPreview from './preview-templates/BlogTemplatePreview'
+import Styles from '!css-loader!sass-loader!../styles/global.scss';
+import BlogPostPreview from './preview-templates/BlogTemplatePreview';
 
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
+CMS.registerPreviewStyle(Styles.toString(), { raw: true });
+CMS.registerPreviewTemplate('posts', BlogPostPreview);

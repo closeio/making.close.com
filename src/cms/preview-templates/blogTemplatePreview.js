@@ -2,17 +2,23 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import BlogPostTemplate from '../../templates/blogTemplate'
+import { BlogPostTemplate } from '../../templates/blogTemplate'
+import Layout from '../../components/layout'
 
-const BlogPostPreview = ({ entry, widgetFor }) => {
-  const tags = entry.getIn(['data'])
+const BlogPostPreview = ({ entry, widgetFor, document }) => {
+  
+  // Add a dark class manually while previewing
+  document.body.classList.add('dark');
+
   return (
-    <BlogPostTemplate
-      content={widgetFor('body')}
-      data={entry.getIn(['data', 'date'])}
-      thumbnail={entry.getIn(['data', 'thumbnail'])}
-      title={entry.getIn(['data', 'title'])}
-    />
+    <Layout>
+      <BlogPostTemplate
+        content={widgetFor('body')}
+        data={entry.getIn(['data', 'date'])}
+        thumbnail={entry.getIn(['data', 'thumbnail'])}
+        title={entry.getIn(['data', 'title'])}
+      />
+    </Layout>
   )
 }
 

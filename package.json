@@ -8,6 +8,9 @@
     "url": "https://github.com/closeio/engineering.close.com/issues"
   },
   "dependencies": {
+    "@types/prismjs": "^1.16.1",
+    "babel-plugin-prismjs": "^2.0.1",
+    "babel-preset-gatsby": "^0.5.10",
     "concurrently": "^5.3.0",
     "gatsby": "^2.24.63",
     "gatsby-plugin-dark-mode": "^1.1.2",
@@ -22,6 +25,7 @@
     "gatsby-remark-prismjs": "^3.5.13",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-transformer-remark": "^2.8.35",
+    "netlify-cms": "^2.10.58",
     "netlify-cms-app": "^2.12.22",
     "node-sass": "^4.14.1",
     "prismjs": "^1.21.0",
@@ -45,6 +49,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "start": "concurrently \"npm run dev\" \"npm run netlify-cms\"",
+    "preview": "concurrently \"npm run serve\" \"npm run netlify-cms\"",
     "netlify-cms": "npx netlify-cms-proxy-server",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "serve": "gatsby serve",

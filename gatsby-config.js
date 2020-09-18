@@ -36,24 +36,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it. replace with yours
-        trackingId: "",
-        head: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
-      // options: {
-      //   name: `Delog GatbsyJS Starter`,
-      //   short_name: `Delog`,
-      //   start_url: `/`,
-      //   background_color: `#fff`,
-      //   theme_color: `#381696`,
-      //   display: `standalone`,
-      //   icon: "src/images/icon.png",
-      // },
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
@@ -64,7 +47,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-dark-mode",
-    // siteURL is a must for sitemap generation
+    // siteURL is a must for sitemap generationxx
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,
   ],

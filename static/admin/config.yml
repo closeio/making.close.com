@@ -63,7 +63,7 @@ collections:
       - name: permalink
         label: Permalink
         widget: string
-        hint: "Path must start with /posts/"
+        pattern: ['/', "Must start with a /"]
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - label: Meta Description
