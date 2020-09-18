@@ -14,7 +14,7 @@ The impact on network usage we detected in our MongoDB instances was impressive:
 
 [![MongoDB Network Compression Chart](/assets/mongodb-network-compression/mongodb-network-compression-chart.png)](/assets/mongodb-network-compression/mongodb-network-compression-chart.png)
 
-If you are using AWS, like ourselves, or some other IaaS, this can translate into some serious savings in the Engineering budget. Our motivation was to reduce AWS Inter-AZ data transfer costs. At $0.01 per GB in each direction ("in" and "out", which translates into $0.02 per GB of data transferred to another AZ), we are happy with the potential savings from such a simple configuration change.
+If you are using AWS, like ourselves, or some other IaaS, this can translate into some serious savings in the Engineering budget. Our motivation was to reduce AWS Inter-AZ data transfer costs. At $0.01 per GB in each direction ("in" and "out", which translates into $0.02 per GB of data transferred to another AZ), we are happy with the potential savings from such a simple configuration change. Price may vary with any discounts your company may have negotiated with AWS.
 
 ## How can you enable network compression in MongoDB?
 
