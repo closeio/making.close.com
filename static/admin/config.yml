@@ -1,5 +1,7 @@
 backend:
   name: github
+  api_root: https://api.github.com # needed if not using Netlify Identity
+  site_domain: cms.netlify.com # Needed for local developement
   repo: closeio/engineering.close.com
   branch: craig-starting-from-scratch
   commit_messages:
@@ -9,7 +11,7 @@ backend:
     uploadMedia: "[skip ci] Upload “{{path}}”"
     deleteMedia: "[skip ci] Delete “{{path}}”"
 
-local_backend: true
+local_backend: true # beta feature
 
 media_folder: static/assets/uploads
 public_folder: /assets/uploads
@@ -57,24 +59,24 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     create: true
     fields:
-      # - { label: Template, name: template, widget: hidden, default: BlogPost }
-      # - name: permalink
-      #   label: Permalink
-      #   widget: string
-      #   pattern: [/]
-      #   hint: "Path must start with /posts/"
-      # - { name: date, label: Date, widget: datetime }
+      - { label: Template, name: template, widget: hidden, default: BlogPost }
+      - name: permalink
+        label: Permalink
+        widget: string
+        pattern: [/]
+        hint: "Path must start with /posts/"
+      - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
-      # - label: Meta Description
-      #   name: metaDescription
-      #   widget: text
-      #   required: false
-      # - label: Featured Image
-      #   name: thumbnail
-      #   widget: image
-      #   hint: "Image size 1280x800 works best :)"
-      #   required: false
-      #   media_library:
-      #     config:
-      #       multiple: false
+      - label: Meta Description
+        name: metaDescription
+        widget: text
+        required: false
+      - label: Featured Image
+        name: thumbnail
+        widget: image
+        hint: "Image size 1280x800 works best :)"
+        required: false
+        media_library:
+          config:
+            multiple: false
       - { name: body, label: Body, widget: markdown }
