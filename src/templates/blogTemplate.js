@@ -1,47 +1,72 @@
+// https://github.com/netlify-templates/gatsby-starter-netlify-cms/blob/master/src/templates/blog-post.js
+
 import React from "react";
 import Helmet from "react-helmet";
 import { graphql } from "gatsby";
+import Content, { HTMLContent } from '../components/content'
 import Layout from "../components/layout";
+import { Fragment } from "react";
 
-export default function Template({ data }) {
-  const { site, markdownRemark } = data; // data.markdownRemark holds your post data
+export const BlogPostTemplate = ({
+  content,
+  contentComponent,
+  date,
+  title,
+  thumbnail,
+  helmet,
+}) => {
+  const PostContent = contentComponent || Content
+
+  return (
+    <React.Fragment>
+      {helmet || ''}
+      <div className="blog-post-container">
+        <article className="post">
+          {!thumbnail && (
+            <div className="post-thumbnail">
+              <h1 className="post-title">{title}</h1>
+              <div className="post-meta">{date}</div>
+            </div>
+          )}
+          {!!thumbnail && (
+            <div
+              className="post-thumbnail"
+              style={{ backgroundImage: `url(${thumbnail})` }}
+            >
+              <h1 className="post-title">{title}</h1>
+              <div className="post-meta">{date}</div>
+            </div>
+          )}
+          <PostContent content={content} className="blog-post-content" />
+        </article>
+      </div>
+    </React.Fragment>
+  )
+}
+
+const BlogPost = ({ data }) => {
+  const { site, markdownRemark } = data
   const { siteMetadata } = site;
   const { frontmatter, html } = markdownRemark;
 
   return (
     <Layout>
-      <Helmet>
-        <title>
-          {frontmatter.title} | {siteMetadata.title}
-        </title>
-        <meta name="description" content={frontmatter.metaDescription} />
-      </Helmet>
-      <div className="blog-post-container">
-        <article className="post">
-          {!frontmatter.thumbnail && (
-            <div className="post-thumbnail">
-              <h1 className="post-title">{frontmatter.title}</h1>
-              <div className="post-meta">{frontmatter.date}</div>
-            </div>
-          )}
-          {!!frontmatter.thumbnail && (
-            <div
-              className="post-thumbnail"
-              style={{ backgroundImage: `url(${frontmatter.thumbnail})` }}
-            >
-              <h1 className="post-title">{frontmatter.title}</h1>
-              <div className="post-meta">{frontmatter.date}</div>
-            </div>
-          )}
-          <div
-            className="blog-post-content"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        </article>
-      </div>
+      <BlogPostTemplate
+        content={html}
+        contentComponent={HTMLContent}
+        helmet={
+          <Helmet>
+            <title>{frontmatter.title} | {siteMetadata.title}</title>
+            <meta name="description" content={frontmatter.metaDescription} />
+          </Helmet>
+        }
+        title={frontmatter.title}
+      />
     </Layout>
-  );
+  )
 }
+
+export default BlogPost;
 
 export const pageQuery = graphql`
   query($path: String!) {

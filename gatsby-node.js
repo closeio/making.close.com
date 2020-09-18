@@ -37,3 +37,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 };
+
+// Dsiabled Netlify Identity
+const webpack = require(`webpack`)
+ 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      // @ts-ignore
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^netlify-identity-widget$/,
+      }),
+    ],
+  })
+}

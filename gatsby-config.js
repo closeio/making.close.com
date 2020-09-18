@@ -57,7 +57,12 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
     "gatsby-plugin-dark-mode",
     // siteURL is a must for sitemap generation
     `gatsby-plugin-sitemap`,
