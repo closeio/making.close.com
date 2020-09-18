@@ -1,10 +1,18 @@
 backend:
   name: github
-  # change repo to your git repository url
-  repo: W3Layouts/gatsby-starter-delog
+  repo: closeio/engineering.close.com
+  branch: craig-starting-from-scratch
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
 
-media_folder: static/assets
-public_folder: /assets
+local_backend: true
+
+media_folder: static/assets/uploads
+public_folder: /assets/uploads
 
 collections:
   - name: settings
@@ -25,7 +33,7 @@ collections:
           - widget: text
             name: description
             label: Description
-            default: ''
+            default: ""
             required: false
           - widget: object
             name: home
@@ -34,42 +42,39 @@ collections:
               - widget: string
                 name: title
                 label: Title
-                default: ''
+                default: ""
                 required: false
               - widget: markdown
                 name: description
                 label: Description
-                default: ''
+                default: ""
                 required: false
-  - name: blog
-    label: Blog
-    folder: _data/blog
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+  - name: posts
+    label: Posts
+    label_singular: "Post"
+    extension: "md"
+    folder: _data/posts
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     create: true
     fields:
-      - {
-          label: Template,
-          name: template,
-          widget: hidden,
-          default: BlogPost,
-        }
-      - name: path
-        label: Path
-        widget: string
-        pattern: [/]
-        hint: "Path must start with /"
-      - { name: date, label: Date, widget: datetime }
+      # - { label: Template, name: template, widget: hidden, default: BlogPost }
+      # - name: permalink
+      #   label: Permalink
+      #   widget: string
+      #   pattern: [/]
+      #   hint: "Path must start with /posts/"
+      # - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
-      - label: Meta Description
-        name: metaDescription
-        widget: text
-        required: false
-      - label: Featured Image
-        name: thumbnail
-        widget: image
-        hint: "Image size 1280x800 works best :)"
-        required: false
-        media_library:
-          config:
-            multiple: false
+      # - label: Meta Description
+      #   name: metaDescription
+      #   widget: text
+      #   required: false
+      # - label: Featured Image
+      #   name: thumbnail
+      #   widget: image
+      #   hint: "Image size 1280x800 works best :)"
+      #   required: false
+      #   media_library:
+      #     config:
+      #       multiple: false
       - { name: body, label: Body, widget: markdown }

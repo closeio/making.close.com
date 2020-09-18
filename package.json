@@ -1,13 +1,14 @@
 {
-  "name": "gatsby-starter-delog",
-  "description": "A simplified blog for developers and designer. This starter built with Gatsby and Netlify CMS",
-  "author": "W3Layouts Team <info@w3layouts.com>",
+  "name": "making-close",
+  "description": "A simplified blog for developers and designer built with Gatsby and Netlify CMS",
+  "author": "Close <info@close.com>",
   "version": "1.6.0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/W3Layouts/gatsby-starter-delog/issues"
+    "url": "https://github.com/closeio/engineering.close.com/issues"
   },
   "dependencies": {
+    "concurrently": "^5.3.0",
     "gatsby": "^2.24.62",
     "gatsby-plugin-dark-mode": "^1.1.1",
     "gatsby-plugin-google-analytics": "^2.1.36",
@@ -31,22 +32,22 @@
   "devDependencies": {
     "prettier": "^1.19.1"
   },
-  "homepage": "https://github.com/W3Layouts/gatsby-starter-delog#readme",
+  "homepage": "https://engineering.close.com",
   "keywords": [
     "gatsby",
     "netlify cms"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/W3Layouts/gatsby-starter-delog.git"
+    "url": "git+https://github.com/closeio/engineering.close.com.git"
   },
   "scripts": {
-    "build": "gatsby build --log-pages",
-    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "start": "concurrently \"npm run dev\" \"npm run netlify-cms\"",
+    "netlify-cms": "npx netlify-cms-proxy-server",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   }
 }
