@@ -27,4 +27,6 @@ Depending on your library, you might also need to install dependencies for it to
 
 Even if you are not yet ready to enable compression between clients and instances, you can still enable compression just in communication between instances (if they are part of a replica set or a sharded cluster) by doing step 1 from above. That will already have an impact on your bottom line depending on how heavy the traffic between those instances is. MongoDB will not compress traffic if the client does not support or accept it.
 
+From MongoDB 3.6 and 4.0, compression with `snappy` is enabled by default on instances.
+
 There are also other compression algorithms available, and you can find more information in the [MongoDB official docs](https://docs.mongodb.com/manual/reference/program/mongod/#cmdoption-mongod-networkmessagecompressors).
