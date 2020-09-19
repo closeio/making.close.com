@@ -3,6 +3,7 @@ backend:
   branch: craig-starting-from-scratch
   api_root: https://api.github.com # needed if not using Netlify Identity
   repo: closeio/engineering.close.com
+  publish_mode: editorial_workflow
   site_url: https://engineering.close.com
   display_url: https://engineering.close.com
   logo_url: /assets/logo.svg
