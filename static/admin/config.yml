@@ -22,6 +22,8 @@ public_folder: /assets/uploads
 collections:
   - name: settings
     label: Settings
+    editor:
+      preview: false
     files:
       - name: config
         label: Config
