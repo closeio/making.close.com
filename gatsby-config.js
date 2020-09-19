@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  pathPrefix: '/engineering.close.com', // Needed for github pages
   siteMetadata: require('./site-meta-data.json'),
   plugins: [
     {
