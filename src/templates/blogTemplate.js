@@ -49,7 +49,7 @@ const BlogPost = ({ data }) => {
   const { frontmatter, html } = markdownRemark;
 
   return (
-    <Layout title={siteMetadata.title}>
+    <Layout>
       <BlogPostTemplate
         content={html}
         contentComponent={HTMLContent}
@@ -72,11 +72,6 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(frontmatter: { permalink: { eq: $path } }) {
       html
       frontmatter {

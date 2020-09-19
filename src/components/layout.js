@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Navigation from '../components/navigation';
+import Navigation from './navigation';
+import useSiteMetadata from './siteMetadata';
 
-export default ({ children, title = 'Home' }) => {
+const Layout = ({ children, title }) => {
   return (
     <div className="site-wrapper">
       <header className="site-header">
@@ -22,4 +23,14 @@ export default ({ children, title = 'Home' }) => {
       </footer>
     </div>
   );
+};
+
+// Previews can't contain any graphql queries
+export const PreviewLayout = ({ children }) => {
+  return <Layout title="Previewing...">{children}</Layout>;
+};
+
+export default ({ children }) => {
+  const { title } = useSiteMetadata();
+  return <Layout title={title}>{children}</Layout>;
 };
