@@ -2,12 +2,13 @@
 layout: post
 permalink: /posts/sales-data-search-writing-a-query-parser-ast-using-part-1
 date: 2013-05-06
-title: "Sales data search: Writing a query parser/AST using pyparsing +
-  Elasticsearch (part 1)"
+title: 'Sales data search: Writing a query parser/AST using pyparsing +
+  Elasticsearch (part 1)'
 author: Thomas Steinacher
-metaDescription: ""
-thumbnail: ""
+metaDescription: ''
+thumbnail: ''
 ---
+
 For the Close sales software, we’ve built a powerful search engine which lets you find leads based on different criteria. For examples and insight on how our search works from a user’s perspective, check out our previous blog post about lead search.
 
 Our search engine supports anything from simple full text queries to advanced queries that use operators like and, or and not. Perhaps the most powerful search feature is our keyword search which allows you to filter on almost any possible criteria.

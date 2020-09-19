@@ -45,8 +45,8 @@ useEffect(() => {
   // do something
   return () => {
     /* cleanup */
-  }
-}, [deps])
+  };
+}, [deps]);
 
 // An abortable effect hook.
 const abortControllerRef = useAbortableEffect(
@@ -54,10 +54,10 @@ const abortControllerRef = useAbortableEffect(
     // do something
     return (abortController) => {
       /* do cleanup, you should probably abort */
-    }
+    };
   },
-  [deps],
-)
+  [deps]
+);
 ```
 
 ## Examples
@@ -65,8 +65,8 @@ const abortControllerRef = useAbortableEffect(
 ### Abortable [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) requests
 
 ```jsx
-import React from 'react'
-import useAbortableEffect from '@closeio/use-abortable-effect'
+import React from 'react';
+import useAbortableEffect from '@closeio/use-abortable-effect';
 
 export default function MyAbortableFetchComponent() {
   const abortControllerRef = useAbortableEffect((abortSignal) =>
@@ -75,12 +75,12 @@ export default function MyAbortableFetchComponent() {
       .catch((rejection) => {
         if (rejection.name !== 'AbortError') {
           // Re-throw or handle non-abort rejection in another way.
-          return Promise.reject(rejection)
+          return Promise.reject(rejection);
         }
-      }),
-  )
+      })
+  );
 
-  const handleManualAbort = () => abortControllerRef.current.abort()
+  const handleManualAbort = () => abortControllerRef.current.abort();
   // …
 }
 ```
@@ -128,29 +128,29 @@ export default function MyAbortableComputationComponent() {
 ### Custom cleanup function
 
 ```jsx
-import React from 'react'
-import useAbortableEffect from '@closeio/use-abortable-effect'
+import React from 'react';
+import useAbortableEffect from '@closeio/use-abortable-effect';
 
 export default function MyCustomCleanupComponent() {
-  const [gotAborted, setGotAborted] = useState(false)
+  const [gotAborted, setGotAborted] = useState(false);
   const abortControllerRef = useAbortableEffect((abortSignal) => {
     fetch(url, { signal: abortSignal })
       .then(/* … */)
       .catch((rejection) => {
         if (rejection.name !== 'AbortError') {
           // Re-throw or handle non-abort rejection in another way.
-          return Promise.reject(rejection)
+          return Promise.reject(rejection);
         }
-      })
+      });
     // Just return a function like in `useEffect`, with the difference that you
     // get the abort controller (not a ref) as a param.
     return (controller) => {
-      controller.abort()
-      setGotAborted(true)
-    }
-  })
+      controller.abort();
+      setGotAborted(true);
+    };
+  });
 
-  const handleManualAbort = () => abortControllerRef.current.abort()
+  const handleManualAbort = () => abortControllerRef.current.abort();
   // …
 }
 ```

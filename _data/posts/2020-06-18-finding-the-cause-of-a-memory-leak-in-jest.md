@@ -4,8 +4,8 @@ permalink: /posts/finding-the-cause-of-a-memory-leak-in-jest
 date: 2020-06-24
 title: Finding the cause of a memory leak in Jest tests
 author: Lukáš Mladý
-metaDescription: ""
-thumbnail: ""
+metaDescription: ''
+thumbnail: ''
 ---
 
 As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we started seeing our CI-run tests occasionally failing with “out of memory” errors.
@@ -82,19 +82,19 @@ In one of those files, there was a missing [`.mockRestore`](https://jestjs.io/do
 ```jsx
 // …
 
-let localStorageSetItemSpy
+let localStorageSetItemSpy;
 
 beforeEach(() => {
   // …
   localStorageSetItemSpy = jest
     .spyOn(Storage.prototype, 'setItem')
-    .mockImplementation(() => {})
-  localStorage.clear()
-})
+    .mockImplementation(() => {});
+  localStorage.clear();
+});
 
 afterEach(() => {
-  localStorageSetItemSpy.mockReset()
-})
+  localStorageSetItemSpy.mockReset();
+});
 // …
 ```
 
@@ -102,8 +102,8 @@ To fix the memory leak, we had to add an [`afterAll`](https://jestjs.io/docs/en/
 
 ```jsx
 afterAll(() => {
-  localStorageSetItemSpy.mockRestore()
-})
+  localStorageSetItemSpy.mockRestore();
+});
 ```
 
 We suspect this mock was carried over to other tests as it was touching on a global object's prototype.

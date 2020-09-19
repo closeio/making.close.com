@@ -39,8 +39,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 };
 
 // Dsiabled Netlify Identity
-const webpack = require(`webpack`)
- 
+const webpack = require(`webpack`);
+
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     plugins: [
@@ -49,5 +49,5 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         resourceRegExp: /^netlify-identity-widget$/,
       }),
     ],
-  })
-}
+  });
+};

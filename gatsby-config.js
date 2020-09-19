@@ -6,7 +6,7 @@
 
 module.exports = {
   /* Your site config here */
-  siteMetadata: require("./site-meta-data.json"),
+  siteMetadata: require('./site-meta-data.json'),
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -22,7 +22,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: false,
@@ -30,7 +30,7 @@ module.exports = {
             },
           },
           {
-            resolve: "gatsby-remark-emojis",
+            resolve: 'gatsby-remark-emojis',
           },
         ],
       },
@@ -46,7 +46,7 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
-    "gatsby-plugin-dark-mode",
+    'gatsby-plugin-dark-mode',
     // siteURL is a must for sitemap generationxx
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,

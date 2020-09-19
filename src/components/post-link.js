@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from 'react';
+import { Link } from 'gatsby';
 
 const PostLink = ({ post }) => (
   <article className="card ">
@@ -7,7 +7,7 @@ const PostLink = ({ post }) => (
       {!!post.frontmatter.thumbnail && (
         <img
           src={post.frontmatter.thumbnail}
-          alt={post.frontmatter.title + "- Featured Shot"}
+          alt={post.frontmatter.title + '- Featured Shot'}
         />
       )}
     </Link>
