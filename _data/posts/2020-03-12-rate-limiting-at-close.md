@@ -6,6 +6,7 @@ permalink: /posts/rate-limiting-at-close
 author: Joe Kemp
 thumbnail: ''
 metaDescription: ''
+tags: [engineering]
 ---
 
 Our [REST API](https://developer.close.com/) is a critical part of our service

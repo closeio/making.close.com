@@ -6,6 +6,7 @@ permalink: /posts/building_better_email_integrations_pt_1
 author: Anthony Nemitz
 thumbnail: ''
 metaDescription: ''
+tags: [engineering]
 ---
 
 # Building better email integration Pt. 1

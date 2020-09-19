@@ -6,6 +6,7 @@ permalink: /posts/sales-data-search-writing-a-query-parser-ast-using-part-2
 author: Thomas Steinacher
 thumbnail: ''
 metaDescription: ''
+tags: [engineering]
 ---
 
 In part 1 of this series, we built a search query parser using pyparsing which generates an abstract syntax tree (AST) that represents the structure of a search query. In this part, we will cover how to generate an Elasticsearch query by extending the code of the first part. We will also perform some actual search queries on sample leads.

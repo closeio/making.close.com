@@ -6,6 +6,7 @@ permalink: /posts/introducting-use-infinite-scroll-react-hook
 author: Vitor Buzinaro
 thumbnail: ''
 metaDescription: ''
+tags: [engineering]
 ---
 
 **Project link:** [https://github.com/closeio/use-infinite-scroll](https://github.com/closeio/use-infinite-scroll)

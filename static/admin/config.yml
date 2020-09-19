@@ -62,6 +62,20 @@ collections:
     folder: _data/posts
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     create: true
+    summary: '{{title}}'
+    view_filters:
+      - label: 'Design Posts'
+        field: tags
+        pattern: 'design'
+      - label: 'Engineering Posts'
+        field: tags
+        pattern: 'engineering'
+      - label: 'Posts published in 2020'
+        field: date
+        pattern: '2020'
+      - label: Drafts
+        field: draft
+        pattern: true
     fields:
       - { label: Template, name: template, widget: hidden, default: BlogPost }
       - name: permalink
@@ -70,8 +84,9 @@ collections:
         pattern: ['/', 'Must start with a /']
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
-      - label: Meta Description
-        name: metaDescription
+      - { name: tags, label: Tags, widget: list, label_singular: Tag }
+      - name: metaDescription
+        label: Meta Description
         widget: text
         required: false
       - label: Featured Image

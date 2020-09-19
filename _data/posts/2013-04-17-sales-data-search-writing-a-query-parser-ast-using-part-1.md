@@ -7,6 +7,7 @@ title: 'Sales data search: Writing a query parser/AST using pyparsing +
 author: Thomas Steinacher
 metaDescription: ''
 thumbnail: ''
+tags: [engineering]
 ---
 
 For the Close sales software, we’ve built a powerful search engine which lets you find leads based on different criteria. For examples and insight on how our search works from a user’s perspective, check out our previous blog post about lead search.

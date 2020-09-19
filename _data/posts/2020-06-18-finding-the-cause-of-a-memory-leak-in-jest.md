@@ -6,6 +6,7 @@ title: Finding the cause of a memory leak in Jest tests
 author: Lukáš Mladý
 metaDescription: ''
 thumbnail: ''
+tags: [engineering, jest, memory]
 ---
 
 As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we started seeing our CI-run tests occasionally failing with “out of memory” errors.

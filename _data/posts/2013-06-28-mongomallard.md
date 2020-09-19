@@ -6,6 +6,7 @@ permalink: /posts/mongomallard
 author: Thomas Steinacher
 thumbnail: ''
 metaDescription: ''
+tags: [engineering]
 ---
 
 # Introducing MongoMallard: A fast ORM based on MongoEngine
