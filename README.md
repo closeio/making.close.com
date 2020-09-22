@@ -12,12 +12,20 @@ To write a new blog post, simply follow the existing pattern inside [_posts/](_p
 
 Optionally, you can build and serve the site locally to preview your work, make changes to the layout, etc.
 
-Dependencies: Docker
+Dependencies: Docker, docker-compose
 
 ```sh
-docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll jekyll serve
+docker-compose up -d
 ```
 
 Open:
 
 https://localhost:4000/
+
+When done, shut it down with `docker-compose down`.
+
+### Alternative without docker-compose
+
+```sh
+docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll jekyll serve
+```
