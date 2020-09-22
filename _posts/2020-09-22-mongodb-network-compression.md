@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MongoDB Network Compression
-date: 2020-09-16
+date: 2020-09-22
 permalink: posts/mongodb-network-compression
 author: João Sampaio
 ---
