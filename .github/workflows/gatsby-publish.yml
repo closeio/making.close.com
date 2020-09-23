@@ -14,5 +14,5 @@ jobs:
       - uses: enriikke/gatsby-gh-pages-action@v2
         with:
           access-token: ${{ secrets.GATSBY_PUBLISH_ACCESS_TOKEN }}
-          # deploy-branch: gh-pages # Uncomment to publish to the gh-pages branch. By default this will publish to the 'public' folder in this repo.
+          deploy-branch: gh-pages # Uncomment to publish to the gh-pages branch. By default this will publish to the 'public' folder in this repo.
           gatsby-args: --prefix-paths # Needed to use the pathPrefix in Gatsby Config
