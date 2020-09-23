@@ -72,6 +72,11 @@ export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     markdownRemark(frontmatter: { permalink: { eq: $path } }) {
       html
       frontmatter {
