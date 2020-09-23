@@ -10,30 +10,25 @@ export const BlogPostTemplate = ({
   date,
   title,
   thumbnail,
+  author,
   helmet,
 }) => {
   const PostContent = contentComponent || Content;
+
+  const style = thumbnail ? `backgroundImage: url(${thumbnail})` : '';
 
   return (
     <Fragment>
       {helmet || ''}
       <div className="blog-post-container">
         <article className="post">
-          {!thumbnail && (
-            <div className="post-thumbnail">
-              <h1 className="post-title">{title}</h1>
-              <div className="post-meta">{date}</div>
-            </div>
-          )}
-          {!!thumbnail && (
-            <div
-              className="post-thumbnail"
-              style={{ backgroundImage: `url(${thumbnail})` }}
-            >
-              <h1 className="post-title">{title}</h1>
-              <div className="post-meta">{date}</div>
-            </div>
-          )}
+          <div className={`post-thumbnail ${style}`}>
+            <div className="post-meta">{date}</div>
+            <h1 className="post-title">{title}</h1>
+            {!!author && (
+              <div className="post-meta post-author">by {author}</div>
+            )}
+          </div>
           <PostContent content={content} className="blog-post-content" />
         </article>
       </div>
@@ -61,6 +56,8 @@ const BlogPost = ({ data }) => {
         }
         title={frontmatter.title}
         thumbnail={frontmatter.thumbnail}
+        author={frontmatter.author}
+        date={frontmatter.date}
       />
     </Layout>
   );
@@ -79,6 +76,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
+        author
         permalink
         title
         thumbnail

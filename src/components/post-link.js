@@ -3,21 +3,26 @@ import { Link } from 'gatsby';
 
 const PostLink = ({ post }) => (
   <article className="card ">
-    <Link to={post.frontmatter.permalink}>
-      {!!post.frontmatter.thumbnail && (
+    {!!post.frontmatter.thumbnail && (
+      <Link to={post.frontmatter.permalink}>
         <img
           src={post.frontmatter.thumbnail}
           alt={post.frontmatter.title + '- Featured Shot'}
         />
-      )}
-    </Link>
+      </Link>
+    )}
     <header>
+      <div className="post-meta">{post.frontmatter.date}</div>
       <h2 className="post-title">
         <Link to={post.frontmatter.permalink} className="post-link">
           {post.frontmatter.title}
         </Link>
       </h2>
-      <div className="post-meta">{post.frontmatter.date}</div>
+      {!!post.frontmatter.author && (
+        <div className="post-meta post-author">
+          by {post.frontmatter.author}
+        </div>
+      )}
     </header>
   </article>
 );

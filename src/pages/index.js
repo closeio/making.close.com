@@ -47,6 +47,7 @@ export const pageQuery = graphql`
             permalink
             title
             thumbnail
+            author
           }
         }
       }
