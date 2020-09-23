@@ -22,7 +22,7 @@ chosen separate fields per data type.
 
 We realized this sucked and now give you a contact form like this:
 
-![](/assets/contact_details.png)
+![](/assets/uploads/contact_details.png)
 
 You shouldn’t have to make a choice for each phone number, email address, or URL you enter for a contact. We just give you one place to enter all their contact information and we figure out which type of data is which. (Then you can 1-click call or email this person.)
 
@@ -34,7 +34,7 @@ A recent iteration on the contact form was improving a fairly common scenario wh
 
 Now, when you paste that text into the email field, we’ll automatically pull out the email address part and fill in the contact’s name field if it’s blank:
 
-![](/assets/paste_email.png)
+![](/assets/uploads/paste_email.png)
 
 Again, not particularly difficult, but something most software doesn’t do. This is the type of magic that many users won’t even notice or think twice about, but helping users avoid validation error messages is as much of a benefit as any new feature you could make.
 

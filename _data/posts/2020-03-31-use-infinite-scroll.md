@@ -85,10 +85,10 @@ export default function MyComponent() {
       ))}
       {hasMore && <div ref={loaderRef}>Loading…</div>}
     </div>
-  );
+  )
 }
 ```
 
 ## What it looks like
 
-[![`useInfiniteScroll` in practice](/assets/use-infinite-scroll-demo.gif)](/assets/use-infinite-scroll-demo.gif)
+[![`useInfiniteScroll` in practice](/assets/uploads/use-infinite-scroll-demo.gif)](/assets/uploads/use-infinite-scroll-demo.gif)

@@ -90,7 +90,7 @@ it sees it has hit the limit. This also looks like it roughly triggers every 30
 minutes so it is likely something like a cronjob that may cycle like this 24
 hours a day.
 
-[![api limiting](/assets/api.png)](/assets/api.png)
+[![api limiting](/assets/uploads/api.png)](/assets/uploads/api.png)
 
 The next graph is an example of a misbehaving client integration using an
 invalid API key. You can see the red `401`s come up to about 40 RPS (`ops` Y
@@ -99,7 +99,7 @@ is most likely retrying immediately on errors (e.g. `4XX` responses) and
 ignoring the `rate_reset` value in the `429` response that indicates how long
 they should wait before making another request.
 
-[![401 limiting](/assets/401.png)](/assets/401.png)
+[![401 limiting](/assets/uploads/401.png)](/assets/uploads/401.png)
 
 In this case there is limited impact to our infrastructure because most of the
 processing is done in a dedicated Redis instance and the app servers can quickly
@@ -213,7 +213,7 @@ managing the throttles and keeping the loads for the two instances at about 2
 versus what we saw during the spike which would have been loads of 10+ if left
 unchecked.
 
-[![governor](/assets/gov.png)](/assets/gov.png)
+[![governor](/assets/uploads/gov.png)](/assets/uploads/gov.png)
 
 ## Summary
 
