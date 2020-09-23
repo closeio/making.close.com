@@ -1,5 +1,5 @@
-$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
-  Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+  Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 
 html,
 body {
@@ -189,7 +189,7 @@ a {
   padding: 18px;
   overflow: hidden;
   &:before {
-    content: "";
+    content: '';
     background: rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 0;
@@ -224,9 +224,7 @@ a {
   box-shadow: 0 0 30px var(--card-shadow);
   overflow: hidden;
   line-height: 1.5;
-  &:hover .post-link {
-    color: var(--primary-color);
-  }
+
   > a img {
     display: block;
   }
@@ -241,12 +239,20 @@ a {
     margin-bottom: 0.3rem;
   }
   .post-meta {
-    font-weight: 100;
+    font-weight: 200;
     margin-bottom: 0;
+  }
+  .post-author {
+    font-weight: 300;
   }
   .post-link {
     color: var(--text-color);
     text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: var(--primary-color);
+    }
   }
 }
 .post-meta {
@@ -271,8 +277,8 @@ a {
     margin-bottom: 0.5rem;
     color: var(--text-secondary-color);
   }
-  input[type="text"],
-  input[type="email"],
+  input[type='text'],
+  input[type='email'],
   textarea {
     appearance: none;
     border: 1px solid var(--card-shadow);
@@ -357,7 +363,7 @@ body.light {
 }
 .gg-sun::after,
 .gg-sun::before {
-  content: "";
+  content: '';
   display: block;
   box-sizing: border-box;
   position: absolute;
@@ -390,7 +396,7 @@ body.light {
   border-bottom-color: transparent;
 }
 .gg-moon::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 12px;
   height: 18px;
