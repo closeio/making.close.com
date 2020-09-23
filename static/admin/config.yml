@@ -12,9 +12,9 @@ backend:
     deleteMedia: '[skip ci] Delete “{{path}}”'
 
 publish_mode: editorial_workflow
-site_url: https://engineering.close.com
+site_url: https://closeio.github.io/making.close.com/
 
-local_backend: true # beta feature
+# local_backend: true # beta feature
 
 media_folder: static/assets/uploads
 public_folder: /assets/uploads
@@ -82,7 +82,7 @@ collections:
       - name: permalink
         label: Permalink
         widget: string
-        pattern: ['/', 'Must start with a /']
+        pattern: ['/', 'Must start with /posts/']
       - { name: date, label: Date, widget: datetime }
       - { name: title, label: Title }
       - { name: tags, label: Tags, widget: list, label_singular: Tag }

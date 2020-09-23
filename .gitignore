@@ -65,5 +65,9 @@ public
 yarn-error.log
 .pnp/
 .pnp.js
+
 # Yarn Integrity file
 .yarn-integrity
+
+# Tesing GitHub Actions
+github-event-mock.json

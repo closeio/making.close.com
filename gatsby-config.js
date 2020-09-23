@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-  pathPrefix: '/engineering.close.com', // Needed for github pages
+  pathPrefix: '/making.close.com', // Needed for github pages
   siteMetadata: require('./site-meta-data.json'),
   plugins: [
     {
