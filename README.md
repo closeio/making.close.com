@@ -2,31 +2,20 @@
 
 How we think about building products at Close.
 
+To write a new blog post, simply follow the existing pattern inside [`_data/posts`](https://github.com/closeio/engineering.close.com/blob/master/_data/posts).
+GitHub will automatically build and deploy to GitHub Pages when something is pushed to master.
+
+Note: It may take a bit for changes to appear live.
+
 ## Developing the site
 
 The site uses the Gatsby static site genreator.
 
 ```
-git clone git@github.com:closeio/making.close.com.git
-cd making.close.com
+git clone git@github.com:closeio/engineering.close.com.git
+cd engineering.close.com
 npm i
 npm run dev
 ```
 
-## Using Netlify CMS
-
-The site uses Netlif CMS (standalone) which provides a GUI by which you can edit markdown files.
-To access it go to https://making.close.com/admin and log in using your GitHub account.
-
-**Note:** Syntax highlighting currenrly doesn't work in the CMS preview but does work in the live site.
-
-## Using Netlify CMS Locally
-
-While the admin area is available on the live site, you can also run it locally.
-
-```
-npm start
-```
-
-This runs a proxy server for Netlify CMS and uses the local git repo for files.
-Publishing/deleting creates/removes files from the local filesystem and commits ready for pushing.
+Open http://localhost:8000
