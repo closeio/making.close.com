@@ -51,6 +51,14 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets\/.*\.svg/,
+        },
+      },
+    },
     `gatsby-plugin-manifest`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
