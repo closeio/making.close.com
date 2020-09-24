@@ -1,9 +1,9 @@
 {
-  "title": "Making Close",
-  "siteUrl": "https://making.close.com/",
-  "description": "How we think about designing and building products at Close.",
+  "title": "The Making of Close",
+  "siteUrl": "https://engineering.close.com/",
+  "description": "Behind the scenes of how we build products.",
   "home": {
-    "title": "Product and Engineering at Close",
-    "description": "How we think about designing and building products."
+    "title": "The Making of Close",
+    "description": "Behind the scenes of how we build products."
   }
 }

@@ -2,22 +2,25 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Navigation from './navigation';
 import useSiteMetadata from './siteMetadata';
+import Logo from '../assets/logo.svg';
 
 const Layout = ({ children, title }) => {
+  const siteTitle = useSiteMetadata().title;
   return (
     <div className="site-wrapper">
       <header className="site-header">
-        <div className="site-title">
-          <Link to="/">{title}</Link>
-        </div>
+        <Link to="/">
+          <Logo className="site-logo" />
+        </Link>
         <Navigation />
       </header>
       {children}
       <footer className="site-footer">
         <p>
-          &copy; {new Date().getFullYear()} Close &bull;{' '}
-          <a href="https://engineering.close.com/">Making of Close</a> &bull;
-          <a href="https://developer.close.com/">API</a> &bull;
+          &copy; {new Date().getFullYear()}{' '}
+          <a href="https://close.com">Close</a> &bull;{' '}
+          <a href="/">{siteTitle}</a> &bull;{' '}
+          <a href="https://developer.close.com/">API</a> &bull;{' '}
           <a href="https://jobs.close.com/">Jobs</a>
         </p>
       </footer>

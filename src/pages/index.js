@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
 import PostLink from '../components/post-link';
 import HeroHeader from '../components/heroHeader';
@@ -22,7 +22,11 @@ const IndexPage = ({
         <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
       <HeroHeader />
-      <h2>Posts &darr;</h2>
+      {/* <p>
+        <Link to="/engineering/">Engineering Posts</Link> &bull;{' '}
+        <Link to="/design/">Design Posts</Link> &bull;{' '}
+        <Link to="/open-source/">Open Source Projects</Link>
+      </p> */}
       <div className="grids">{Posts}</div>
     </Layout>
   );
