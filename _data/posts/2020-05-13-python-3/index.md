@@ -9,7 +9,7 @@ metaDescription: ''
 tags: [engineering, python]
 ---
 
-[![](/assets/uploads/python3-header.png)](/assets/uploads/python3-header.png)
+[![](./python3-header.png)](./python3-header.png)
 
 First some context — our largest repo is on the order of hundreds of thousands of lines of code, written over the course of the last decade. Not a huge codebase, but also not small. Our Python 3 issue has been open since Dec 2013, and we finally closed it in April 2020. In all fairness, we only prioritized this project starting in mid-2019. This post is a deep dive into what we think our most interesting issue was, plus a few things that surprised us.
 
@@ -146,7 +146,7 @@ If this isn’t solved correctly, there could be a few different classes of issu
 
 We thought we were relatively ready to move forward with our upgrade to Python 3.5. Our dependencies had all been upgraded and most of the surface level issues (re: 2000 failing unit tests) had been ironed out. We added a step in our continuous integration to run tests on Python 3.5 as well as Python 2 for all builds going forward. Then CI started failing intermittently, but only a small group of tests and only on Python 3. Weird. At first it was ignored, thought to just be intermittent failures related to networking, remote docker, etc. One of our engineers started digging deeper though:
 
-![](/assets/python3-weird-behavior.png)
+![](./python3-weird-behavior.png)
 
 That’s where the rabbit hole started, bringing us all the way down to where we bottomed out before. The `object` field was a `GenericReferenceField` and `.first()` emitted a different MongoDB query from `.count()`. Half the time our underlying `{_cls: 'MyDoc', _ref: DBRef('OtherDoc', id_xxxx'}` object had its keys in a different order from when it was inserted, because copying dictionaries changes the key order in Python 3.5. Setting `PYTHONHASHSEED` forced the hash randomization seed, which made the issue reproducible locally.
 

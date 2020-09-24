@@ -38,17 +38,17 @@ It takes an `options` object:
 ```ts
 type UseInfiniteScrollOptions = {
   // The observer will disconnect when there are no more items to load.
-  hasMore: boolean;
+  hasMore: boolean
 
   // Pass true when you're re-fetching the list and want to resets the scroller
   // to page 0.
   // Defaults to `false`.
-  reset?: string;
+  reset?: string
 
   // When scrolling, the distance in pixels from the bottom to switch the page.
   // Defaults to `250` (in px).
-  distance?: number;
-};
+  distance?: number
+}
 ```
 
 And it returns a tuple:
@@ -57,26 +57,26 @@ And it returns a tuple:
 type UseInfiniteScrollResult = [
   number, // The current page (starting at 0)
   RefObject<T>, // React ref to a loader (spinner) element
-  RefObject<T> // React ref to the scroll container element
-];
+  RefObject<T>, // React ref to the scroll container element
+]
 ```
 
 ## Example
 
 ```jsx
-import React from 'react';
-import useInfiniteScroll from '@closeio/use-infinite-scroll';
+import React from 'react'
+import useInfiniteScroll from '@closeio/use-infinite-scroll'
 
 export default function MyComponent() {
-  const [items, setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(false);
-  const [page, loaderRef, scrollerRef] = useInfiniteScroll({ hasMore });
+  const [items, setItems] = useState([])
+  const [hasMore, setHasMore] = useState(false)
+  const [page, loaderRef, scrollerRef] = useInfiniteScroll({ hasMore })
 
   useEffect(async () => {
-    const data = await myApiCall({ page });
-    setHasMore(data.hasMore);
-    setItems((prev) => [...prev, data.items]);
-  }, [page]);
+    const data = await myApiCall({ page })
+    setHasMore(data.hasMore)
+    setItems((prev) => [...prev, data.items])
+  }, [page])
 
   return (
     <div ref={scrollerRef}>
@@ -91,4 +91,4 @@ export default function MyComponent() {
 
 ## What it looks like
 
-[![`useInfiniteScroll` in practice](/assets/uploads/use-infinite-scroll-demo.gif)](/assets/uploads/use-infinite-scroll-demo.gif)
+[![`useInfiniteScroll` in practice](./use-infinite-scroll-demo.gif)](./use-infinite-scroll-demo.gif)

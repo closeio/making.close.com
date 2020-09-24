@@ -8,17 +8,33 @@ module.exports = {
   pathPrefix: '/making.close.com', // Needed for github pages
   siteMetadata: require('./site-meta-data.json'),
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown`,
-        path: `${__dirname}/_data`,
+        name: `posts`,
+        path: `${__dirname}/_data/posts`,
       },
     },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`],
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              quality: 80,
+              maxWidth: 768,
+              withWebp: true,
+            },
+          },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -35,9 +51,7 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
-    },
+    `gatsby-plugin-manifest`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     'gatsby-plugin-dark-mode',
