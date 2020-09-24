@@ -232,10 +232,13 @@ a {
   }
   > header {
     padding: 24px;
+    display: flex;
+    flex-direction: column;
   }
   > h2:first-child {
     margin: 0 0 0.5rem 0;
   }
+
   .post-title {
     font-size: 1.2rem;
     margin-bottom: 0.3rem;
@@ -246,6 +249,7 @@ a {
   }
   .post-author {
     font-weight: 300;
+    margin-bottom: 24px;
   }
   .post-link {
     color: var(--text-color);
@@ -406,4 +410,25 @@ body.light {
   box-shadow: 0 0 0 2px;
   top: 8px;
   left: 2px;
+}
+.taglist {
+  list-style: none;
+  margin: auto 0 0 0;
+  padding: 0;
+}
+
+.taglist-item {
+  display: inline-block;
+  + .taglist-item {
+    margin-left: 8px;
+  }
+}
+
+.tag {
+  padding: 4px 6px;
+  background-color: var(--contact-bg);
+  border-radius: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--btn-text-color);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
-import PostLink from '../components/post-link';
+import PostLink from '../components/postLink';
 import HeroHeader from '../components/heroHeader';
 
 const IndexPage = ({
@@ -22,11 +22,6 @@ const IndexPage = ({
         <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
       <HeroHeader />
-      {/* <p>
-        <Link to="/engineering/">Engineering Posts</Link> &bull;{' '}
-        <Link to="/design/">Design Posts</Link> &bull;{' '}
-        <Link to="/open-source/">Open Source Projects</Link>
-      </p> */}
       <div className="grids">{Posts}</div>
     </Layout>
   );
@@ -52,6 +47,7 @@ export const pageQuery = graphql`
             title
             thumbnail
             author
+            tags
           }
         }
       }

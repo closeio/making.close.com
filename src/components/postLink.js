@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import TagList from './tagList';
 
 const PostLink = ({ post }) => (
   <article className="card ">
@@ -23,6 +24,7 @@ const PostLink = ({ post }) => (
           by {post.frontmatter.author}
         </div>
       )}
+      <TagList tags={post.frontmatter.tags} />
     </header>
   </article>
 );
