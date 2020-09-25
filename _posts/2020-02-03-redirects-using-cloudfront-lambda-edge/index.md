@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Using Lambda@Edge to setup server-side redirects on a Cloudfront+S3 static site
 date: 2020-02-03
 permalink: /posts/redirects-using-cloudfront-lambda-edge
@@ -117,73 +116,73 @@ Then...
 Ours ended up looking something like this:
 
 ```js
-const REDIRECTS_DATA_REGION = 'us-east-1';
-const REDIRECTS_DATA_BUCKET = 'example.com';
-const REDIRECTS_DATA_OBJECT = 'config/redirects.json';
+const REDIRECTS_DATA_REGION = 'us-east-1'
+const REDIRECTS_DATA_BUCKET = 'example.com'
+const REDIRECTS_DATA_OBJECT = 'config/redirects.json'
 
-const AWS = require('aws-sdk');
+const AWS = require('aws-sdk')
 
-const s3 = new AWS.S3({ region: REDIRECTS_DATA_REGION });
+const s3 = new AWS.S3({ region: REDIRECTS_DATA_REGION })
 
 async function readFile(bucketName, filename) {
-  const params = { Bucket: bucketName, Key: filename };
+  const params = { Bucket: bucketName, Key: filename }
 
   const response = await s3
     .getObject(params, function (err, data) {
       if (err) {
-        console.error('s3.getObject error: ' + err);
+        console.error('s3.getObject error: ' + err)
       }
     })
-    .promise();
+    .promise()
 
-  return response.Body.toString();
+  return response.Body.toString()
 }
 
 async function getRedirectsData() {
-  const txt = await readFile(REDIRECTS_DATA_BUCKET, REDIRECTS_DATA_OBJECT);
-  let data;
+  const txt = await readFile(REDIRECTS_DATA_BUCKET, REDIRECTS_DATA_OBJECT)
+  let data
   try {
-    data = JSON.parse(txt);
+    data = JSON.parse(txt)
   } catch (e) {
-    console.error('getRedirectsData parse failed', txt, e);
-    data = {};
+    console.error('getRedirectsData parse failed', txt, e)
+    data = {}
   }
-  return data;
+  return data
 }
 
 const supportedStatusCodes = {
   301: 'Moved Permanently',
   302: 'Found',
   307: 'Temporary Redirect',
-};
+}
 
 exports.handler = async (event, context) => {
   // Get the incoming request and the initial response from S3
   // https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html
-  const { request, response } = event.Records[0].cf;
+  const { request, response } = event.Records[0].cf
 
   // Enable HSTS
   response.headers['strict-transport-security'] = [
     { key: 'Strict-Transport-Security', value: 'max-age=63072000' },
-  ];
+  ]
 
   // request.uri is just the URL path without hostname or querystring
-  let path = request.uri;
+  let path = request.uri
 
   // Cut off trailing slash to normalize it
   if (path.slice(-1) === '/') {
-    path = path.slice(0, -1);
+    path = path.slice(0, -1)
   }
 
-  const redirectsData = await getRedirectsData();
-  const redirectData = redirectsData[path];
+  const redirectsData = await getRedirectsData()
+  const redirectData = redirectsData[path]
 
   // See if a redirect exists & sanity check that the redirect object is what we expect
   const shouldRedirect = !!(
     redirectData &&
     redirectData.to &&
     supportedStatusCodes[redirectData.statusCode]
-  );
+  )
 
   if (shouldRedirect) {
     // Note: We can't completely create a new set of headers even for a redirect
@@ -195,17 +194,17 @@ exports.handler = async (event, context) => {
         key: 'Location',
         value: redirectData.to,
       },
-    ];
+    ]
 
     return {
       status: redirectData.statusCode,
       statusDescription: supportedStatusCodes[redirectData.statusCode],
       headers: response.headers,
-    };
+    }
   }
 
-  return response;
-};
+  return response
+}
 ```
 
 #### Give the IAM role access to your S3 bucket

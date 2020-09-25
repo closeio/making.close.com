@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Introducing useInfiniteScroll: a simple React hook for infinite scroll experience'
 date: 2020-03-31
 permalink: /posts/introducting-use-infinite-scroll-react-hook
@@ -91,4 +90,4 @@ export default function MyComponent() {
 
 ## What it looks like
 
-[![`useInfiniteScroll` in practice](./use-infinite-scroll-demo.gif)](./use-infinite-scroll-demo.gif)
+![`useInfiniteScroll` in practice](./use-infinite-scroll-demo.gif)

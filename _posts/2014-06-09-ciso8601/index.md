@@ -42,7 +42,7 @@ Note this is in nano seconds, so that's just 0.00032ms. Now, even if we parse te
 
 Our profiler confirmed this:
 
-[![profiler](./profiler.png)](./profiler.png)
+![profiler](./profiler.png)
 
 Check out the project on GitHub: [https://github.com/closeio/ciso8601](https://github.com/closeio/ciso8601)
 

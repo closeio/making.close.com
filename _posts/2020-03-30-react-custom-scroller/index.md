@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Introducing react-custom-scroller: a simple React component for creating custom scrollbars'
 date: 2020-03-30
 permalink: /posts/introducting-react-custom-scroller-component
@@ -38,14 +37,14 @@ CustomScroller.propTypes = {
   innerClassName: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-};
+}
 ```
 
 ## Example
 
 ```jsx
-import React from 'react';
-import CustomScroller from 'react-custom-scroller';
+import React from 'react'
+import CustomScroller from 'react-custom-scroller'
 
 export default function Example() {
   return (
@@ -57,6 +56,6 @@ export default function Example() {
         commodo consequat.
       </p>
     </CustomScroller>
-  );
+  )
 }
 ```

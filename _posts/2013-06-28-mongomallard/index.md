@@ -23,7 +23,7 @@ We started by profiling our API requests to see where slowdowns occured. A helpf
 
 When looking at the profiling view, we noticed many calls to the file system which were slow. However, nowhere in our code did we perform heavy file system operations. It turned out that a lot of time was spent preparing the toolbar itself, specifically generating tracebacks for the MongoDB panel.
 
-[![profiling toolbar](./profiling-toolbar.png)](./profiling-toolbar.png)
+![profiling toolbar](./profiling-toolbar.png)
 
 We noticed that this also affected regular requests from non-admins where the toolbar wasn't shown. We [fixed](https://github.com/closeio/flask-mongoengine/commit/eebead4cbd016cec73bc461344ac2ed284940da5) this problem by patching flask-mongoengine's operations tracker and by also making sure we uninstalled the tracker when it wasn't needed.
 
@@ -76,7 +76,7 @@ DEBUG_TB_PROFILER_ENABLED = True
 
 After making sure all MongoDB queries were optimized (by adding indexes or combining multiple queries on the same collection into one query), we discovered that a lot of time was spent in MongoEngine. Why?
 
-[![profiling mongoengine](./profiling-mongoengine.png)](./profiling-mongoengine.png)
+![profiling mongoengine](./profiling-mongoengine.png)
 
 ## How objects are loaded in MongoEngine
 

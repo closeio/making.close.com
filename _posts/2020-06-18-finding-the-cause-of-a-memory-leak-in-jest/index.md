@@ -1,5 +1,4 @@
 ---
-layout: post
 permalink: /posts/finding-the-cause-of-a-memory-leak-in-jest
 date: 2020-06-24
 title: Finding the cause of a memory leak in Jest tests
@@ -67,13 +66,13 @@ Then go to Chrome -> enter `chrome://inspect` and connect the debugger.
 
 We took 3 heap snapshots, compared what was increasing disproportionately (array constructor) and dug deeper.
 
-[![Heap Snapshot 1](./heap-snapshot-1.png)](./heap-snapshot-1.png)
-[![Heap Snapshot 2](./heap-snapshot-2.png)](./heap-snapshot-2.png)
-[![Heap Snapshot 3](./heap-snapshot-3.png)](./heap-snapshot-3.png)
+![Heap Snapshot 1](./heap-snapshot-1.png)
+![Heap Snapshot 2](./heap-snapshot-2.png)
+![Heap Snapshot 3](./heap-snapshot-3.png)
 
 There was a series of same-memory-allocation blocks (see the **Shallow Size** column in the screenshot below) that was growing for each snapshot. We drilled into those blocks and found traces of `localStorage` and its mocking. The `localStorageSetItemSpy` in the screenshot below looked like something _we_ wrote.
 
-[![Heap Snapshot 3 — Drilled-in](./heap-snapshot-3-drilled-in.png)](./heap-snapshot-3-drilled-in.png)
+![Heap Snapshot 3 — Drilled-in](./heap-snapshot-3-drilled-in.png)
 
 ## The root cause & solution
 

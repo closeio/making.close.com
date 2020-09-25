@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Rate Limiting at Close
 date: 2020-03-12
 permalink: /posts/rate-limiting-at-close
@@ -78,8 +77,7 @@ use our API, effectively being able to use 3 API keys at their maximum rate or
 30 keys with each using a small percentage of the limit but can burst as needed.
 At this point we had a pretty effective API rate limiting implementation. We
 made a few more tweaks along the way but the core hasn’t changed. The current
-details are available in our [developer
-docs](https://developer.close.com/#ratelimits).
+details are available in our [developer docs](https://developer.close.com/#ratelimits).
 
 The following graph is an example of a typical rate limited access pattern. The
 Y axis is the count of `200` and `429` responses per minute for one API key. The
@@ -90,7 +88,7 @@ it sees it has hit the limit. This also looks like it roughly triggers every 30
 minutes so it is likely something like a cronjob that may cycle like this 24
 hours a day.
 
-[![api limiting](./api.png)](./api.png)
+![api limiting](./api.png)
 
 The next graph is an example of a misbehaving client integration using an
 invalid API key. You can see the red `401`s come up to about 40 RPS (`ops` Y
@@ -99,7 +97,7 @@ is most likely retrying immediately on errors (e.g. `4XX` responses) and
 ignoring the `rate_reset` value in the `429` response that indicates how long
 they should wait before making another request.
 
-[![401 limiting](./401.png)](./401.png)
+![401 limiting](./401.png)
 
 In this case there is limited impact to our infrastructure because most of the
 processing is done in a dedicated Redis instance and the app servers can quickly
@@ -213,7 +211,7 @@ managing the throttles and keeping the loads for the two instances at about 2
 versus what we saw during the spike which would have been loads of 10+ if left
 unchecked.
 
-[![governor](./gov.png)](./gov.png)
+![governor](./gov.png)
 
 ## Summary
 

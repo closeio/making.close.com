@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Using Kafka with gevent'
 date: 2020-09-22
 permalink: /posts/gafka-gevent

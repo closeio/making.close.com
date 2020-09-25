@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Python 3'
 date: 2020-05-13
 permalink: /posts/python-3
@@ -9,7 +8,7 @@ metaDescription: ''
 tags: [engineering, python]
 ---
 
-[![](./python3-header.png)](./python3-header.png)
+![](./python3-header.png)
 
 First some context — our largest repo is on the order of hundreds of thousands of lines of code, written over the course of the last decade. Not a huge codebase, but also not small. Our Python 3 issue has been open since Dec 2013, and we finally closed it in April 2020. In all fairness, we only prioritized this project starting in mid-2019. This post is a deep dive into what we think our most interesting issue was, plus a few things that surprised us.
 

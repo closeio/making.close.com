@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Analytics and React's useReducer"
 date: 2019-11-06
 permalink: /posts/analytics-and-react-usereducer
@@ -23,12 +22,12 @@ One option is to track as the result of a user interaction, say a button click. 
 
 ```jsx
 const handleClick = (e) => {
-  analytics.track('Button clicked');
+  analytics.track('Button clicked')
   // ...whatever happens next
-};
+}
 
 // in your JSX
-<Button onClick={handleClick} />;
+;<Button onClick={handleClick} />
 ```
 
 The problem with this (apart from that you probably don't want it in your UI code) is you really have no idea what state changes occur as the result of that button click.
@@ -39,13 +38,13 @@ To find out about state changes, you might want to do something like the below. 
 
 ```jsx
 // usePrevious tracks previous values - https://usehooks.com/usePrevious/
-const prevState = usePrevious(someState);
+const prevState = usePrevious(someState)
 
 useEffect(() => {
   if (prevState && prevState !== someState) {
-    analytics.track('State changed', diff(prevState, someState));
+    analytics.track('State changed', diff(prevState, someState))
   }
-}, [someState, prevState]);
+}, [someState, prevState])
 ```
 
 This has the reverse problem in that you have no idea what user interaction actually triggered your state change and with any non-trivial state it's unlikely you can reverse engineer it from the diff itself.
@@ -72,44 +71,44 @@ Compatibility with Redux middleware is pretty cool in itself and I'd be intrigue
 // `action` is the action object that `dispatch` has been called with in your React code
 const customMiddleware = (store) => (next) => (action) => {
   // the state before the reducer is run
-  const prevState = store.getState();
+  const prevState = store.getState()
   // call `next` which will result in the `reducer` being run and the state updated
-  const result = next(action);
+  const result = next(action)
   // you can now access the new state
-  const state = store.getState();
+  const state = store.getState()
 
   // you now know your state change AND the action that triggered it in a single place!
   // we use a switch in here to give nicer messaging and different data depending on the action
-  const stateDiff = diff(state, prevState);
-  analytics.track(`Something changed because of ${action.type}`, stateDiff);
+  const stateDiff = diff(state, prevState)
+  analytics.track(`Something changed because of ${action.type}`, stateDiff)
 
-  return result;
-};
+  return result
+}
 ```
 
 Using this was then as simple as updating our context to the following:
 
 ```jsx
-import React, { createContext, useContext } from 'react';
-import { createReducer } from 'react-use';
+import React, { createContext, useContext } from 'react'
+import { createReducer } from 'react-use'
 
-import { reducer, initialState } from './ducks';
-import analyticsMiddleware from './ducks/analyticsMiddleware';
+import { reducer, initialState } from './ducks'
+import analyticsMiddleware from './ducks/analyticsMiddleware'
 
 // swap out `useReducer` for our analytics middleware-powered reducer
-const usePipelineReducer = createReducer(analyticsMiddleware);
+const usePipelineReducer = createReducer(analyticsMiddleware)
 
-const PipelineContext = createContext();
+const PipelineContext = createContext()
 
 const PipelineProvider = ({ children }) => (
   <PipelineContext.Provider value={usePipelineReducer(reducer, initialState)}>
     {children}
   </PipelineContext.Provider>
-);
+)
 
-const usePipelineContext = () => useContext(PipelineContext);
+const usePipelineContext = () => useContext(PipelineContext)
 
-export { PipelineProvider, usePipelineContext };
+export { PipelineProvider, usePipelineContext }
 ```
 
 We’ve been super happy with this implementation so far. Maintaining it is straightforward and it’s easy to add additional event tracking whenever new functionality is added to the feature. Everything’s in a single place and it doesn’t require deep domain knowledge for anyone on the team to add or update if necessary (even if they’ve not worked on this part of the codebase before).
