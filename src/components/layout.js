@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Navigation from './navigation';
 import useSiteMetadata from './siteMetadata';
 import Logo from '../assets/logo.svg';
 import ThemeChanger from '../components/themeChanger';
@@ -13,7 +12,6 @@ const Layout = ({ children }) => {
         <Link className="site-logo" to="/">
           <Logo />
         </Link>
-        {/* <Navigation /> */}
         <ThemeChanger />
       </header>
       {children}
