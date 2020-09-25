@@ -3,16 +3,18 @@ import { Link } from 'gatsby';
 import Navigation from './navigation';
 import useSiteMetadata from './siteMetadata';
 import Logo from '../assets/logo.svg';
+import ThemeChanger from '../components/themeChanger';
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children }) => {
   const siteTitle = useSiteMetadata().title;
   return (
     <div className="site-wrapper">
       <header className="site-header">
-        <Link to="/">
-          <Logo className="site-logo" />
+        <Link className="site-logo" to="/">
+          <Logo />
         </Link>
         <Navigation />
+        <ThemeChanger />
       </header>
       {children}
       <footer className="site-footer">

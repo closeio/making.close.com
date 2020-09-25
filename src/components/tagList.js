@@ -1,4 +1,5 @@
 import React from 'react';
+
 const TagList = ({ tags }) => (
   <ul className="taglist">
     {tags.map((tag) => (

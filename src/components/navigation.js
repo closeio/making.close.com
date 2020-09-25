@@ -1,14 +1,20 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import ThemeChanger from '../components/themeChanger';
 
-export default () => (
+const Navigation = () => (
   <nav className="navigation">
-    <p>
-      <Link to="/engineering/">Engineering Posts</Link> &bull;{' '}
-      <Link to="/design/">Design Posts</Link> &bull;{' '}
-      <Link to="/open-source/">Open Source Projects</Link>
-    </p>
-    <ThemeChanger />
+    <ul className="navlist">
+      <li className="navlist-item">
+        <Link to="/engineering/">Engineering Posts</Link>
+      </li>
+      <li className="navlist-item">
+        <Link to="/design/">Design Posts</Link>
+      </li>
+      <li className="navlist-item">
+        <Link to="/open-source/">Open Source Projects</Link>
+      </li>
+    </ul>
   </nav>
 );
+
+export default Navigation;

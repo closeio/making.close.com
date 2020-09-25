@@ -76,13 +76,18 @@ a {
   }
 }
 .navigation {
+  grid-area: navigation;
   display: flex;
   align-items: center;
   font-weight: 300;
+
+  @media only screen and (min-width: 768px) {
+    margin-left: auto;
+  }
+
   a {
     color: #888;
     text-decoration: none;
-    margin: 0 8px 0;
     &[aria-current] {
       color: var(--primary-color);
       font-weight: 700;
@@ -96,18 +101,33 @@ a {
   }
 }
 .site-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   padding: 20px 0;
   background: var(--site-header);
   margin-bottom: 32px;
   align-items: center;
-}
-.site-logo {
-  height: 32px;
+  justify-items: stretch;
+  grid-gap: 24px;
+  grid-template-columns: auto 24px;
+  grid-template-areas:
+    'logo themechanger'
+    'navigation navigation';
 
-  #text {
-    fill: var(--logoTextColor);
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: auto auto 24px;
+    grid-template-areas: 'logo navigation themechanger';
+  }
+}
+
+.site-logo {
+  grid-area: logo;
+
+  svg {
+    height: 32px;
+
+    #text {
+      fill: var(--logoTextColor);
+    }
   }
 }
 .hero-header {
@@ -329,7 +349,7 @@ a {
 }
 
 // theme-changer
-.theme-changer {
+.theme-changer-input {
   display: none;
 }
 body.dark {
@@ -343,9 +363,9 @@ body.light {
   }
 }
 .mode-container {
+  grid-area: themechanger;
   width: 24px;
   height: 24px;
-  margin-left: 20px;
 }
 // CSS.gg icons for sun and moon
 .gg-sun {
@@ -431,4 +451,37 @@ body.light {
   font-size: 12px;
   text-transform: uppercase;
   color: var(--btn-text-color);
+}
+
+.navlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navlist-item {
+  display: block;
+  padding: 0;
+
+  a {
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: inline-block;
+
+    + .navlist-item {
+      margin-left: 24px;
+    }
+
+    a {
+      padding: 0;
+    }
+  }
+}
+
+.theme-changer {
+  grid-area: themechanger;
 }
