@@ -14,17 +14,22 @@ const PostLink = ({ post }) => (
     )}
     <header>
       <div className="post-meta">{post.frontmatter.date}</div>
+
       <h2 className="post-title">
         <Link to={post.frontmatter.permalink} className="post-link">
           {post.frontmatter.title}
         </Link>
       </h2>
+
       {Boolean(post.frontmatter.author) && (
         <div className="post-meta post-author">
           by {post.frontmatter.author}
         </div>
       )}
-      <TagList tags={post.frontmatter.tags} />
+
+      {Boolean(post.frontmatter.tags) && (
+        <TagList tags={post.frontmatter.tags} />
+      )}
     </header>
   </article>
 );

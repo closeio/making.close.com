@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
         <Link className="site-logo" to="/">
           <Logo />
         </Link>
-        <Navigation />
+        {/* <Navigation /> */}
         <ThemeChanger />
       </header>
       {children}
