@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PostLink from '../components/postLink';
 import HeroHeader from '../components/heroHeader';
@@ -12,7 +12,7 @@ const IndexPage = ({
   },
 }) => {
   const Posts = edges
-    .filter((edge) => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
+    .filter((edge) => Boolean(edge.node.frontmatter.date)) // You can filter your posts based on some criteria
     .map((edge) => <PostLink key={edge.node.id} post={edge.node} />);
 
   return (

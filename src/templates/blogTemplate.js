@@ -1,69 +1,48 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import Content, { HTMLContent } from '../components/content';
 import Layout from '../components/layout';
 
-export const BlogPostTemplate = ({
-  content,
-  contentComponent,
-  date,
-  title,
-  thumbnail,
-  author,
-  helmet,
-}) => {
-  const PostContent = contentComponent || Content;
-
-  const style = thumbnail ? `backgroundImage: url(${thumbnail})` : '';
-
-  return (
-    <Fragment>
-      {helmet || ''}
-      <div className="blog-post-container">
-        <article className="post">
-          <div className={`post-thumbnail ${style}`}>
-            <div className="post-meta">{date}</div>
-            <h1 className="post-title">{title}</h1>
-            {!!author && (
-              <div className="post-meta post-author">by {author}</div>
-            )}
-          </div>
-          <PostContent content={content} className="blog-post-content" />
-        </article>
-      </div>
-    </Fragment>
-  );
-};
-
-const BlogPost = ({ data }) => {
+const BlogPostTemplate = ({ data }) => {
   const { site, markdownRemark } = data;
   const { siteMetadata } = site;
   const { frontmatter, html } = markdownRemark;
 
+  const style = frontmatter.thumbnail
+    ? `backgroundImage: url(${frontmatter.thumbnail})`
+    : '';
+
   return (
     <Layout>
-      <BlogPostTemplate
-        content={html}
-        contentComponent={HTMLContent}
-        helmet={
-          <Helmet>
-            <title>
-              {frontmatter.title} | {siteMetadata.title}
-            </title>
-            <meta name="description" content={frontmatter.metaDescription} />
-          </Helmet>
-        }
-        title={frontmatter.title}
-        thumbnail={frontmatter.thumbnail}
-        author={frontmatter.author}
-        date={frontmatter.date}
-      />
+      <Helmet>
+        <title>
+          {frontmatter.title} | {siteMetadata.title}
+        </title>
+        {Boolean(frontmatter.metaDescription) && (
+          <meta name="description" content={frontmatter.metaDescription} />
+        )}
+      </Helmet>
+
+      <div className="blog-post-container">
+        <article className="post">
+          <div className={`post-thumbnail ${style}`}>
+            <div className="post-meta">{frontmatter.date}</div>
+            <h1 className="post-title">{frontmatter.title}</h1>
+            {Boolean(frontmatter.author) && (
+              <div className="post-meta post-author">
+                by {frontmatter.author}
+              </div>
+            )}
+          </div>
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </article>
+      </div>
     </Layout>
   );
 };
-
-export default BlogPost;
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
@@ -85,3 +64,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default BlogPostTemplate;

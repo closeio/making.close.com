@@ -6,7 +6,7 @@ import Logo from '../assets/logo.svg';
 import ThemeChanger from '../components/themeChanger';
 
 const Layout = ({ children }) => {
-  const siteTitle = useSiteMetadata().title;
+  const { title } = useSiteMetadata();
   return (
     <div className="site-wrapper">
       <header className="site-header">
@@ -20,9 +20,8 @@ const Layout = ({ children }) => {
       <footer className="site-footer">
         <p>
           &copy; {new Date().getFullYear()}{' '}
-          <a href="https://close.com">Close</a> &bull;{' '}
-          <a href="/">{siteTitle}</a> &bull;{' '}
-          <a href="https://developer.close.com/">API</a> &bull;{' '}
+          <a href="https://close.com">Close</a> &bull; <a href="/">{title}</a>{' '}
+          &bull; <a href="https://developer.close.com/">API</a> &bull;{' '}
           <a href="https://jobs.close.com/">Jobs</a>
         </p>
       </footer>
@@ -30,12 +29,4 @@ const Layout = ({ children }) => {
   );
 };
 
-// Previews can't contain any graphql queries
-export const PreviewLayout = ({ children }) => {
-  return <Layout title="Previewing...">{children}</Layout>;
-};
-
-export default ({ children }) => {
-  const { title } = useSiteMetadata();
-  return <Layout title={title}>{children}</Layout>;
-};
+export default Layout;

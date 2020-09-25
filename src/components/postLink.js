@@ -4,7 +4,7 @@ import TagList from './tagList';
 
 const PostLink = ({ post }) => (
   <article className="card ">
-    {!!post.frontmatter.thumbnail && (
+    {Boolean(post.frontmatter.thumbnail) && (
       <Link to={post.frontmatter.permalink}>
         <img
           src={post.frontmatter.thumbnail}
@@ -19,7 +19,7 @@ const PostLink = ({ post }) => (
           {post.frontmatter.title}
         </Link>
       </h2>
-      {!!post.frontmatter.author && (
+      {Boolean(post.frontmatter.author) && (
         <div className="post-meta post-author">
           by {post.frontmatter.author}
         </div>
