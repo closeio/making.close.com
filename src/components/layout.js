@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import useSiteMetadata from './siteMetadata';
 import Logo from '../assets/logo.svg';
 import ThemeChanger from '../components/themeChanger';
+import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata();
@@ -28,3 +29,7 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
+Layout.propTypes = {
+  children: PropTypes.node,
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import TagList from './tagList';
+import PropTypes from 'prop-types';
 
 const PostLink = ({ post }) => (
   <article className="card ">
@@ -34,3 +35,16 @@ const PostLink = ({ post }) => (
   </article>
 );
 export default PostLink;
+
+PostLink.propTypes = {
+  post: PropTypes.shape({
+    frontmatter: PropTypes.exact({
+      thumbnail: PropTypes.any,
+      permalink: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      tags: PropTypes.array,
+    }),
+  }),
+};

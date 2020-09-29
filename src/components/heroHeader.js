@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-export default () => (
+
+const HeroHeader = () => (
   <StaticQuery
     query={graphql`
       query HeadingQuery {
@@ -27,3 +28,5 @@ export default () => (
     )}
   />
 );
+
+export default HeroHeader;

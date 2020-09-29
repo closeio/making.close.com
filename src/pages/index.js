@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PostLink from '../components/postLink';
@@ -54,3 +55,17 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+IndexPage.propTypes = {
+  data: PropTypes.exact({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+      }),
+    }),
+    allMarkdownRemark: PropTypes.exact({
+      edges: PropTypes.array.isRequired,
+    }),
+  }),
+};
