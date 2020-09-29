@@ -35,8 +35,8 @@ tags: [engineering, some, other, tags]
 The site uses the Gatsby static site genreator and is deployed with Vercel.
 
 ```
-git clone git@github.com:closeio/engineering.close.com.git
-cd engineering.close.com
+git clone git@github.com:closeio/engineering.close.com.git making.close.com
+cd making.close.com
 npm i
 npm run dev
 ```

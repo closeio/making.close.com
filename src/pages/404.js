@@ -12,8 +12,8 @@ const notFound = () => {
       <h1>404: Page not found</h1>
       <p>
         This page does not exist. Head to our <Link to="/">home page</Link> or{' '}
-        <a href="mailto:engineering@close.com">let us know</a> if something
-        seems wrong.
+        <a href="mailto:making@close.com">let us know</a> if something seems
+        wrong.
       </p>
     </Layout>
   );
