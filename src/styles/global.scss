@@ -123,11 +123,13 @@ a {
   grid-area: logo;
 
   svg {
-    height: 32px;
+    height: 24px;
+  }
+}
 
-    #text {
-      fill: var(--logoTextColor);
-    }
+.logo {
+  svg #text {
+    fill: var(--logoTextColor);
   }
 }
 .hero-header {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import useSiteMetadata from './siteMetadata';
-import Logo from '../assets/logo.svg';
+import Logo from '../components/logo';
 import ThemeChanger from '../components/themeChanger';
 import PropTypes from 'prop-types';
 
