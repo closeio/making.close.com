@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
     "module": "commonjs",
     "target": "esnext",
     "jsx": "preserve",
@@ -11,6 +12,5 @@
     "noUnusedLocals": false,
     "allowJs": true
   },
-  "exclude": ["node_modules", "public", ".cache"],
-  "include": ["custom.d.ts"]
+  "exclude": ["node_modules", "public", ".cache"]
 }
