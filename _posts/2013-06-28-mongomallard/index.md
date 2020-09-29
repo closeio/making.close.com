@@ -88,7 +88,7 @@ lead = Lead.objects.get(pk='lead_F5jd4Yf3xHOGke4GI1BqLjFSAxiuMjgf0ShSwLJhSf6')
 
 Behind the scenes, MongoEngine invokes pymongo which is the lower-level Python library that actually fetches the data from MongoDB. Since MongoDB documents are encoded as BSON, pymongo parses the BSON and returns the data back as a Python [SON object](http://api.mongodb.org/python/current/api/bson/son.html). This is done using a C implementation of BSON (which shows up as `bson._cbson.decode_all` in the profiler) and is therefore very fast. Afterwards, MongoEngine creates an object from the SON by passing it into its `_from_son` function as follows:
 
-```
+```python
 lead = Lead._from_son(son)
 ```
 

@@ -24,7 +24,7 @@ We are taking advantage of this tiny library in our [Pipeline View](https://clos
 
 ## Installation
 
-```
+```bash
 yarn add @closeio/use-infinite-scroll
 ```
 

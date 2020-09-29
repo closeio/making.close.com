@@ -10,7 +10,7 @@ tags: [engineering, jest, memory]
 
 As we’ve been increasing our test coverage using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro), we started seeing our CI-run tests occasionally failing with “out of memory” errors.
 
-```.bash
+```bash
 FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
 ```
 
@@ -24,7 +24,7 @@ We tried increasing memory allocation to see if the tests just take too much mem
 
 When looking around for advice, we found an article about [Jest memory leaks](https://chanind.github.io/javascript/2019/10/12/jest-tests-memory-leak.html) and went ahead and ran the following command:
 
-```.bash
+```bash
 node --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
 ```
 
@@ -58,7 +58,7 @@ At some point (with file `021.js`) the memory usage started increasing by ~13MB 
 
 We went ahead and brought in Chrome to inspect the node process that runs the tests:
 
-```.bash
+```bash
 node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage
 ```
 

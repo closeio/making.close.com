@@ -240,7 +240,7 @@ Then, head to your Cloudfront distribution in AWS. You'll notice its status is "
 
 Finally, if everything is working properly, you can test out your new server-side redirects!
 
-```sh
+```bash
 $ curl -I https://close.com/resources/the-follow-up-formula
 HTTP/2 301
 location: /resources/followup
@@ -251,7 +251,7 @@ location: /resources/followup
 
 Finally, just make sure that your regular deployment process uploads `redirects.json` to your S3 bucket (if it's not already) and that a Cloudfront invalidatoin is created. For us that meant having a few lines in our deployment script like:
 
-```
+```bash
 aws s3 cp config/redirects.json s3://example.com/config/
 aws configure set preview.cloudfront true
 aws cloudfront create-invalidation --distribution-id THE_ID_HERE --paths '/*'
