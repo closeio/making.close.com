@@ -37,14 +37,14 @@ CustomScroller.propTypes = {
   innerClassName: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-}
+};
 ```
 
 ## Example
 
 ```jsx
-import React from 'react'
-import CustomScroller from 'react-custom-scroller'
+import React from 'react';
+import CustomScroller from 'react-custom-scroller';
 
 export default function Example() {
   return (
@@ -56,6 +56,6 @@ export default function Example() {
         commodo consequat.
       </p>
     </CustomScroller>
-  )
+  );
 }
 ```

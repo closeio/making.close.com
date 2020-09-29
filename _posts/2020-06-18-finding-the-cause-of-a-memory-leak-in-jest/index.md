@@ -82,19 +82,19 @@ In one of those files, there was a missing [`.mockRestore`](https://jestjs.io/do
 ```jsx
 // …
 
-let localStorageSetItemSpy
+let localStorageSetItemSpy;
 
 beforeEach(() => {
   // …
   localStorageSetItemSpy = jest
     .spyOn(Storage.prototype, 'setItem')
-    .mockImplementation(() => {})
-  localStorage.clear()
-})
+    .mockImplementation(() => {});
+  localStorage.clear();
+});
 
 afterEach(() => {
-  localStorageSetItemSpy.mockReset()
-})
+  localStorageSetItemSpy.mockReset();
+});
 // …
 ```
 
@@ -102,8 +102,8 @@ To fix the memory leak, we had to add an [`afterAll`](https://jestjs.io/docs/en/
 
 ```jsx
 afterAll(() => {
-  localStorageSetItemSpy.mockRestore()
-})
+  localStorageSetItemSpy.mockRestore();
+});
 ```
 
 We suspect this mock was carried over to other tests as it was touching on a global object's prototype.

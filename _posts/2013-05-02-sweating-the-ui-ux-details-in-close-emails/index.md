@@ -17,8 +17,7 @@ Here are a few examples.
 
 ## 1) Entering contact details
 
-Most CRM and address book software make you enter your contacts’ phone numbers, email addresses, and URLs in specifically
-chosen separate fields per data type.
+Most CRM and address book software make you enter your contacts’ phone numbers, email addresses, and URLs in specifically chosen separate fields per data type.
 
 We realized this sucked and now give you a contact form like this:
 
