@@ -52,6 +52,17 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-segment-js',
+      options: {
+        prodKey: 'Ak24tvTW8u6qHxyE4Gk5mOXXXdmsxQHt',
+        trackPage: true,
+        trackPageDelay: 50,
+        delayLoad: true,
+        delayLoadTime: 1000,
+        manualLoad: false,
+      },
+    },
     'gatsby-plugin-manifest',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
