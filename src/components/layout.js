@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import Navigation from '../components/navigation';
 import useSiteMetadata from './siteMetadata';
 import Logo from '../components/logo';
 import ThemeChanger from '../components/themeChanger';
@@ -10,9 +10,14 @@ const Layout = ({ children }) => {
   return (
     <div className="site-wrapper">
       <header className="site-header">
-        <Link className="site-logo" to="/">
+        <a
+          href="https://close.com"
+          className="site-logo"
+          title="Visit Close.com"
+        >
           <Logo />
-        </Link>
+        </a>
+        <Navigation />
         <ThemeChanger />
       </header>
       {children}
