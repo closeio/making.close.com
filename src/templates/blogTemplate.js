@@ -2,6 +2,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
+import { remarkForm } from 'gatsby-tinacms-remark';
+import { useForm, usePlugin } from 'tinacms';
 
 const BlogPostTemplate = ({ data }) => {
   const { site, markdownRemark } = data;
@@ -11,6 +13,30 @@ const BlogPostTemplate = ({ data }) => {
   const style = frontmatter.thumbnail
     ? `backgroundImage: url(${frontmatter.thumbnail})`
     : '';
+
+  const formConfig = {
+    id: data.markdownRemark.id,
+    label: 'Blog Post',
+    initialValues: data.markdownRemark,
+    onSubmit: (values) => {
+      alert(`Submitting ${values.frontmatter.title}`);
+    },
+    fields: [
+      {
+        name: 'frontmatter.title',
+        label: 'Title',
+        component: 'text',
+      },
+      {
+        name: 'frontmatter.description',
+        label: 'Description',
+        component: 'textarea',
+      },
+    ],
+  };
+  // Create the form
+  const [post, form] = useForm(formConfig);
+  usePlugin(form);
 
   return (
     <Layout>
@@ -52,6 +78,7 @@ export const pageQuery = graphql`
       }
     }
     markdownRemark(frontmatter: { permalink: { eq: $path } }) {
+      ...TinaRemark
       html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
@@ -65,4 +92,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default BlogPostTemplate;
+export default remarkForm(BlogPostTemplate);

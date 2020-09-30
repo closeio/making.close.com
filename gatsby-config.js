@@ -63,6 +63,14 @@ module.exports = {
         manualLoad: false,
       },
     },
+    {
+      resolve: 'gatsby-plugin-tinacms',
+      options: {
+        enabled: process.env.NODE_ENV !== 'production',
+        sidebar: true,
+        plugins: ['gatsby-tinacms-git', 'gatsby-tinacms-remark'],
+      },
+    },
     'gatsby-plugin-manifest',
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',

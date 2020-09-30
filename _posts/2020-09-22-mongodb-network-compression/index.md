@@ -1,11 +1,13 @@
 ---
 title: MongoDB Network Compression
-date: 2020-09-22
+date: '2020-09-22T00:00:00.000Z'
 permalink: /posts/mongodb-network-compression
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, mongodb]
+tags:
+  - engineering
+  - mongodb
 ---
 
 Here at Close, we are heavy users of MongoDB: we store a big chunk of our data in MongoDB instances and use its capabilities extensively.

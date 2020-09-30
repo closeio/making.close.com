@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PostLink from '../components/postLink';
 import HeroHeader from '../components/heroHeader';
+import { TinaProvider, TinaCMS } from 'tinacms';
 
 const IndexPage = ({
   data: {
