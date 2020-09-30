@@ -9,7 +9,7 @@ GitHub will automatically build and deploy to GitHub Pages when something is pus
 
 1. Create a new branch (named to indicate the post content).
 1. Create an `index.md` file in a new folder within the `_posts` directory
-1. Name the folder according to the date and slug of the post e.g. `2020-09-22-my-super-post/index.md`.\*
+1. Name the folder according to the date and slug of the post e.g. `2020-09-22-my-super-post/index.md` will be converted to `/posts/my-super-post/` ordered by the date 2020-09-22.
 1. Add any images to the same folder and insert them using a `./filename.png` relative path. **Don't worry about resizing or optimizing**: Gatsby does that at build time.
 1. **Don't link images to their originals**: Gatsby will autolink at build time.
 1. Complete the frontmatter details (below).
@@ -18,17 +18,13 @@ GitHub will automatically build and deploy to GitHub Pages when something is pus
 ```yaml
 ---
 title: 'My Super Post'
-date: 2019-11-06
-permalink: /posts/my-super-post
 author: Alex Prokop
-thumbnail: ''
-metaDescription: ''
+thumbnail: '' # Relative URL to an image
+metaDescription: '' # Used for Google search results description
 tags: [engineering, some, other, tags]
 ---
 
 ```
-
-\*while not necessary for creating the post (which relies on the slug in the frontmatter) it helps file organization.
 
 ## Developing the site
 

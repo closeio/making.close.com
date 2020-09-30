@@ -7,15 +7,11 @@ import PostLink from '../components/postLink';
 import HeroHeader from '../components/heroHeader';
 import { TinaProvider, TinaCMS } from 'tinacms';
 
-const IndexPage = ({
-  data: {
-    site,
-    allMarkdownRemark: { edges },
-  },
-}) => {
-  const Posts = edges
-    .filter((edge) => Boolean(edge.node.frontmatter.date)) // You can filter your posts based on some criteria
-    .map((edge) => <PostLink key={edge.node.id} post={edge.node} />);
+const IndexPage = ({ data }) => {
+  const { site, allMarkdownRemark } = data;
+  const Posts = allMarkdownRemark.nodes.map((node) => (
+    <PostLink key={node.id} post={node} />
+  ));
 
   return (
     <Layout>
@@ -38,19 +34,19 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-      edges {
-        node {
-          id
-          excerpt(pruneLength: 250)
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            permalink
-            title
-            thumbnail
-            author
-            tags
-          }
+    allMarkdownRemark(sort: { fields: [fields___date], order: DESC }) {
+      nodes {
+        id
+        excerpt(pruneLength: 250)
+        fields {
+          date(formatString: "MMMM DD, YYYY")
+          slug
+        }
+        frontmatter {
+          title
+          thumbnail
+          author
+          tags
         }
       }
     }
@@ -66,7 +62,7 @@ IndexPage.propTypes = {
       }),
     }),
     allMarkdownRemark: PropTypes.exact({
-      edges: PropTypes.array.isRequired,
+      nodes: PropTypes.array.isRequired,
     }),
   }),
 };
