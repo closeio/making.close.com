@@ -2,7 +2,7 @@
 
 How we think about building products at Close.
 
-To write a new blog post, simply follow the existing pattern inside [`_posts`](https://github.com/closeio/engineering.close.com/blob/master/_posts).
+To write a new blog post, simply follow the existing pattern inside [`_posts`](https://github.com/closeio/making.close.com/blob/master/_posts).
 GitHub will automatically build and deploy to GitHub Pages when something is pushed to master.
 
 ## Writing a Post
@@ -32,10 +32,10 @@ tags: [engineering, some, other, tags]
 
 ## Developing the site
 
-The site uses the Gatsby static site genreator and is deployed with Vercel.
+The site uses the Gatsby static site generator and is deployed with Vercel.
 
 ```bash
-git clone git@github.com:closeio/engineering.close.com.git making.close.com
+git clone git@github.com:closeio/making.close.com.git making.close.com
 cd making.close.com
 npm i
 npm run dev
