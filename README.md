@@ -1,31 +1,44 @@
-# Close Engineering Blog
+# Making Close
 
-https://engineering.close.com
+How we think about building products at Close.
 
-## Overview
+To write a new blog post, simply follow the existing pattern inside [`_posts`](https://github.com/closeio/engineering.close.com/blob/master/_posts).
+GitHub will automatically build and deploy to GitHub Pages when something is pushed to master.
 
-This is an extremely simple [Jekyll](https://jekyllrb.com/) blog. Jekyll was chosen because of the built-in support with GitHub Pages, so we don't even need build or deployment scripts. We're using the default [minima](https://github.com/jekyll/minima) theme which we've customized only slightly.
+## Writing a Post
 
-To write a new blog post, simply follow the existing pattern inside [_posts/](_posts/). GitHub will automatically build and deploy anything in `master`, thanks to GitHub Pages. Note: It may take a bit for changes to appear live.
+1. Create a new branch (named to indicate the post content).
+1. Create an `index.md` file in a new folder within the `_posts` directory
+1. Name the folder according to the date and slug of the post e.g. `2020-09-22-my-super-post/index.md`.\*
+1. Add any images to the same folder and insert them using a `./filename.png` relative path. **Don't worry about resizing or optimizing**: Gatsby does that at build time.
+1. **Don't link images to their originals**: Gatsby will autolink at build time.
+1. Complete the frontmatter details (below).
+1. Commit then push changes, and create a PR.
 
-## Development
+```yaml
+---
+title: 'My Super Post'
+date: 2019-11-06
+permalink: /posts/my-super-post
+author: Alex Prokop
+thumbnail: ''
+metaDescription: ''
+tags: [engineering, some, other, tags]
+---
 
-Optionally, you can build and serve the site locally to preview your work, make changes to the layout, etc.
-
-Dependencies: Docker, docker-compose
-
-```sh
-docker-compose up -d
 ```
 
-Open:
+\*while not necessary for creating the post (which relies on the slug in the frontmatter) it helps file organization.
 
-https://localhost:4000/
+## Developing the site
 
-When done, shut it down with `docker-compose down`.
+The site uses the Gatsby static site genreator and is deployed with Vercel.
 
-### Alternative without docker-compose
-
-```sh
-docker run --rm --volume="$PWD:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll jekyll serve
+```bash
+git clone git@github.com:closeio/engineering.close.com.git making.close.com
+cd making.close.com
+npm i
+npm run dev
 ```
+
+Open http://localhost:8000
