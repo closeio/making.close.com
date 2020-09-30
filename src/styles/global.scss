@@ -81,10 +81,6 @@ a {
   align-items: center;
   font-weight: 300;
 
-  @media only screen and (min-width: 768px) {
-    margin-left: auto;
-  }
-
   a {
     color: #888;
     text-decoration: none;
@@ -114,7 +110,7 @@ a {
     'navigation navigation';
 
   @media only screen and (min-width: 768px) {
-    grid-template-columns: auto auto 24px;
+    grid-template-columns: min-content auto 24px;
     grid-template-areas: 'logo navigation themechanger';
   }
 }
