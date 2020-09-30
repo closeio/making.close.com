@@ -2,9 +2,10 @@
 title: 'Using Kafka with gevent'
 date: 2020-09-22
 permalink: /posts/gafka-gevent
+author: Vyacheslav Tverskoy
 thumbnail: ''
 metaDescription: ''
-author: Vyacheslav Tverskoy
+tags: [engineering]
 ---
 
 A while ago the Backend team at Close started to introduce Kafka for features built on top of [Event Log](https://developer.close.com/#event-log). We know it's a good fit for us and will provide ample opportunity to use the event stream with confidence.
