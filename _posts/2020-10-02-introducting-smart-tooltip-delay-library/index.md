@@ -14,7 +14,7 @@ We’re excited to introduce the newest addition to our frontend-related open so
 
 ![Smart Tooltip Delay in action](./smart-tooltip-delay-example.gif)
 
-We are taking advantage of this tiny library throughout our app. We still have some old tooltips implemented via Bootstrap Tooltip, and all the new tooltips are purely in React (based on Tippy.js for React). The library allows us to share the same smart delay behaviour across both, leading to consistent user experience.
+We are taking advantage of this tiny library throughout our app. We still have some old tooltips implemented via Bootstrap Tooltip, and all the new tooltips are purely in React (based on Tippy.js for React). The library allows us to share the same smart delay behaviour across both, leading to a consistent user experience.
 
 ## Installation
 
@@ -45,7 +45,7 @@ To integrate with a tooltip library, follow these steps:
    `instance.getCurrentDelay()` whenever the user attempts to show a tooltip
 1. Whenever a tooltip is shown, call `instance.show()`
 1. Whenever a tooltip is hidden, call `instance.hide()`
-1. Enjoy smart tooltip experience
+1. Enjoy a smart tooltip experience
 
 You can create a single `SmartTooltipDelay` instance for the entire app or you can create instances for each button toolbar.
 
