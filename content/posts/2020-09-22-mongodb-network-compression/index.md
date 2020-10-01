@@ -4,6 +4,7 @@ author: João Sampaio
 thumbnail: ''
 metaDescription: ''
 tags:
+  - compression
   - engineering
   - mongodb
 ---
