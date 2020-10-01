@@ -5,7 +5,7 @@ permalink: /posts/analytics-and-react-usereducer
 author: Alex Prokop
 thumbnail: ''
 metaDescription: ''
-tags: [engineering]
+tags: [engineering, analytics, react]
 ---
 
 Having detailed analytics in any app is obviously super important, both from a marketing and sales point of view, but also to help gain insights into how people use a product. This is totally true at Close where we log user actions from potential leads interacting with our marketing site and blog, right the way through to signups and (hopefully) fully paid up customers. Ultimately this data helps us make our product better.

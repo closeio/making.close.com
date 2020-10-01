@@ -5,7 +5,7 @@ permalink: /posts/introducting-react-custom-scroller-component
 author: Vitor Buzinaro
 thumbnail: ''
 metaDescription: ''
-tags: [engineering]
+tags: [engineering, react, scroll]
 ---
 
 **Project link:** [https://github.com/closeio/react-custom-scroller](https://github.com/closeio/react-custom-scroller)
