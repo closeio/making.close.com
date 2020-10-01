@@ -6,6 +6,43 @@ import PropTypes from 'prop-types';
 import { useForm, usePlugin } from 'tinacms';
 import { remarkForm } from 'gatsby-tinacms-remark';
 
+const BlogPostForm = {
+  label: 'Blog Post',
+  fields: [
+    {
+      name: 'frontmatter.title',
+      label: 'Title',
+      component: 'text',
+    },
+    {
+      name: 'frontmatter.thumbnail',
+      label: 'Featured Image',
+      component: 'image',
+    },
+    {
+      name: 'frontmatter.author',
+      label: 'Author Name',
+      component: 'text',
+    },
+    {
+      name: 'rawMarkdownBody',
+      label: 'Body',
+      component: 'markdown',
+    },
+    {
+      name: 'frontmatter.tags',
+      label: 'Tags',
+      component: 'tags',
+    },
+    {
+      name: 'frontmatter.metaDescription',
+      label: 'Description',
+      component: 'textarea',
+      description: 'Used in Google search results.',
+    },
+  ],
+};
+
 const BlogPostTemplate = ({ data, pageContext }) => {
   const { site, markdownRemark } = data;
   const { siteMetadata } = site;
@@ -15,58 +52,6 @@ const BlogPostTemplate = ({ data, pageContext }) => {
   const style = frontmatter.thumbnail
     ? `backgroundImage: url(${frontmatter.thumbnail})`
     : '';
-
-  // const formConfig = {
-  //   id: markdownRemark.id,
-  //   label: 'Blog Post',
-  //   initialValues: markdownRemark,
-  //   onSubmit: (values) => {
-  //     alert(`Submitting ${values.frontmatter.title}`);
-  //   },
-  //   fields: [
-  //     {
-  //       name: 'frontmatter.title',
-  //       label: 'Title',
-  //       component: 'text',
-  //     },
-  //     {
-  //       name: 'frontmatter.permalink',
-  //       label: 'Permalink',
-  //       component: 'text',
-  //       description: 'Must start with /post/',
-  //     },
-  //     {
-  //       name: 'frontmatter.thumbnail',
-  //       label: 'Featured Image',
-  //       component: 'image',
-  //     },
-  //     {
-  //       name: 'frontmatter.date',
-  //       label: 'Date',
-  //       component: 'text',
-  //     },
-  //     {
-  //       name: 'frontmatter.author',
-  //       label: 'Author',
-  //       component: 'text',
-  //     },
-  //     {
-  //       name: 'frontmatter.tags',
-  //       label: 'Tags',
-  //       component: 'tags',
-  //     },
-  //     {
-  //       name: 'frontmatter.metaDescription',
-  //       label: 'Description',
-  //       component: 'textarea',
-  //       description: 'Used in Google search results.',
-  //     },
-  //   ],
-  // };
-
-  // // Create the form
-  // const [post, form] = useForm(formConfig);
-  // usePlugin(form);
 
   return (
     <Layout>
@@ -128,7 +113,7 @@ export const pageQuery = graphql`
   }
 `;
 
-export default remarkForm(BlogPostTemplate);
+export default remarkForm(BlogPostTemplate, BlogPostForm);
 
 BlogPostTemplate.propTypes = {
   data: PropTypes.shape({
@@ -140,12 +125,14 @@ BlogPostTemplate.propTypes = {
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired,
         thumbnail: PropTypes.string,
         metaDescription: PropTypes.string,
       }),
       html: PropTypes.string.isRequired,
     }),
+  }),
+  pageContext: PropTypes.shape({
+    date: PropTypes.string.isRequired,
   }),
 };
