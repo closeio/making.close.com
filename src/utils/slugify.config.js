@@ -1,0 +1,3 @@
+const slugifyConfig = {
+  lower: true,
+};

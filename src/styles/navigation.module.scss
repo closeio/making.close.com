@@ -1,0 +1,68 @@
+@use './global.scss';
+
+.navigation {
+  grid-area: navigation;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+
+  @media only screen and (min-width: 768px) {
+    justify-self: flex-end;
+  }
+
+  & a {
+    color: var(--secondary-color);
+    text-decoration: none;
+
+    &[aria-current] {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    &:focus {
+      color: var(--secondary-color);
+    }
+
+    &:hover {
+      color: var(--primary-color);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    // Set the bounds for bold text so active items do not move adjacent items
+    &:before {
+      content: attr(title);
+      display: block;
+      font-weight: 700;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+}
+
+.navlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    text-align: left;
+  }
+
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    grid-gap: 16px;
+
+    li {
+      text-align: center;
+    }
+  }
+}
+
+.link {
+  display: inline-block;
+  padding: 8px 0;
+}

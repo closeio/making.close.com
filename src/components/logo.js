@@ -1,8 +1,9 @@
 import React from 'react';
 import SVG from '../assets/logo.svg';
+import styles from '../styles/logo.module.scss';
 
-const Logo = (props) => (
-  <div className="logo" {...props}>
+const Logo = () => (
+  <div className={styles.logo}>
     <SVG />
   </div>
 );

@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: require('./site-meta-data.json'),
   plugins: [
+    'gatsby-plugin-postcss',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {

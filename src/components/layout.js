@@ -4,15 +4,16 @@ import useSiteMetadata from './siteMetadata';
 import Logo from '../components/logo';
 import ThemeChanger from '../components/themeChanger';
 import PropTypes from 'prop-types';
+import styles from '../styles/layout.module.scss';
 
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata();
   return (
-    <div className="site-wrapper">
-      <header className="site-header">
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
         <a
           href="https://close.com"
-          className="site-logo"
+          className={styles.logo}
           title="Visit Close.com"
         >
           <Logo />
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
         <ThemeChanger />
       </header>
       {children}
-      <footer className="site-footer">
+      <footer className={styles.footer}>
         <p>
           &copy; {new Date().getFullYear()}{' '}
           <a href="https://close.com">Close</a> &bull; <a href="/">{title}</a>{' '}

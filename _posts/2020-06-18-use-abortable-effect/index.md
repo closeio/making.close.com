@@ -5,7 +5,7 @@ permalink: /posts/introducting-use-abortable-effect-react-hook
 author: Lukáš Mladý
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, react, AbortController, fetch]
+tags: [engineering, react, AbortController, fetch, open source]
 ---
 
 **Project link:** [https://github.com/closeio/use-abortable-effect](https://github.com/closeio/use-abortable-effect)
