@@ -2,7 +2,7 @@
 title: 'Introducing useInfiniteScroll: a simple React hook for infinite scroll experience'
 date: 2020-03-31
 permalink: /posts/introducting-use-infinite-scroll-react-hook
-author: Vitor Buzinaro
+author: Lukáš Mladý
 thumbnail: ''
 metaDescription: ''
 tags: [engineering, react, scroll]

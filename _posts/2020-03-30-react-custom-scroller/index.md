@@ -2,7 +2,7 @@
 title: 'Introducing react-custom-scroller: a simple React component for creating custom scrollbars'
 date: 2020-03-30
 permalink: /posts/introducting-react-custom-scroller-component
-author: Vitor Buzinaro
+author: Lukáš Mladý
 thumbnail: ''
 metaDescription: ''
 tags: [engineering, react, scroll]
