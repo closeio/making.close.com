@@ -5,7 +5,7 @@
   "version": "2.0.0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/closeio/engineering.close.com/issues"
+    "url": "https://github.com/closeio/making.close.com/issues"
   },
   "dependencies": {
     "gatsby": "^2.24.63",
@@ -65,7 +65,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/closeio/engineering.close.com.git"
+    "url": "git+https://github.com/closeio/making.close.com.git"
   },
   "scripts": {
     "build": "gatsby build",
