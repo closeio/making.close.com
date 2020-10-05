@@ -1,6 +1,6 @@
 # Making Close
 
-How we think about building products at Close.
+How we think about building product at Close.
 
 To write a new blog post, simply follow the existing pattern inside [`_posts`](https://github.com/closeio/making.close.com/blob/master/_posts).
 GitHub will automatically build and deploy to GitHub Pages when something is pushed to master.
