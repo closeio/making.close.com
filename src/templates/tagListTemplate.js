@@ -15,8 +15,7 @@ const TagListTemplate = ({ data, pageContext }) => {
   const { site, allMarkdownRemark } = data;
 
   const pageNumberString = currentPage > 1 ? ` (Page ${currentPage})` : '';
-  const title = `${_.startCase(_.toLower(tag))} Posts${pageNumberString}`;
-  const description = site.siteMetadata.description;
+  const title = `${tag} Posts${pageNumberString}`;
 
   const Posts = allMarkdownRemark.nodes
     .filter((node) => Boolean(node.frontmatter.date))
@@ -25,10 +24,11 @@ const TagListTemplate = ({ data, pageContext }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
+        <title>
+          {title} | {site.siteMetadata.title}
+        </title>
       </Helmet>
-      <HeroHeader title={title} description={description} />
+      <HeroHeader title={title} description={site.siteMetadata.description} />
 
       <div className="grids">{Posts}</div>
 

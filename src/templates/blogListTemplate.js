@@ -14,7 +14,6 @@ const BlogListTemplate = ({ data, pageContext }) => {
 
   const pageNumberString = currentPage > 1 ? ` (Page ${currentPage})` : '';
   const title = `${site.siteMetadata.title}${pageNumberString}`;
-  const description = site.siteMetadata.description;
 
   const Posts = allMarkdownRemark.nodes
     .filter((node) => Boolean(node.frontmatter.date))
@@ -24,9 +23,8 @@ const BlogListTemplate = ({ data, pageContext }) => {
     <Layout>
       <Helmet>
         <title>{title}</title>
-        <meta name="description" content={description} />
       </Helmet>
-      <HeroHeader title={title} description={description} />
+      <HeroHeader title={title} description={site.siteMetadata.description} />
 
       <div className="grids">{Posts}</div>
 
