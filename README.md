@@ -23,7 +23,7 @@ permalink: /posts/my-super-post
 author: Alex Prokop
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, some, other, tags]
+tags: [Engineering, Open Source, MongoDB] # Must be written as you want them to appear in titles
 ---
 
 ```

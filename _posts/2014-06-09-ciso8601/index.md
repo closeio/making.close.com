@@ -6,7 +6,7 @@ permalink: /posts/ciso8601
 author: Thomas Steinacher
 thumbnail: ''
 metaDescription: ''
-tags: [engineering]
+tags: [Engineering, Open Source]
 ---
 
 # Introducing ciso8601: A fast ISO8601 date time parser for Python

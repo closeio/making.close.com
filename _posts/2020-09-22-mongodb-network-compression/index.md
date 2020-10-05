@@ -5,7 +5,7 @@ permalink: /posts/mongodb-network-compression
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, mongodb]
+tags: [Engineering, MongoDB]
 ---
 
 Here at Close, we are heavy users of MongoDB: we store a big chunk of our data in MongoDB instances and use its capabilities extensively.

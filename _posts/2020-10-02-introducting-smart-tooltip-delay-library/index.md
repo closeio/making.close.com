@@ -5,7 +5,7 @@ permalink: /posts/introducing-smart-tooltip-delay-library
 author: Lukáš Mladý
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, tooltip]
+tags: [Engineering, Tooltip, Open Source]
 ---
 
 Project link: [https://github.com/closeio/smart-tooltip-delay](https://github.com/closeio/smart-tooltip-delay)

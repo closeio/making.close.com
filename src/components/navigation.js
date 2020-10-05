@@ -21,7 +21,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link className={styles.link} to="/tags/design" title="Design Posts">
+          <Link className={styles.link} to="/tags/design/" title="Design Posts">
             Design Posts
           </Link>
         </li>

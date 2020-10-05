@@ -5,7 +5,7 @@ permalink: /posts/redirects-using-cloudfront-lambda-edge
 author: Phil Freo
 thumbnail: ''
 metaDescription: ''
-tags: [engineering]
+tags: [Engineering]
 ---
 
 We host our main marketing website, [close.com](https://close.com/), as a static site (in our case, generated via [Lektor](https://www.getlektor.com/)) served by AWS.

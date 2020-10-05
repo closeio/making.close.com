@@ -5,7 +5,7 @@ permalink: /posts/introducting-use-infinite-scroll-react-hook
 author: Lukáš Mladý
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, react, scroll, open source]
+tags: [Engineering, React, Scroll, Open Source]
 ---
 
 **Project link:** [https://github.com/closeio/use-infinite-scroll](https://github.com/closeio/use-infinite-scroll)

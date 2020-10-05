@@ -1,6 +1,5 @@
 const path = require('path');
-const slugify = require('slugify');
-const { slugifyConfig } = require('./src/utils/slugify.config');
+const generateTagSlug = require('./src/utils/generateTagSlug.js');
 
 // Posts & Tags to show per page
 const POSTS_PER_PAGE = 12;
@@ -73,12 +72,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   /// Need to paginate
   tags.forEach((tag) => {
     const numPages = Math.ceil(tag.totalCount / POSTS_PER_PAGE);
+    const baseSlug = generateTagSlug(tag.fieldValue);
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        path:
-          i === 0
-            ? `/tags/${slugify(tag.fieldValue, slugifyConfig)}`
-            : `/tags/${slugify(tag.fieldValue, slugifyConfig)}/${i + 1}`,
+        path: i === 0 ? `/tags/${baseSlug}/` : `/tags/${baseSlug}/${i + 1}`,
         component: tagTemplate,
         context: {
           limit: POSTS_PER_PAGE,

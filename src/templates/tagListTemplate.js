@@ -2,8 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import slugify from 'slugify';
-import slugifyConfig from '../utils/slugify.config';
+import generateTagSlug from '../utils/generateTagSlug';
 import _ from 'lodash';
 
 import Layout from '../components/layout';
@@ -37,7 +36,7 @@ const TagListTemplate = ({ data, pageContext }) => {
         <Pagination
           numPages={numPages}
           currentPage={currentPage}
-          basePath={`/tags/${slugify(tag, slugifyConfig)}/`}
+          basePath={`/tags/${generateTagSlug(tag)}/`}
         />
       )}
     </Layout>

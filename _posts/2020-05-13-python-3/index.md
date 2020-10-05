@@ -5,7 +5,7 @@ permalink: /posts/python-3
 author: Alec Rosenbaum
 thumbnail: ''
 metaDescription: ''
-tags: [engineering, python]
+tags: [Engineering, Python]
 ---
 
 ![](./python3-header.png)
