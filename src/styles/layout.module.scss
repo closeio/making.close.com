@@ -1,0 +1,46 @@
+@use './global.scss';
+
+.header {
+  display: grid;
+  padding: 20px 0;
+  background: var(--site-header);
+  margin-bottom: 32px;
+  align-items: center;
+  justify-items: stretch;
+  grid-gap: 24px;
+  grid-template-columns: auto 24px;
+  grid-template-areas:
+    'logo themechanger'
+    'navigation navigation';
+
+  @media only screen and (min-width: 768px) {
+    grid-template-columns: min-content auto 24px;
+    grid-template-areas: 'logo navigation themechanger';
+  }
+}
+
+.logo {
+  grid-area: logo;
+
+  & svg {
+    height: 24px;
+  }
+}
+
+.footer {
+  text-align: center;
+  margin: 90px 0 16px;
+  color: #666;
+  a {
+    font-weight: 700;
+  }
+}
+
+.wrapper {
+  padding: 32px;
+  max-width: 1140px;
+  margin: 0 auto;
+  & img {
+    max-width: 100%;
+  }
+}

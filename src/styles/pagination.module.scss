@@ -1,0 +1,39 @@
+@use './global.css'; // Load variables only
+
+.paginaton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 3px;
+  margin: 48px 0 0 0;
+  gap: 8px;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 32px;
+  border-radius: 3px;
+  padding: 0 8px;
+  text-decoration: none;
+}
+
+.paginationButtonEnabled {
+  composes: paginationButton;
+  color: var(--btn-text-color);
+
+  &:hover,
+  &:focus {
+    color: var(--btn-hover-text-color);
+    background: var(--btn-hover-bg);
+    text-decoration: none;
+  }
+}
+
+.paginationButtonActive {
+  composes: paginationButton;
+  color: var(--btn-text-color);
+}

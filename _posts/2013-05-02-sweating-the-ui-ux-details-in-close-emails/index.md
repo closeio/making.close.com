@@ -6,7 +6,7 @@ permalink: /posts/sweating-the-ui-ux-details-in-close-emails
 author: Phil Freo
 thumbnail: ''
 metaDescription: ''
-tags: [ux, design, product]
+tags: [UX, Design, Product]
 ---
 
 We like to think of our sales software, [Close](https://close.com/), as having a lot of magic under the hood.

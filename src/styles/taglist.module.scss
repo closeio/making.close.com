@@ -1,0 +1,21 @@
+@use './global.scss';
+
+.taglist {
+  list-style: none;
+  margin: -2px;
+  padding: 0;
+}
+
+.item {
+  display: inline-block;
+  margin: 2px;
+}
+
+.tag {
+  padding: 4px 6px;
+  background-color: var(--contact-bg);
+  border-radius: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--btn-text-color);
+}

@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'gatsby';
 import TagList from './tagList';
 import PropTypes from 'prop-types';
+import styles from '../styles/post.module.scss';
 
 const PostLink = ({ post }) => (
-  <article className="card ">
+  <article className={styles.card}>
     {Boolean(post.frontmatter.thumbnail) && (
       <Link to={post.frontmatter.permalink}>
         <img
@@ -13,19 +14,17 @@ const PostLink = ({ post }) => (
         />
       </Link>
     )}
-    <header>
-      <div className="post-meta">{post.frontmatter.date}</div>
+    <header className={styles.header}>
+      <div className={styles.meta}>{post.frontmatter.date}</div>
 
-      <h2 className="post-title">
-        <Link to={post.frontmatter.permalink} className="post-link">
+      <h2 className={styles.title}>
+        <Link to={post.frontmatter.permalink} className={styles.link}>
           {post.frontmatter.title}
         </Link>
       </h2>
 
       {Boolean(post.frontmatter.author) && (
-        <div className="post-meta post-author">
-          by {post.frontmatter.author}
-        </div>
+        <div className={styles.author}>by {post.frontmatter.author}</div>
       )}
 
       {Boolean(post.frontmatter.tags) && (

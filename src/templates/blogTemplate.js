@@ -1,9 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import Layout from '../components/layout';
+import styles from '../styles/post.module.scss';
 
-const BlogPostTemplate = ({ data }) => {
+const BlogTemplate = ({ data }) => {
   const { site, markdownRemark } = data;
   const { siteMetadata } = site;
   const { frontmatter, html } = markdownRemark;
@@ -23,19 +25,15 @@ const BlogPostTemplate = ({ data }) => {
         )}
       </Helmet>
 
-      <div className="blog-post-container">
-        <article className="post">
-          <div className={`post-thumbnail ${style}`}>
-            <div className="post-meta">{frontmatter.date}</div>
-            <h1 className="post-title">{frontmatter.title}</h1>
-            {Boolean(frontmatter.author) && (
-              <div className="post-meta post-author">
-                by {frontmatter.author}
-              </div>
-            )}
+      <div className={styles.container}>
+        <article className={styles.post}>
+          <div className={`${styles.thumbnail} ${style}`}>
+            <div className={styles.meta}>{frontmatter.date}</div>
+            <h1 className={styles.title}>{frontmatter.title}</h1>
+            <div className={styles.author}>by {frontmatter.author}</div>
           </div>
           <div
-            className="blog-post-content"
+            className={styles.content}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </article>
@@ -65,4 +63,24 @@ export const pageQuery = graphql`
   }
 `;
 
-export default BlogPostTemplate;
+export default BlogTemplate;
+
+BlogTemplate.propTypes = {
+  data: PropTypes.exact({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+    }),
+    markdownRemark: PropTypes.exact({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        metaDescription: PropTypes.string,
+        thumbnail: PropTypes.string,
+        date: PropTypes.string.isRequried,
+        author: PropTypes.string.isRequried,
+      }),
+      html: PropTypes.string.isRequired,
+    }),
+  }),
+};

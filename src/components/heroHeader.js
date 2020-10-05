@@ -1,32 +1,24 @@
 import React from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import styles from '../styles/heroHeader.module.scss';
 
-const HeroHeader = () => (
-  <StaticQuery
-    query={graphql`
-      query HeadingQuery {
-        site {
-          siteMetadata {
-            home {
-              title
-              description
-            }
-          }
-        }
-      }
-    `}
-    render={(data) => (
-      <div className="hero-header">
-        <div className="headline">{data.site.siteMetadata.home.title}</div>
-        <div
-          className="primary-content"
-          dangerouslySetInnerHTML={{
-            __html: data.site.siteMetadata.home.description,
-          }}
-        />
-      </div>
+const HeroHeader = ({ title, description }) => (
+  <div className={styles.heroHeader}>
+    <div className={styles.headline}>{title}</div>
+    {description && (
+      <div
+        className={styles.primaryContent}
+        dangerouslySetInnerHTML={{
+          __html: description,
+        }}
+      />
     )}
-  />
+  </div>
 );
 
 export default HeroHeader;
+
+HeroHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+};
