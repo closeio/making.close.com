@@ -27,6 +27,7 @@ const TagListTemplate = ({ data, pageContext }) => {
         <title>
           {title} | {site.siteMetadata.title}
         </title>
+        <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
       <HeroHeader title={title} description={site.siteMetadata.description} />
 

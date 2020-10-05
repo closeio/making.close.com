@@ -23,6 +23,7 @@ const BlogListTemplate = ({ data, pageContext }) => {
     <Layout>
       <Helmet>
         <title>{title}</title>
+        <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
       <HeroHeader title={title} description={site.siteMetadata.description} />
 
