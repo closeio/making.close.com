@@ -8,17 +8,17 @@ author: Bart Gryszko
 
 **TLDR;** This article explains various ways of splitting a sub-folder out to a new Git repository and preserving all its historical changes even if moved around. 
 
-If you're interested only in the final working solution that fits our use case, go to *[Third Approach (final)](#third-approach-final)*.
+If you're interested only in the final working solution that fits our use case, go to the *[Third Approach (final)](#third-approach-final)*.
 
 ## Background
 
 At Close, our web application's code lives in a monorepo. It's home both for the UI and the API code. Initially, we kept all of the frontend code in a `/static`, then in a `/close/static/` (Close was started around 2012 and has been developed and maintained without major rewrites).
 
-At a certain point, we've realized that having both UI and backend in a single repo no longer suits our needs. We've made a decision to split-off the UI folder out of the main repository.
+At a certain point, we've realized that having both UI and backend in a single repo no longer suits our needs. We've decided to split-off the UI folder out of the main repository.
 
-- We wanted Frontend team to fully own the UI part of the app, including CI/CD and git.
-- We wanted to have faster CI/CD process. This could be solved in multiple ways, but having the UI code in a separate repository allows us to give ownership of the UI-specific CI/CD processes to the frontend team.
-- There were also multiple other reasons specific to our stack and processes (like simplifying dev environment or serving our UI faster to customers).
+- We wanted the Frontend team to fully own the UI part of the app, including CI/CD and git.
+- We wanted to have a faster CI/CD process. This could be solved in multiple ways, but having the UI code in a separate repository allows us to give ownership of the UI-specific CI/CD processes to the frontend team.
+- There were also multiple other reasons specific to our stack and processes (like simplifying the dev environment or serving our UI faster to customers).
 
 Our current repository has the following structure:
 ```bash
@@ -39,7 +39,7 @@ The following commands all rely on this directory structure.
 
 ### First Approach: `git subtree split`
 
-In order to create a new `close-ui` repo (child repo) from the `ui/` folder in `close` repo (parent repo), we could use the following commands:
+In order to create a new `close-ui` repo (child repo) from the `ui/` folder in the `close` repo (parent repo), we could use the following commands:
 
 ```sh
 # split out the ui/ folder onto the ui-split branch
@@ -61,7 +61,7 @@ git log --reverse
 ``` 
 It should reach back to 2012, though the latest commit was from 2017 (the time when `/ui` was moved to its current place in the folders structure).
 
-`git subtree split` is ease to use, but it has a few downsides:
+`git subtree split` is easy to use, but it has a few downsides:
 - It's slow. With more than 34 000 commits in our master branch, the command took over 12 minutes on my 2.9GHz quad core i7, 8GB, MacBook Pro.
 - It handles only a single branch at a time. Since we are actively working on multiple branches that would need to be moved, it's not obvious how we could apply the command to all of them.
 - In our case, the `ui/` folder and its content lived in multiple places. By using this technique, we wouldn't be able to track these changes in the git history.
@@ -69,7 +69,7 @@ It should reach back to 2012, though the latest commit was from 2017 (the time w
 ### Second Approach: `git filter-branch`
 
 Github has a 
-[small article about similar topic](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository). In fact, the title of this article was inspired by it.
+[small article about a similar topic](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository). In fact, the title of this article was inspired by it.
 
 The example you can find relates to a very simple case too:
 
@@ -123,8 +123,7 @@ closeio/static/img          #
 ...
 ```
 
-`git filter-repo` allows us to specify the path rules in a configuration file (you can read more about the syntax in the [`git filter-repo` docs](https://github.com/newren/git-filter-repo/blob/b1606ba8ac8393d704ba41319c0bba3e334f3341/Documentation/git-filter-repo.txt#L716-L745))
-, so let's create it:
+`git filter-repo` allows us to specify the path rules in a configuration file (you can read more about the syntax in the [`git filter-repo` docs](https://github.com/newren/git-filter-repo/blob/b1606ba8ac8393d704ba41319c0bba3e334f3341/Documentation/git-filter-repo.txt#L716-L745)), so let's create it:
 ```sh
 # ~/close-ui-paths.txt
 
@@ -150,4 +149,4 @@ git filter-repo --paths-from-file ~/close-ui-paths.txt
 
 If we run the same `rsync` command once again, we'll see no difference in our files (except for the .git/* changes that are expected).
 
-That's it! We've split out a `ui/` sub-folder into its own repository and preserved its whole commit history.
+That's it! We've split out a `ui/` subfolder into its own repository and preserved its whole commit history.
