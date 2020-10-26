@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Splitting sub-folder(s) out into a new Git repository'
-date: 2020-10-09
+date: 2020-10-26
 permalink: /posts/splitting-sub-folders-out-into-new-git-repository
 author: Bart Gryszko
 thumbnail: ''
