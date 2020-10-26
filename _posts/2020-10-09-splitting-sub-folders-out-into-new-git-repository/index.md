@@ -9,17 +9,17 @@ metaDescription: ''
 tags: [Engineering]
 ---
 
-**TLDR;** This article explains various ways of splitting a sub-folder out to a new Git repository and preserving all its historical changes even if moved around. 
+**TL;DR** This article explains various ways of splitting a sub-folder out to a new Git repository and preserving all its historical changes even if moved around. 
 
 If you're interested only in the final working solution that fits our use case, go to the *[Third Approach (final)](#third-approach-final)*.
 
 ## Background
 
-At Close, our web application's code lives in a monorepo. It's home both for the UI and the API code. Initially, we kept all of the frontend code in a `/static`, then in a `/close/static/` (Close was started around 2012 and has been developed and maintained without major rewrites).
+At Close, our web application's code lived in a monorepo. It was home both to the UI and the API code. Initially, we kept all of the frontend code in a `/static`, then in a `/close/static/` (Close was started around 2012 and has been developed and maintained without major rewrites).
 
-At a certain point, we've realized that having both UI and backend in a single repo no longer suits our needs. We've decided to split-off the UI folder out of the main repository.
+At a certain point, we realized that having both UI and backend in a single repo no longer suits our needs. We decided to split the UI folder out of the main repository.
 
-- We wanted the Frontend team to fully own the UI part of the app, including CI/CD and git.
+- We wanted the Frontend team to fully own the UI part of the app, including CI/CD.
 - We wanted to have a faster CI/CD process. This could be solved in multiple ways, but having the UI code in a separate repository allows us to give ownership of the UI-specific CI/CD processes to the frontend team.
 - There were also multiple other reasons specific to our stack and processes (like simplifying the dev environment or serving our UI faster to customers).
 
@@ -71,7 +71,7 @@ It should reach back to 2012, though the latest commit was from 2017 (the time w
 
 ### Second Approach: `git filter-branch`
 
-Github has a 
+GitHub has a 
 [small article about a similar topic](https://docs.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository). In fact, the title of this article was inspired by it.
 
 The example you can find relates to a very simple case too:
@@ -93,7 +93,7 @@ Since this approach produced similar results to the first one (and had similar d
 
 ### <a name="third-approach-final"></a> Third Approach (final): `git filter-repo`
 
-Similarly to the `git filter-branch` command, `git filter-repo` is a powerful git history rewriting tool but with a relatively simple API. Just keep in mind that it's not in git's core, and you have to [install it manually](https://github.com/newren/git-filter-repo#how-do-i-install-it).
+Similar to the `git filter-branch` command, `git filter-repo` is a powerful git history rewriting tool but with a relatively simple API. Just keep in mind that it's not in git's core, and you have to [install it manually](https://github.com/newren/git-filter-repo#how-do-i-install-it).
 
 To achieve a similar result as in previous approaches, we would clone the parent repo and use:
 ```sh
@@ -104,7 +104,7 @@ This method immediately shows two advantages:
 - It's fast. It took around 20s (compared to 12 minutes!)
 - It applies changes to all branches
 
-Still, only commit history related to the `ui/` folder survived. Last commit that we could see was when `ui/` was created. We couldn't see changes related to files that existed before and were moved to the `ui/` folder later.
+Still, only commit history related to the `ui/` folder survived. The oldest commit that we could see was when `ui/` was created. We couldn't see changes related to files that existed before and were moved to the `ui/` folder later.
 
 To solve this, we can include multiple paths that previously included UI code and rewrite the `ui/` to become a root folder:
 ```sh
