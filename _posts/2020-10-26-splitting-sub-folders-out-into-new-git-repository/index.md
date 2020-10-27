@@ -6,7 +6,7 @@ permalink: /posts/splitting-sub-folders-out-into-new-git-repository
 author: Bart Gryszko
 thumbnail: ''
 metaDescription: ''
-tags: [Engineering]
+tags: [Engineering, Git]
 ---
 
 **TL;DR** This article explains various ways of splitting a sub-folder out to a new Git repository and preserving all its historical changes even if moved around. 
