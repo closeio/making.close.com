@@ -100,7 +100,7 @@ and really it's all just about interacting with the DOM after rendering. We'd al
 built ourselves [`backbone-testing-library`](https://github.com/closeio/backbone-testing-library) 
 to be able to write our tests in a similar format (which we've recently [open sourced](https://github.com/closeio/backbone-testing-library)). 
 This means it's super easy to port Backbone tests over to React Components with minimal
-changes, **especially** if you utilize [Ken C.Dodds's AHA Testing patterns](https://kentcdodds.com/blog/aha-testing/)
+changes, **especially** if you utilize [Kent C. Dodds's AHA Testing patterns](https://kentcdodds.com/blog/aha-testing/)
 to use sensible abstractions. For example, we added the following render helper for our 
 Backbone tests:
 
