@@ -28,15 +28,15 @@ controlled and manageable way, keeping the years of effort and bugfixes that hav
 into it already. Below is a breakdown of the process we've developed to mitigate problems 
 as much as possible.
 
-# Summary (TLDR)
+# Summary (TL;DR)
 
 1. Audit the UI **and** code.
 2. Ensure the existing Backbone View has "full" test coverage.
 3. Port tests over to a new empty React Component.
 4. Build out the new React component using TDD, **don't be tempted to add new features yet**.
 5. Replace the Backbone View with the new React Component and do full E2E/manual tests.
-6. Delete the Backbone View
-7. Live in Peace and Harmony 🧘
+6. Delete the Backbone View.
+7. Live in Peace and Harmony. 🧘
 
 # Beware Dragons 🐉
 
@@ -97,8 +97,8 @@ is also to test the DOM, not the implementation! Can that help? Well,
 [`react-testing-library`](https://github.com/testing-library/react-testing-library) is a
 wrapper around [`dom-testing-library`](https://github.com/testing-library/dom-testing-library),
 and really it's all just about interacting with the DOM after rendering. We'd already
-built ourselves `backbone-testing-library` to be able to write our tests in a similar 
-format (which we've recently [open sourced](https://github.com/closeio/backbone-testing-library)). 
+built ourselves [`backbone-testing-library`](https://github.com/closeio/backbone-testing-library) 
+to be able to write our tests in a similar format (which we've recently [open sourced](https://github.com/closeio/backbone-testing-library)). 
 This means it's super easy to port Backbone tests over to React Components with minimal
 changes, **especially** if you utilize [Ken C.Dodds's AHA Testing patterns](https://kentcdodds.com/blog/aha-testing/)
 to use sensible abstractions. For example, we added the following render helper for our 
@@ -134,7 +134,6 @@ too. The React test then becomes:
 
 ```javascript
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { pickSelectOption } from 'test/utils/select';
 import CustomFieldModalForm from './CustomFieldModalForm';
@@ -199,7 +198,7 @@ calls `ReactDOM.render` - inserting your React controlled component into the DOM
 the Backbone controlled parent View.
 
 Once integration is done, don't forget to manually test! If you have E2E tests even 
-better, but you're unit tests obviously aren't going to catch any integration issues. If 
+better, but your unit tests obviously aren't going to catch any integration issues. If 
 everything's good you can now delete the Backbone View for good! 🎉 
 
 # New Features
