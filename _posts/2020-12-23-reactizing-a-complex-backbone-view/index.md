@@ -180,6 +180,12 @@ could also swap the UI component around and plug it into different data containe
 example, our Contact and Lead Custom Field modals still needed to interact with the server 
 via Backbone Models, whereas our new Activity Custom Fields modal uses Apollo/GraphQL.
 
+The Backbone version also relied on a BEM namespaced global stylesheet, whereas we use
+LESS modules for our React Components. Like the above data refactoring, the Reactizing 
+first pass simply copied over the Backbone handlebars markup, global styles and all. Once 
+the tests passed, these styles were ported over to LESS modules in a single separate 
+commit.
+
 # It's So Shiny
 So now you have your shiny new React version, what's the best way to integrate it? 
 Ultimately this depends on your codebase, but likely part of the impetus for doing this
