@@ -8,7 +8,7 @@ metaDescription: ''
 tags: [Engineering, Open Source, Testing, Javascript, React, Backbone]
 ---
 
-As part of our new "Custom Activities" feature, it became apparent the changes required
+As part of our new ["Custom Activities" feature](https://blog.close.com/custom-activities/), it became apparent the changes required
 for the "Custom Fields" modal were significant enough that the component needed a rewrite.
 Our Custom Fields modal at this point was a component written in Backbone - as much of the
 original core FE codebase for Close still is. We've been slowly chipping away at this
