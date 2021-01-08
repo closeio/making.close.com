@@ -95,7 +95,7 @@ def acquire(self):
   
     existing_expires_at = redis.get(key) # check if lock is expired
     if existing < now: # the existing lock is expired! Let's grab it
-      exiting = redis.getset(key, timeout_at) or 1 # set new value, return old value
+      exiting = redis.getset(key, timeout_at) or 1 # set, return old value
       if existing < now:  # double check the old lock was expired
         self.acquired_until = timeout  # we got the lock!
         return
@@ -103,7 +103,7 @@ def acquire(self):
 
 def release(self):
   existing = redis.get(key)  # get the lock expiration time
-  if existing >= self.acquired_until:  # if the lock expires at or after our lease
+  if existing >= self.acquired_until:  # if the lock expires after our lease
     redis.delete(key)  # delete the lock
   # if the lock expired before our lease, another process could have grabbed
   # it in the mean time
@@ -131,11 +131,12 @@ def acquire(self):
 
     if existing < now: # the existing lock is expired! Let's grab it
 
-      # we set our timeout value, and get back the timeout value from the other
-      # process's newly set lock
+      # we set our timeout value, and get back the timeout value from the
+      # other process's newly set lock
       exiting = redis.getset(key, timeout_at) or 1
       
-      # we got back a real value instead of 1, we didn't get the lock (don't return)
+      # we got back a real value instead of 1, we didn't get the lock
+      # (don't return)
       if existing < now:
         return
 
@@ -164,7 +165,7 @@ def release(self):
   # our `self.acquired_until` is _later_ than the value we grabbed from Redis
   # don't enter the block below
   if existing >= self.acquired_until:
-    redis.delete(key)  # we didn't enter this block, we're not deleting the key
+    redis.delete(key)  # we didn't enter this block, don't delete the key
 
   # we didn't free the lock in redis
 ```
