@@ -8,7 +8,6 @@ metaDescription: ''
 tags: [Engineering, Redis, Python]
 ---
 
-# Race to the Lock: A Postmortem Story
 As a platform with a focus on calling, we’re often a target of fraudulent activities. More frequently than I’d have imagined before being in this business. Being a frequent target means more than just keeping tabs on our numbers, it means we get free stress testing from malicious actors! Yay! Here’s one of those times, *enjoy.*
 
 ## What did they do this time
