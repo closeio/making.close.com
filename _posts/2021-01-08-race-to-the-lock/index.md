@@ -109,7 +109,7 @@ def release(self):
   # it in the mean time
 ```
 
-Not a super obvious race condition, huh? Consider that we have a lot of greenlets trying to grab the same lock, some of them on this same process. Every time we hit a `sleep` or Redis command, `gevent` yields control to another greenlet. Beyond greenlets yielding to each other, we also have `N` threads working different greenlets at the same time. With that in mind, let’s step through the problematic scenario:
+Not a super obvious race condition, huh? Consider that we have a lot of greenlets trying to grab the same lock, some of them on this same process. Every time we hit a `sleep` or Redis command, `gevent` yields control to another greenlet. Beyond greenlets yielding to each other, we also have `N` processes working different greenlets at the same time. With that in mind, let’s step through the problematic scenario:
 
 ```python
 # someone else already has a lock
