@@ -113,7 +113,7 @@ Not a super obvious race condition, huh? Consider that we have a lot of greenlet
 
 ```python
 # someone else already has a lock
-# there's a lot of other greenlets also fighting for the lock
+# also, there's a lot of other greenlets also fighting for the lock
 
 def acquire(self):
   while True:
