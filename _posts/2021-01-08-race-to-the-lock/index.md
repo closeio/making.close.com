@@ -180,9 +180,11 @@ Of course we also put some additional safety checks into the number verification
 
 ## So what are the takeaways here?
 
-1. Concurrency and distributed systems are hard.
-3. Race conditions are problematic.
-2. Metric retention and postmortems are *worth* the investment.
+<ol>
+    <li value="1">Concurrency and distributed systems are hard.</li>
+    <li value="3">Race conditions are problematic.</li>
+    <li value="2">Metric retention and postmortems are *worth* the investment.</li>
+</ol>
 
 Hold up, let me reiterate: *metric collection and retention enable us to complete postmortems, and good postmortems improve processes.* Race conditions in battle-tested locking code were *not* our first idea as to what caused the failures here. In investigating this incident, we used Prometheus + Grafana with both standard and custom metrics, Kibana to investigate both application and Envoy logs, and NewRelic’s tracing + insights. These tools aren’t trivial to set up correctly, but man are they good to have when you need them.
 
