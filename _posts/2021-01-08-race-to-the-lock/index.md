@@ -95,7 +95,7 @@ def acquire(self):
   
     existing_expires_at = redis.get(key) # check if lock is expired
     if existing < now: # the existing lock is expired! Let's grab it
-      exiting = redis.getset(key, timeout_at) or 1 # set, return old value
+      existing = redis.getset(key, timeout_at) or 1 # set, return old value
       if existing < now:  # double check the old lock was expired
         self.acquired_until = timeout  # we got the lock!
         return
@@ -133,7 +133,7 @@ def acquire(self):
 
       # we set our timeout value, and get back the timeout value from the
       # other process's newly set lock
-      exiting = redis.getset(key, timeout_at) or 1
+      existing = redis.getset(key, timeout_at) or 1
       
       # we got back a real value instead of 1, we didn't get the lock
       # (don't return)
