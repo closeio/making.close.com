@@ -14,9 +14,9 @@ We, developers, obviously want to write bug-free code. Bugs happen though. If th
 At Close, we set the following expectations for the source maps, depending on where they are served.
 
 ### Development  Environment for the Frontend Team
-- **Stack trace**: We want to know the line number where where the error has occurred
+- **Stack trace**: We want to know the line number where the error has occurred
 - **Build time**: Initial build takes some time but rebuild is fast
-- **Visibility**: Source maps can be visible by anyone with access to the development environment
+- **Visibility**: Source maps can be visible by anyone with an access to the development environment
 
 In this case, our Webpack's `devtool` option is set to `cheap-module-eval-source-map`. 
 Source maps are generated along with the bundle and served from the same place as the source.
