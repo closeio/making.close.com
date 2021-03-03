@@ -11,7 +11,7 @@ tags: [Engineering, Dev-Env]
 
 We, developers, obviously want to write bug-free code. Bugs happen though. If there is an issue with your JavaScript code, source maps are an extremely helpful debugging tool.
 
-At Close, we set the following expectations for the source maps, depending on where they are served.
+At Close, we set the following expectations for source maps, depending on where they are served.
 
 ### Development  Environment for the Frontend Team
 - **Stack trace**: We want to know the line number where the error has occurred
@@ -69,4 +69,4 @@ const webpackConfig = {
 ```
 
 This way when an asset is served from `https://cdn.close.com/main.js`, its source map can be found at `https://sourcemaps.close.com/main.js.map`. 
-The latter address is only accessed by Close employees so the source map will be only visible to them.
+The source map address is only accessible through a VPN so our source code is secure.
