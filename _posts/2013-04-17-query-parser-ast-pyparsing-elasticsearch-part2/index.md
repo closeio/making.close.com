@@ -13,7 +13,9 @@ In [part 1](/posts/query-parser-ast-pyparsing-elasticsearch-part-1) of this seri
 
 As a reminder, the [Close](https://close.com/) sales search lets you do powerful queries such as the following:
 
-`john city:"new york" last_called < "3 days ago"`
+```
+john city:"new york" last_called < "3 days ago"
+```
 
 The search parser from part 1 supports simple full text queries and simple keyword search. Let’s see how we can generate a search query.
 
@@ -38,7 +40,11 @@ We will now implement the `get_query` instance method for these nodes. First, we
 ```python
 class ExactNode(Node):
     def get_query(self, field='_all'):
-        return { 'match_phrase': { field: self[0] } }
+        return {
+            'match_phrase': {
+                 field: self[0]
+             }
+        }
 ```
 
 The `TextNode` will search in all fields using a prefix match. This provides a great “as you type” experience by listing leads where the prefix matches, so the user doesn’t need to type out the entire keyword:
@@ -46,7 +52,14 @@ The `TextNode` will search in all fields using a prefix match. This provides a g
 ```python
 class TextNode(Node):
     def get_query(self, field='_all'):
-        return { 'match_phrase_prefix': { field: { 'query': self[0], 'max_expansions': 10 } } }
+        return {
+            'match_phrase_prefix': {
+                 field: {
+                    'query': self[0],
+                    'max_expansions': 10
+                 }
+             }
+        }
 ```
 
 Using the phrase prefix search comes with the disadvantage that you need to use the `max_expansions` parameter to control to how many prefixes the search term will be expanded. If it’s set too high, the query execution time will be higher, if it’s set too low, it will not match all of the entries. In order to match all the possible entries, we would need to index all of the prefixes separately, but for the purpose of this article we will keep using the phrase prefix search.
@@ -59,6 +72,7 @@ class ComparisonNode(Node):
         field = self[0]
         op = self[1]
         node = self[2]
+
         if op == ':':
             return node.get_query(field)
         else:
@@ -78,12 +92,26 @@ To see that our code operates properly, let’s add a test case to test the quer
 ```python
 class QueryGenerationTestCase(unittest.TestCase):
     def test_exact(self):
-        self.assertEquals( ExactNode(['san francisco']).get_query(), { 'match_phrase': { '_all': 'san francisco' } } )
+        self.assertEquals(
+            ExactNode(['san francisco']).get_query(),
+            { 'match_phrase': { '_all': 'san francisco' } }
+        )
+
     def test_text(self):
-        self.assertEquals( TextNode(['john']).get_query(), { 'match_phrase_prefix': { '_all': { 'query': 'john', 'max_expansions': 10 } } } )
+        self.assertEquals(
+            TextNode(['john']).get_query(),
+            { 'match_phrase_prefix': { '_all': { 'query': 'john', 'max_expansions': 10 } } }
+        )
+
     def test_comparison(self):
-        self.assertEquals( ComparisonNode(['city', ':', ExactNode(['new york'])]).get_query(), { 'match_phrase': { 'city': 'new york' } } )
-        self.assertEquals( ComparisonNode(['city', ':', TextNode(['minneapolis'])]).get_query(), { 'match_phrase_prefix': { 'city': { 'query': 'minneapolis', 'max_expansions': 10 } } } )
+        self.assertEquals(
+            ComparisonNode(['city', ':', ExactNode(['new york'])]).get_query(),
+            { 'match_phrase': { 'city': 'new york' } }
+        )
+        self.assertEquals(
+            ComparisonNode(['city', ':', TextNode(['minneapolis'])]).get_query(),
+            { 'match_phrase_prefix': { 'city': { 'query': 'minneapolis', 'max_expansions': 10 } } }
+        )
 ```
 
 Finally, we need a way to generate the full Elasticsearch query for a given search text. The following method will return our query, requiring all expressions to be present in the search document using the [bool query](http://www.elasticsearch.org/guide/reference/query-dsl/match-query/):
@@ -91,14 +119,25 @@ Finally, we need a way to generate the full Elasticsearch query for a given sear
 ```python
 def get_query(search_query):
     nodes = content.parseString(search_query, parseAll=True).asList()
-    return { 'bool': { 'must': [node.get_query() for node in nodes] } }
+    return {
+        'bool': {
+            'must': [node.get_query() for node in nodes]
+        }
+    }
 ```
 
 And the corresponding test case:
 
 ```python
-def test_query(self):
-    self.assertEqual(get_query('phone: 415 status: "trial expired" john "new york"'), {'bool': {'must': [ {'match_phrase_prefix': {'phone': {'query': '415', 'max_expansions': 10}}}, {'match_phrase': {'status': 'trial expired'}}, {'match_phrase_prefix': {'_all': {'query': 'john', 'max_expansions': 10}}}, {'match_phrase': {'_all': 'new york'}} ]}} )
+    def test_query(self):
+        self.assertEqual(get_query('phone: 415 status: "trial expired" john "new york"'),
+            {'bool': {'must': [
+                {'match_phrase_prefix': {'phone': {'query': '415', 'max_expansions': 10}}},
+                {'match_phrase': {'status': 'trial expired'}},
+                {'match_phrase_prefix': {'_all': {'query': 'john', 'max_expansions': 10}}},
+                {'match_phrase': {'_all': 'new york'}}
+            ]}}
+        )
 ```
 
 You can look at [search5.py](https://gist.github.com/thomasst/5520201) (Gist) to see all the code that we’ve written so far.
@@ -118,7 +157,9 @@ If it’s running, you can go to [http://localhost:9200/](http://localhost:9200/
 
 A common cause of errors is having multiple Elasticsearch instances running on the local network (e.g. if your coworkers run it). If you think this might be a problem, edit your `config/elasticsearch.yml`and set the following setting:
 
-`network.host: 127.0.0.1`
+```
+network.host: 127.0.0.1
+```
 
 Apart from this, Elasticsearch typically doesn’t require any special configuration.
 
@@ -136,7 +177,14 @@ Storing leads and performing searches in Elasticsearch
 We can store data in Elasticsearch by issuing an HTTP request with our document in JSON format. We will use a simplified lead schema and index an example lead using `curl`:
 
 ```bash
-% curl -XPUT http://localhost:9200/myindex/lead/1 -d '{ "id": 1, "company": "Facebook Inc.", "contact": "Mark Zuckerberg", "city": "Menlo Park", "description": "an online networking site" }' {"ok":true,"\_index":"myindex","\_type":"lead","\_id":"1","\_version":1}
+% curl -XPUT http://localhost:9200/myindex/lead/1 -d '{
+    "id": 1,
+    "company": "Facebook Inc.",
+    "contact": "Mark Zuckerberg",
+    "city": "Menlo Park",
+    "description": "an online networking site"
+}'
+{"ok":true,"_index":"myindex","_type":"lead","_id":"1","_version":1}
 ```
 
 This will store a document of type `lead` with id 1 in the index `myindex`. By going to [http://localhost:9200/myindex/lead/1](http://localhost:9200/myindex/lead/1) in our browser we can verify that the lead has been indexed.
@@ -146,7 +194,13 @@ We can also index a lead in Python using pyelasticsearch. Let’s index another 
 ```python
 >>> from pyelasticsearch import ElasticSearch
 >>> es = ElasticSearch('http://localhost:9200/')
->>> es.index('myindex', 'lead', { "id": 2, "company": "Microsoft", "contact": "Steve Ballmer", "city": "Redmond", "description": "software and online services" }, 2)
+>>> es.index('myindex', 'lead', {
+        "id": 2,
+        "company": "Microsoft",
+        "contact": "Steve Ballmer",
+        "city": "Redmond",
+        "description": "software and online services"
+    }, 2)
 {u'_id': u'2', u'_index': u'myindex', u'_type': u'lead', u'_version': 1, u'ok': True}
 ```
 
@@ -154,14 +208,44 @@ We can now perform a simple search:
 
 ```bash
 % curl 'http://localhost:9200/myindex/lead/_search?pretty=true' -d '{ "query": { "match": { "_all": "facebook" } } }'
-{ "took" : 1, "timed_out" : false, "_shards" : { "total" : 5, "successful" : 5, "failed" : 0 }, "hits" : { "total" : 1, "max_score" : 0.095891505, "hits" : [ { "_index" : "myindex", "_type" : "lead", "_id" : "1", "_score" : 0.095891505, "_source" : {"city": "Menlo Park", "company": "Facebook Inc.", "contact": "Mark Zuckerberg", "description": "an online networking site"} } ] } }
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 5,
+    "successful" : 5,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : 1,
+    "max_score" : 0.095891505,
+    "hits" : [ {
+      "_index" : "myindex",
+      "_type" : "lead",
+      "_id" : "1",
+      "_score" : 0.095891505, "_source" : {"city": "Menlo Park", "company": "Facebook Inc.", "contact": "Mark Zuckerberg", "description": "an online networking site"}
+    } ]
+  }
+}
 ```
 
 And the same search in Python:
 
 ```python
 >>> es.search({ "query": { "match": { "_all": "facebook" } } }, index='myindex', doc_type='lead')
-{u'_shards': {u'failed': 0, u'successful': 5, u'total': 5}, u'hits': {u'hits': [{u'_id': u'1', u'_index': u'myindex', u'_score': 0.095891505, u'_source': {u'city': u'Menlo Park', u'company': u'Facebook Inc.', u'contact': u'Mark Zuckerberg', u'description': u'an online networking site'}, u'_type': u'lead'}], u'max_score': 0.095891505, u'total': 1}, u'timed_out': False, u'took': 1}
+{u'_shards': {u'failed': 0, u'successful': 5, u'total': 5},
+ u'hits': {u'hits': [{u'_id': u'1',
+    u'_index': u'myindex',
+    u'_score': 0.095891505,
+    u'_source': {u'city': u'Menlo Park',
+     u'company': u'Facebook Inc.',
+     u'contact': u'Mark Zuckerberg',
+     u'description': u'an online networking site'},
+    u'_type': u'lead'}],
+  u'max_score': 0.095891505,
+  u'total': 1},
+ u'timed_out': False,
+ u'took': 1}
 ```
 
 Finishing the code
@@ -170,7 +254,21 @@ Finishing the code
 Now that we know how to index leads and search for them, we can build our last function which will combine everything: It will take the search query as an argument and return the leads that matched the given search query:
 
 ```python
-from pyelasticsearch import ElasticSearch ELASTICSEARCH_INDEX = 'myindex' ELASTICSEARCH_URL = 'http://localhost:9200/' es = ElasticSearch(ELASTICSEARCH_URL) def perform_search(search_query): full_query = { 'query': get_query(search_query), } results = es.search(full_query, index=ELASTICSEARCH_INDEX, doc_type='lead') return results['hits']['hits']
+from pyelasticsearch import ElasticSearch
+
+ELASTICSEARCH_INDEX = 'myindex'
+ELASTICSEARCH_URL = 'http://localhost:9200/'
+
+es = ElasticSearch(ELASTICSEARCH_URL)
+
+
+def perform_search(search_query):
+    full_query = {
+        'query': get_query(search_query),
+    }
+
+    results = es.search(full_query, index=ELASTICSEARCH_INDEX, doc_type='lead')
+    return results['hits']['hits']
 ```
 
 The corresponding unit test will make sure we start with a clean index, add a few example leads and then perform a few test searches. One thing to keep in mind is that we need to wait until Elasticsearch finishes generating the index, otherwise our search tests won’t return any results.
@@ -184,13 +282,28 @@ class SearchTestCase(unittest.TestCase):
             es.delete_index(ELASTICSEARCH_INDEX)
         except ElasticHttpNotFoundError:
             pass
-        self.leads = [{ "id": 1, "company": "Facebook Inc.", "contact": "Mark Zuckerberg", "city": "Menlo Park", "description": "an online networking site" }, { "id": 2, "company": "Microsoft", "contact": "Steve Ballmer", "city": "Redmond", "description": "software and online services" }]
+
+        self.leads = [{
+            "id": 1,
+            "company": "Facebook Inc.",
+            "contact": "Mark Zuckerberg",
+            "city": "Menlo Park",
+            "description": "an online networking site"
+        }, {
+            "id": 2,
+            "company": "Microsoft",
+            "contact": "Steve Ballmer",
+            "city": "Redmond",
+            "description": "software and online services"
+        }]
+
         for lead in self.leads:
             es.index('myindex', 'lead', lead, lead['id'])
-            # Wait for the search index to be generated.
-            while es.status(ELASTICSEARCH_INDEX)['indices'][ELASTICSEARCH_INDEX]['docs']['num_docs'] < len(self.leads):
-                import time
-                time.sleep(1)
+
+        # Wait for the search index to be generated.
+        while es.status(ELASTICSEARCH_INDEX)['indices'][ELASTICSEARCH_INDEX]['docs']['num_docs'] < len(self.leads):
+            import time
+            time.sleep(1)
 
     def assertSearchMatch(self, query, matches):
         results = perform_search(query)
