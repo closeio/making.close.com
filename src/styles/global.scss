@@ -220,3 +220,13 @@ body.light {
   grid-area: themechanger;
   cursor: pointer;
 }
+
+/* Print styles */
+@media print {
+  body {
+    border: none;
+  }
+  .theme-changer {
+    display: none;
+  }
+}

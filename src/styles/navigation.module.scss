@@ -66,3 +66,10 @@
   display: inline-block;
   padding: 8px 0;
 }
+
+/* Print styles */
+@media print {
+  .navigation {
+    display: none;
+  }
+}
