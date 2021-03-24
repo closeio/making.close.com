@@ -20,7 +20,16 @@ For example, you might want to find all your leads in New York that were last ca
 In this post blog post, we will explain in detail how we’ve technically built this search by showing you how to build your own search engine. First of all, we’ve used [pyparsing](http://pyparsing.wikispaces.com/), a parsing library for Python. It splits up the search query into individual parts and generates an abstract syntax tree. An [abstract syntax tree (AST)](http://en.wikipedia.org/wiki/Abstract_syntax_tree) represents the structure of our search query. For example, the AST for the query above could look as follows:
 
 ```
-And /   |   \ /      |         \ /         |               \ /            |                    \ Text       Comparison                Comparison "john"    (operator ":")            (operator "<") /         \               /           \ Text        Text           Text          Text "city"     "new york"   "last_called"  "3 days ago"
+                And
+             /   |   \
+          /      |         \
+       /         |               \
+    /            |                    \
+ Text       Comparison                Comparison
+"john"    (operator ":")            (operator "<")
+           /         \               /           \
+        Text        Text           Text          Text
+       "city"     "new york"   "last_called"  "3 days ago"
 ```
 
 Once we have the AST, we can then generate a search query for [Elasticsearch](http://www.elasticsearch.org/), the search backend we’re using.
@@ -37,11 +46,17 @@ Getting started
 
 To get started, you will of course need Python (the latest 2.7, don’t use 3.x), since this is the language we’re using. We’ll set up a virtual environment which will let us install any dependencies and keep them in the project directory. To set up our environment, we will create a new directory which will contain our project and place a file called `requirements.txt` in that directory with the following contents:
 
-`pyparsing==1.5.6`
+```
+pyparsing==1.5.6
+```
 
 The file `requirements.txt` contains all dependencies that our project will need (with optional version numbers). To get started with the parser, we only need pyparsing. We can now initialize the virtual environment and install the pyparsing package the following way:
 
-`% virtualenv venv % . venv/bin/activate % pip install -r requirements.txt`
+```
+% virtualenv venv
+% . venv/bin/activate
+% pip install -r requirements.txt
+```
 
 Now we’re ready to start building our parser!
 
@@ -53,13 +68,16 @@ To get started, we will write all our code into a Python file called `search.py`
 The first thing our parser will do is match simple words. pyparsing already comes with a `Word` class (described in [their documentation](http://pythonhosted.org/pyparsing/)), but we will manually specify the accepted character set for a word to treat unicode strings correctly. Since we want to match all non-space unicode characters, we will first get all the printable characters by writing the following line to our Python file:
 
 ```python
-unicode_printables = u''.join(unichr(c) for c in xrange(65536) if not unichr(c).isspace())
+unicode_printables = u''.join(unichr(c) for c in xrange(65536)
+                                        if not unichr(c).isspace())
 ```
 
 This will give us a list of all unicode characters except for spaces, and now we can build our first parser:
 
 ```python
-from pyparsing import * word = Word(unicode\_printables)
+from pyparsing import *
+
+word = Word(unicode_printables)
 ```
 
 The expression `word` is a parser and will match single words, but not multiple words. For [Close](https://close.com), we use unit tests extensively, which is why we will include unit tests for everything that we build here as well. Here is a test function for our word parser:
@@ -99,7 +117,7 @@ To run the test cases automatically we also need to place the following lines at
 
 ```python
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()
 ```
 
 This code tells Python to run the unit tests if we run this file directly, but not if we import it from another module.
@@ -109,9 +127,12 @@ You can look at [search1.py](https://gist.github.com/thomasst/5399884/) (Gist) t
 We can run the example by typing `python search.py` on the command line:
 
 ```bash
-(venv)search % python search.py .
+(venv)search % python search.py
+.
 ----------------------------------------------------------------------
-Ran 1 test in 0.000s OK
+Ran 1 test in 0.000s
+
+OK
 ```
 
 Extending our parser: quoted strings
@@ -242,6 +263,7 @@ class Node(list):
                 lst = t
                 return [cls(lst)]
             return Group(expr).setParseAction(group_action)
+
         def get_query(self):
             raise NotImplementedError()
 ```
@@ -292,9 +314,23 @@ class ASTTestCase(unittest.TestCase):
         self.assertEqual(ast, expected_ast)
 
     def test_parser(self):
-        self.assertAstMatch('john "new york"', [ TextNode(['john']), ExactNode(['new york']), ])
-        self.assertAstMatch('email_opened: yes', [ ComparisonNode(['email_opened', ':', TextNode(['yes'])]), ]) self.assertAstMatch('location: "los angeles"', [ ComparisonNode(['location', ':', ExactNode(['los angeles'])]), ])
-        self.assertAstMatch('phone: 415 status: "trial expired" john', [ ComparisonNode(['phone', ':', TextNode(['415'])]), ComparisonNode(['status', ':', ExactNode(['trial expired'])]), TextNode(['john']), ])
+        self.assertAstMatch('john "new york"', [
+            TextNode(['john']),
+            ExactNode(['new york']),
+        ])
+        self.assertAstMatch('email_opened: yes', [
+            ComparisonNode(['email_opened', ':', TextNode(['yes'])]),
+        ])
+
+        self.assertAstMatch('location: "los angeles"', [
+            ComparisonNode(['location', ':', ExactNode(['los angeles'])]),
+        ])
+
+        self.assertAstMatch('phone: 415 status: "trial expired" john', [
+            ComparisonNode(['phone', ':', TextNode(['415'])]),
+            ComparisonNode(['status', ':', ExactNode(['trial expired'])]),
+            TextNode(['john']),
+        ])
 ```
 
 The result is [search4.py](https://gist.github.com/thomasst/5399897)
