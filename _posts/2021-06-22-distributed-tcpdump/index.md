@@ -1,5 +1,5 @@
 ---
-title: 'I just wanna take a dump'
+title: 'Tcpdumping in Kubernetes'
 date: 2021-06-22
 permalink: /posts/distributed-tcpdump
 author: Joe Kemp
