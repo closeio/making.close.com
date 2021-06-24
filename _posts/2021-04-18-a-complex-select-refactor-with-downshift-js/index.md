@@ -52,8 +52,9 @@ We of course allow selecting a single item as well as multiple items.
 
 ### Searching
 
-If the Select renders as an input, the input turns into a text field on focus.
-If it's rendered as a button, we optionally show a search field inline.
+If the Select renders as an input field, the input turns into a text field on
+focus for filtering items. If it's rendered as a button, we optionally show a
+search field inline.
 
 ![](./single-multi-search.png)
 
@@ -312,9 +313,9 @@ footer.
 
 This presents challenges:
 
-1. We want to render items grouped nested under headings, and we want those
-   groups to be collabsible. But if Downshift is to be trusted, **we need to
-   render everything with single `.map`**. In fact, we _also_ need a flat markup
+1. We want to render items nested under headings, and we want those groups to be
+   collabsible. But if Downshift is to be trusted, **we need to render
+   everything with single `.map`**. In fact, we _also_ need a flat markup
    structure to be compatible with
    [virtualization libraries](https://github.com/bvaughn/react-virtualized).
 1. The `highlightedIndex` is how Downshift tracks focus internally and enables
@@ -593,7 +594,7 @@ A more complex Select implementation may look like this:
   /**
    * Passing a nested array renders a grouped select. The first element of the
    * child array is the name of the group. The store computes this back down to
-   * a flat array.
+   * a flat array that includes header elements and dividers in the right spots.
    */
   items={[
     [
@@ -687,7 +688,7 @@ describe.each([
       />
     );
 
-    const selectElement = getByRole('button', { name: 'Choose Items...' });
+    const selectElement = getByRole('button', { name: 'Choose Items' });
 
     /**
      * Our utility fires the click, waits for the select to open using RTL's
