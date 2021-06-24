@@ -577,6 +577,8 @@ values back to items now requires a single operation:
 const newItems = itemValues.map(getItemByValue);
 ```
 
+---
+
 In reality, our listStore implementation has a _lot_ more going on. In addition
 to a divider API, it also precomputes group state so that `mapSelectList` knows
 how to render group headings. Since we support toggling groups open/closed as
@@ -706,6 +708,8 @@ describe.each([
   });
 });
 ```
+
+---
 
 ## In conclusion
 
