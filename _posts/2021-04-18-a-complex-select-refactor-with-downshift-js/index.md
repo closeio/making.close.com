@@ -110,7 +110,7 @@ We like Downshift because:
    [combobox](https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html)
    and
    [listbox](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html)
-   specs. Not only is this great for accissibility, it opens our UI up to the
+   specs. Not only is this great for accessibility, it opens our UI up to the
    super-users to prefer to navigate with a keyboard wherever possible.
    ([Universal Design](https://99percentinvisible.org/episode/curb-cuts/) for
    the win!)
