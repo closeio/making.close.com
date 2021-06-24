@@ -88,6 +88,8 @@ help you file your taxes.
 _Skeptical? It wouldn't hurt to
 [sign up for a trial](https://app.close.com/signup/) just to be sure._
 
+---
+
 Anyways, as all this extra functionality piled up over the years, the tech debt
 began to accumulate and it had become difficult to work on. Not only that, but
 we were beginning to lose sight of one of the crucial aspects of a select input:
@@ -118,6 +120,8 @@ We like Downshift because:
 All that said, we found fairly quickly that while Downshift is powerful, it did
 not cover all our use cases. Below are some highlights of some of the ways we
 pushed the boundaries of what Downshift is designed to do.
+
+---
 
 ## Hurdle #1: Forking Select & Multiselect behaviour
 
@@ -262,6 +266,8 @@ While some components may still handle differences between single and multi
 (e.g. showing "Foo selected" vs "3 items selected" when the select is closed),
 it's at the presentation layer, with Downshift and our abstracted providers
 doing most of the heavy lifting.
+
+---
 
 # Hurdle #2: Supporting additional UI within a Select
 
@@ -637,6 +643,8 @@ A more complex Select implementation may look like this:
   withIncomeTaxWizard={false}
 />
 ```
+
+---
 
 ## Finally: testing!
 
