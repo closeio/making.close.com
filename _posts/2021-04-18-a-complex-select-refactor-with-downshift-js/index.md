@@ -313,8 +313,8 @@ footer.
 
 This presents challenges:
 
-1. We want to render items nested under headings, and we want those groups to be
-   collabsible. But if Downshift is to be trusted, **we need to render
+1. We want to render items nested under group headings, and we want those groups
+   to be collabsible. But if Downshift is to be trusted, **we need to render
    everything with single `.map`**. In fact, we _also_ need a flat markup
    structure to be compatible with
    [virtualization libraries](https://github.com/bvaughn/react-virtualized).
@@ -652,15 +652,16 @@ A more complex Select implementation may look like this:
 ## Finally: testing!
 
 At Close we use [react-testing-library](https://testing-library.com) alongside
-Jest to test components in isolation. A happy side-effect of writing fully
-accessible components is how pleasant they are to write tests for. And the
-benefit is reciprocal: if some UI is hard to test (or if you're finding yourself
-using [`getByTestId`](https://testing-library.com/docs/queries/bytestid) a lot)
-chances are there are problems with accessibility.
+[Jest](https://jestjs.io/) to test components in isolation. A happy side-effect
+of writing fully accessible components is how pleasant they are to write tests
+for. And the benefit is reciprocal: if some UI is hard to test (or if you're
+finding yourself using
+[`getByTestId`](https://testing-library.com/docs/queries/bytestid) a lot)
+chances are there are problems with accessibility, too.
 
 For our Select(s), we've written a set of convenience helpers to make
 interacting with them in tests much easier, which use RTL under the hood (and
-attempts to mimic the RTL API).
+attempt to mimic the RTL API).
 
 Arguably, the biggest downside of our separate-context-provider approach above
 is that we're occasionally writing the same code (or similar code) twice. The
@@ -715,13 +716,13 @@ describe.each([
 ## In conclusion
 
 I wish I could say that our shiny new Downshift-ified select is "so much
-simpler" than the old component. The truth is: it's not. From the UI examples I
-shared above (only a small sliver of all possible use cases) it should be clear
-this component will never be "simple". There is complexity. In this case though,
-the goal of this refactor wasn't necessarily simplification: We've offloaded a
-ton of business logic to a trusted, well-maintained open-source library; we now
-have a component that is well-organized and easy to test; and we're moving our
-UI towards one that can be used by any person, regardless of how they choose to
-use a computer screen.
+simpler!!" than the old component. The truth is: it's not. From the UI examples
+I shared above (only a small sliver of all possible use cases) it should be
+clear this component will never be "simple". There is complexity, there is lots
+of code. In this case though, the goal of this refactor wasn't necessarily
+simplification: We've offloaded a ton of business logic to a trusted,
+well-maintained open-source library; we now have a component that is
+well-organized and easy to test; and we're taking steps towards a UI that can be
+used by any person, regardless of how they choose to use a computer screen.
 
 We're just sorry we're rolling it out after tax season.
