@@ -15,8 +15,8 @@ maintain a set of reusable React components. It's 2021, after all! It seems
 everyone and their dog has a design system now.
 
 As it goes with any component library, our components range from the exceedingly
-simple (looking at you, `<LineSeparator/>`) to tremendously complex. And the
-component that wins the for sheer lines of code is by far and away our
+simple (looking at you, `<LineSeparator/>`) to the tremendously complex. And the
+component that wins the prize for sheer lines of code is by far and away our
 `<Select/>` input.
 
 Which is fair: re-implementing all the behaviour of the humble `<select>` is no
@@ -44,9 +44,9 @@ At its most basic, our Select is implemented like so:
 Simple and straightforward, right? Well, let's look at some of that "additional
 functionality":
 
-### Single and Multiple selection
+### Single and Multiple selection:
 
-We of course allow selecting a single item as well as multiple items.
+We of course allow selecting a single item as well as multiple items:
 
 ![](./single-multi.png)
 
@@ -54,7 +54,7 @@ We of course allow selecting a single item as well as multiple items.
 
 If the Select renders as an input field, the input turns into a text field on
 focus for filtering items. If it's rendered as a button, we optionally show a
-search field inline.
+search field inline:
 
 ![](./single-multi-search.png)
 
@@ -62,27 +62,27 @@ search field inline.
 
 Items can be grouped under headings and collapsed as a set. Optionally, groups
 can be bulk-selected. Badges give information about how many items there are per
-group, as well as how many are selected in each.
+group, as well as how many are selected in each:
 
 ![](./groups.png)
 
 ### Click to confirm
 
 Normally the component fires a callback on selection, but there is an option to
-only fire the callback once the user hits a submit button.
+only fire the callback once the user hits a submit button:
 
 ![](./click-to-confirm.png)
 
 ### Custom markup per item
 
-Items within a select can be customized via a render prop.
+Items within a select can be customized via a render prop:
 
 ![](./custom-markup.png)
 
 ### Income tax wizard
 
 Option-clicking any select in the Close app will launch a multi-step wizard to
-help you file your taxes.
+help you file your taxes:
 
 ![](./tax-wizard.png)
 
@@ -145,7 +145,7 @@ does its business wiring up Downshift, and then passes the same set of values to
 Context. Child UI components (e.g. a trigger button, the menu, headers &
 footers) don't need to necessarily know which type of select they are a part of.
 And as we layer on complexity, any behaviour shared between to the two providers
-can abstracted into hooks (more on that later).
+can be abstracted into hooks (more on that later).
 
 This aligns nicely with Downshift's API, where both types of selects require the
 `useCombobox` hook (which provides selection/unselection, text search, and
@@ -325,11 +325,11 @@ This presents challenges:
 
 So, we must separate the UI that Downshift "cares" about (selectable items),
 pass those to Downshift, but also include extra items that Downshift _doesn't_
-care about (everything else), and all render it as a single flat list. Hmmm.
+care about (everything else), and all render it all as a single flat list. Hmmm.
 
 ### An aside about normalization
 
-Before I go over our approach, I want to revist this snippet we used to get an
+Before I go over our approach, I want to revisit this snippet we used to get an
 array of items from an array of values. Did you cringe reading this as much as I
 cringed writing it?
 
@@ -723,6 +723,6 @@ of code. In this case though, the goal of this refactor wasn't necessarily
 simplification: We've offloaded a ton of business logic to a trusted,
 well-maintained open-source library; we now have a component that is
 well-organized and easy to test; and we're taking steps towards a UI that can be
-used by any person, regardless of how they choose to use a computer screen.
+used by any person, regardless of how they use a computer screen.
 
 We're just sorry we're rolling it out after tax season.
