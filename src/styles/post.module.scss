@@ -81,6 +81,13 @@
     margin-bottom: 32px;
     text-align: center;
   }
+
+  hr {
+    border: 0;
+    height: 2px;
+    margin: 3rem 0;
+    background: var(--card-bdr);
+  }
 }
 
 .thumbnail {
