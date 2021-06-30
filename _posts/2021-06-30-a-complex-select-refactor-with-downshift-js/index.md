@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Highlights From a Complex Downshift.js Refactor'
-date: 2021-04-18
+date: 2021-06-30
 permalink: /posts/highlights-from-a-complex-downshift-js-refactor/
 author: Scott Mahr
 thumbnail: ''
