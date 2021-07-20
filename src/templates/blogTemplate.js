@@ -94,5 +94,8 @@ BlogTemplate.propTypes = {
       }),
       html: PropTypes.string.isRequired,
     }),
+    allLever: PropTypes.shape({
+      totalCount: PropTypes.number.isRequired,
+    }),
   }),
 };

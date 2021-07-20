@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
-import Layout from '../components/layout';
-import Job from '../components/job';
 import { graphql, Link } from 'gatsby';
+import Layout from '../components/layout';
+import HeroHeader from '../components/heroHeader';
+import Job from '../components/job';
 import HeroImage from '../assets/close-collage.jpg';
 import PropTypes from 'prop-types';
 import styles from '../styles/jobs.module.scss';
@@ -44,7 +45,10 @@ const Jobs = ({ data }) => {
       <Helmet>
         <title>Jobs at Close | {site.siteMetadata.title}</title>
       </Helmet>
-      <h1>Engineering & Product Jobs at Close</h1>
+      <HeroHeader
+        title="Engineering & Product Jobs at Close"
+        description="We're building the sales communication platform of the future."
+      />
       <Link to="https://close.com/about/">
         <img
           src={HeroImage}
@@ -56,9 +60,8 @@ const Jobs = ({ data }) => {
       </Link>
       <div className="leading">
         <h2>
-          At Close, we&apos;re building the sales communication platform of the
-          future. We&apos;ve built a next-generation CRM that eliminates manual
-          data entry and helps sales teams close more deals.
+          At Close, we&apos;ve built a next-generation CRM that eliminates
+          manual data entry and helps sales teams close more deals.
         </h2>
         <Content />
       </div>
