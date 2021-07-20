@@ -1,36 +1,61 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import Layout from '../components/layout';
 import Job from '../components/job';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
+import HeroImage from '../assets/close-collage.jpg';
+import PropTypes from 'prop-types';
+import styles from '../styles/jobs.module.scss';
 
 const Jobs = ({ data }) => {
-  const { allLever } = data;
+  const { site, allLever } = data;
 
-  const Jobs = allLever.nodes.map((job) => <Job key={job.id} job={job} />);
+  const JobList = allLever.nodes.map((job) => (
+    <Job className={styles.jobs} key={job.id} job={job} />
+  ));
+
+  const Content = () => {
+    if (allLever.totalCount) {
+      return (
+        <Fragment>
+          <p>
+            We are hiring top talent to help us unify the world&apos;s sales
+            calls and emails into one beautiful workflow and to keep crushing
+            the world of sales software.
+          </p>
+          {JobList}
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <p>There are no jobs currently advertised.</p>
+        </Fragment>
+      );
+    }
+  };
 
   return (
     <Layout>
       <Helmet>
-        <title>Jobs at Close</title>
+        <title>Jobs at Close | {site.siteMetadata.title}</title>
       </Helmet>
       <h1>Engineering & Product Jobs at Close</h1>
-      <img
-        alt="Collage of the Close Team"
-        src="https://close.com/static/img/team/close-collage.jpg?h=16c37832"
-      />
+      <Link to="https://close.com/about/">
+        <img
+          src={HeroImage}
+          className={styles.image}
+          alt="Collage of the Close Team"
+          loading="eager"
+        />
+      </Link>
       <div className="leading">
         <h2>
-          At Close, we’re building the sales communication platform of the
-          future. We’ve built a next-generation CRM that eliminates manual data
-          entry and helps sales teams close more deals.
+          At Close, we&apos;re building the sales communication platform of the
+          future. We&apos;ve built a next-generation CRM that eliminates manual
+          data entry and helps sales teams close more deals.
         </h2>
-        <p>
-          We are hiring top talent to help us unify the world's sales calls and
-          emails into one beautiful workflow and to keep crushing the world of
-          sales software.
-        </p>
-        {Jobs}
+        <Content />
       </div>
     </Layout>
   );
@@ -68,6 +93,7 @@ Jobs.propTypes = {
   data: PropTypes.shape({
     allLever: PropTypes.shape({
       nodes: PropTypes.any.isRequired,
+      totalCount: PropTypes.number.isRequired,
     }),
     site: PropTypes.shape({
       siteMetadata: PropTypes.shape({
