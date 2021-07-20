@@ -1,0 +1,39 @@
+.banner {
+  display: flex;
+  background: var(--banner-background);
+  color: var(--banner-color);
+  padding: 12px 24px 12px 16px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  align-items: center;
+
+  &:hover {
+    text-decoration: none;
+
+    .arrow {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.title {
+  margin-bottom: 4px;
+}
+
+.content {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.content > p {
+  margin-bottom: 4px;
+}
+
+.arrow {
+  display: none;
+
+  @media screen and (min-width: 400px) {
+    font-size: 40px;
+    display: block;
+  }
+}
