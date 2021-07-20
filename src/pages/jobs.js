@@ -38,6 +38,11 @@ const Jobs = ({ data }) => {
 
 export const query = graphql`
   query JobsQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allLever(
       filter: { categories: { team: { in: ["engineering", "Product"] } } }
     ) {
