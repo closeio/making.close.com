@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 import styles from '../styles/job.module.scss';
 
 // Add component that renders Job details
@@ -13,9 +14,22 @@ const Job = ({ job }) => {
         <li className={styles.metaItem}>{job.categories.commitment}</li>
         <li className={styles.metaItem}>{job.categories.team}</li>
       </ul>
-      <p>{job.descriptionPlain}</p>
     </li>
   );
 };
 
 export default Job;
+
+Job.propTypes = {
+  job: PropTypes.shape({
+    categories: PropTypes.shape({
+      location: PropTypes.string.isRequired,
+      team: PropTypes.string.isRequired,
+      commitment: PropTypes.string.isRequired,
+    }),
+    applyUrl: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    hostedUrl: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }),
+};

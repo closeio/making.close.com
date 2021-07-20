@@ -58,3 +58,16 @@ export const query = graphql`
 `;
 
 export default Jobs;
+
+Jobs.propTypes = {
+  data: PropTypes.shape({
+    allLever: PropTypes.shape({
+      nodes: PropTypes.any.isRequired,
+    }),
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+    }),
+  }),
+};

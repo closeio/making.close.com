@@ -80,7 +80,7 @@ BlogListTemplate.propTypes = {
       }),
     }),
     allMarkdownRemark: PropTypes.shape({
-      nodes: PropTypes.object.isRequired,
+      nodes: PropTypes.array.isRequired,
       frontmatter: PropTypes.shape({
         date: PropTypes.string.isRequired,
         permalink: PropTypes.string.isRequired,
@@ -92,7 +92,7 @@ BlogListTemplate.propTypes = {
     }),
   }),
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    tag: PropTypes.string,
     numPages: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
   }),
