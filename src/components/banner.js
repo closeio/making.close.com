@@ -1,5 +1,5 @@
-import React, { Children } from 'react';
-import { Link } from 'gatsby';
+import React from 'react';
+import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styles from '../styles/banner.module.scss';
 
