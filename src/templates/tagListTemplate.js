@@ -89,7 +89,7 @@ TagListTemplate.propTypes = {
       }),
     }),
     allMarkdownRemark: PropTypes.shape({
-      nodes: PropTypes.object.isRequired,
+      nodes: PropTypes.array.isRequired,
       frontmatter: PropTypes.shape({
         date: PropTypes.string.isRequired,
         permalink: PropTypes.string.isRequired,
