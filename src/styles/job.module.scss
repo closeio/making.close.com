@@ -12,7 +12,11 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
+  display: block;
+
+  @media screen and (min-width: 400px) {
+    display: flex;
+  }
 }
 
 .meta-item {
@@ -23,8 +27,11 @@
 }
 
 .meta-item:not(:last-child)::after {
-  content: '•';
-  display: inline-block;
-  margin-left: 8px;
   color: var(--btn-text-color);
+
+  @media screen and (min-width: 400px) {
+    content: '•';
+    display: inline-block;
+    margin-left: 8px;
+  }
 }

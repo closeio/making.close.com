@@ -73,7 +73,12 @@ module.exports = {
         manualLoad: false,
       },
     },
-    'gatsby-plugin-manifest',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/logo.png',
+      },
+    },
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-dark-mode',

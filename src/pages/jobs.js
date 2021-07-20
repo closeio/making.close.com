@@ -18,18 +18,22 @@ const Jobs = ({ data }) => {
     if (allLever.totalCount) {
       return (
         <Fragment>
-          <p>
-            We are hiring top talent to help us unify the world&apos;s sales
-            calls and emails into one beautiful workflow and to keep crushing
-            the world of sales software.
-          </p>
+          <div className={styles.intro}>
+            <p>
+              We are hiring top talent to help us unify the world&apos;s sales
+              calls and emails into one beautiful workflow and to keep crushing
+              the world of sales software.
+            </p>
+          </div>
           {JobList}
         </Fragment>
       );
     } else {
       return (
         <Fragment>
-          <p>There are no jobs currently advertised.</p>
+          <div className={styles.intro}>
+            <p>There are no jobs currently advertised.</p>
+          </div>
         </Fragment>
       );
     }
@@ -47,6 +51,7 @@ const Jobs = ({ data }) => {
           className={styles.image}
           alt="Collage of the Close Team"
           loading="eager"
+          layou="fullWidth"
         />
       </Link>
       <div className="leading">
