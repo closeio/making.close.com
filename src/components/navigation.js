@@ -34,6 +34,11 @@ const Navigation = () => {
             Open Source Projects
           </Link>
         </li>
+        <li>
+          <Link className={styles.link} to="/jobs/" title="Jobs at Close">
+            Jobs at Close
+          </Link>
+        </li>
       </ul>
     </nav>
   );

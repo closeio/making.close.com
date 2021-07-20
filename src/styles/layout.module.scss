@@ -13,7 +13,7 @@
     'logo themechanger'
     'navigation navigation';
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 850px) {
     grid-template-columns: min-content auto 24px;
     grid-template-areas: 'logo navigation themechanger';
   }

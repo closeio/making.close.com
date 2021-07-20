@@ -1,0 +1,30 @@
+.title {
+  margin-bottom: 4px;
+}
+
+.job {
+  list-style: none;
+  margin: 0 0 32px 0;
+  padding: 0;
+}
+
+.meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.meta-item {
+  margin-right: 8px;
+  text-transform: capitalize;
+  position: relative;
+  color: var(--secondary-text-color);
+}
+
+.meta-item:not(:last-child)::after {
+  content: '•';
+  display: inline-block;
+  margin-left: 8px;
+  color: var(--btn-text-color);
+}

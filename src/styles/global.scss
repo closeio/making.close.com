@@ -9,6 +9,7 @@ body {
 * {
   margin-top: 0;
 }
+
 body.light {
   --primary-color: #381696;
   --primary-text-color: #fff;
@@ -66,6 +67,10 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.leading {
+  max-width: 800px;
 }
 
 .button {
