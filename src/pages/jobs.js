@@ -22,10 +22,11 @@ const Jobs = ({ data }) => {
               the world of sales software.
             </p>
           </div>
-          {allLever.nodes.map((job) => (
-            <Job className={styles.jobs} key={job.id} job={job} />
-          ))}
-          ;
+          <ul className={styles.jobslist}>
+            {allLever.nodes.map((job) => (
+              <Job className={styles.jobs} key={job.id} job={job} />
+            ))}
+          </ul>
         </Fragment>
       );
     } else {
