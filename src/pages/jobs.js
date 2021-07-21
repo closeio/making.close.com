@@ -6,7 +6,8 @@ import HeroHeader from '../components/heroHeader';
 import Job from '../components/job';
 import HeroImage from '../assets/close-collage.jpg';
 import PropTypes from 'prop-types';
-import styles from '../styles/jobs.module.scss';
+import jobsStyles from '../styles/jobs.module.scss';
+import postStyles from '../styles/post.module.scss';
 
 const Jobs = ({ data }) => {
   const { site, allLever } = data;
@@ -15,23 +16,23 @@ const Jobs = ({ data }) => {
     if (allLever.totalCount) {
       return (
         <Fragment>
-          <div className={styles.intro}>
+          <div className={jobsStyles.intro}>
             <p>
               We are hiring top talent to help us unify the world&apos;s sales
               calls and emails into one beautiful workflow and to keep crushing
               the world of sales software.
             </p>
           </div>
-          <ul className={styles.jobslist}>
+          <ul className={jobsStyles.jobslist}>
             {allLever.nodes.map((job) => (
-              <Job className={styles.jobs} key={job.id} job={job} />
+              <Job className={jobsStyles.jobs} key={job.id} job={job} />
             ))}
           </ul>
         </Fragment>
       );
     } else {
       return (
-        <div className={styles.intro}>
+        <div className={jobsStyles.intro}>
           <p>There are no jobs currently advertised.</p>
         </div>
       );
@@ -50,13 +51,13 @@ const Jobs = ({ data }) => {
       <Link to="https://close.com/about/">
         <img
           src={HeroImage}
-          className={styles.image}
+          className={jobsStyles.image}
           alt="Collage of the Close Team"
           loading="eager"
           layout="fullWidth"
         />
       </Link>
-      <div className="leading">
+      <div className={postStyles.content}>
         <h2>
           At Close, we&apos;ve built a next-generation CRM that eliminates
           manual data entry and helps sales teams close more deals.
