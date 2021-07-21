@@ -9,7 +9,10 @@ body {
 * {
   margin-top: 0;
 }
+
 body.light {
+  --banner-background: #9984d5;
+  --banner-color: #ffffff;
   --primary-color: #381696;
   --primary-text-color: #fff;
   --featured-bg: #493b8a;
@@ -31,6 +34,8 @@ body.light {
   --logoTextColor: #262e39;
 }
 body.dark {
+  --banner-background: #9984d5;
+  --banner-color: #ffffff;
   --primary-color: #9984d5;
   --primary-text-color: #fff;
   --featured-bg: #66578d;
@@ -66,6 +71,10 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.leading {
+  max-width: 800px;
 }
 
 .button {

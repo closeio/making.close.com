@@ -5,6 +5,16 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
+      resolve: 'gatsby-source-lever',
+      options: {
+        // Your Lever site instance name.
+        site: 'close.io',
+        // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
+        // It can help you debug specific API Endpoints problems
+        verboseOutput: false,
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'posts',
@@ -63,7 +73,12 @@ module.exports = {
         manualLoad: false,
       },
     },
-    'gatsby-plugin-manifest',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/logo.png',
+      },
+    },
     'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-dark-mode',
