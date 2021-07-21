@@ -11,10 +11,6 @@ import styles from '../styles/jobs.module.scss';
 const Jobs = ({ data }) => {
   const { site, allLever } = data;
 
-  const JobList = allLever.nodes.map((job) => (
-    <Job className={styles.jobs} key={job.id} job={job} />
-  ));
-
   const Content = () => {
     if (allLever.totalCount) {
       return (
@@ -26,7 +22,10 @@ const Jobs = ({ data }) => {
               the world of sales software.
             </p>
           </div>
-          {JobList}
+          {allLever.nodes.map((job) => (
+            <Job className={styles.jobs} key={job.id} job={job} />
+          ))}
+          ;
         </Fragment>
       );
     } else {
