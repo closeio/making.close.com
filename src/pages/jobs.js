@@ -31,11 +31,9 @@ const Jobs = ({ data }) => {
       );
     } else {
       return (
-        <Fragment>
-          <div className={styles.intro}>
-            <p>There are no jobs currently advertised.</p>
-          </div>
-        </Fragment>
+        <div className={styles.intro}>
+          <p>There are no jobs currently advertised.</p>
+        </div>
       );
     }
   };
