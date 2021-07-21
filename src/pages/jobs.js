@@ -53,7 +53,7 @@ const Jobs = ({ data }) => {
           className={styles.image}
           alt="Collage of the Close Team"
           loading="eager"
-          layou="fullWidth"
+          layout="fullWidth"
         />
       </Link>
       <div className="leading">
