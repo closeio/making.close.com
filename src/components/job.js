@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styles from '../styles/job.module.scss';
 
-// Add component that renders Job details
 const Job = ({ job }) => {
   return (
     <li className={styles.job}>
