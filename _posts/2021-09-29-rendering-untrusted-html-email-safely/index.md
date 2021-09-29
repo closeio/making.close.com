@@ -6,7 +6,7 @@ permalink: /posts/rendering-untrusted-html-email-safely
 author: Phil Freo
 thumbnail: ''
 metaDescription: ''
-tags: [Engineering, Dev-Env]
+tags: [Engineering, Security]
 ---
 
 One of the earliest core features we built in Close was our [email sync feature](https://close.com/emailing/), which allows Close to automatically pull in email communication between your sales team and your sales contacts and display them for your team to see. We present a unified timeline of all communication (emails, calls, SMS, etc.) with a sales lead in one place for your team.
