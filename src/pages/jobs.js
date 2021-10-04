@@ -76,7 +76,7 @@ export const query = graphql`
       }
     }
     allLever(
-      filter: { categories: { team: { in: ["engineering", "Product"] } } }
+      filter: { categories: { team: { in: ["Engineering", "Product"] } } }
     ) {
       nodes {
         categories {
