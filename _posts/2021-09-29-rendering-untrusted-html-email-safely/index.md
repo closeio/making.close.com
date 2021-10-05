@@ -15,7 +15,7 @@ This feature required that we build a way to display email in our web app – _s
 
 We launched our ability to display synced HTML email in 2014, however the technical side of it is still very relevant and (I think) interesting since our approach is not one that I've seen widely used.
 
-In the end, we found a way to, exclusively on the client-side (in web browsers), render untrusted HTML email safely inside our single-page application (written originally with Backbone.js, now mostly React). Here will discuss a few approaches we had to consider and how we solved this problem.
+In the end, we found a way to, exclusively on the client-side (in web browsers), render untrusted HTML email safely inside our single-page application (written originally with Backbone.js, now mostly React). Here we'll discuss a few approaches we had to consider and how we solved this problem.
 
 For example, we can display an IMAP-synced email thread like this:
 
@@ -34,7 +34,7 @@ But most of the interesting engineering/security concerns are around rendering u
 Our main goals were the following:
 
 - Display HTML email, not just plaintext
-- Display "full" HTML email. We care about much more than just a few simple tags like `<b>` and `<i>`, but rather want to support displaing sophisticated email styles (including custom `style` tags) that you often see in well-designed HTML email newsletters, calendar invitations, etc.
+- Display "full" HTML email. We care about much more than just a few simple tags like `<b>` and `<i>`, but rather want to support displaying sophisticated email styles (including custom `style` tags) that you often see in well-designed HTML email newsletters, calendar invitations, etc.
 - We want to render emails within our web application, without any conflicts of our CSS leaking in or the email CSS leaking out.
 - In addition to CSS styles, we also want to display images, expect links to work, etc.
 - Most important: Do not let any JavaScript run. Otherwise we run the risk of an attacker taking over our user's Close account by stealing cookies, or a number of other Very Bad™️ things.
@@ -114,7 +114,7 @@ This attribute is the heart of our security model. By adding this attribute, it 
 
 We add a Content Security Policy to the iframe with a value of `script-src 'none'` as an additional mechanism to avoid any JavaScript from running in the iframe. This is mostly duplicative with `sandbox` but provides an extra layer of protection in [browsers](https://caniuse.com/#feat=mdn-api_htmliframeelement_csp) that support it.
 
-As you can see, we have some overlap in coverage here (e.g. 3 separate features to avoid JavaScript running). We have learned of particular browser bugs where there were temporarily limitations in any one of these indvidiual approaches. A reminder that security in layers is often best.
+As you can see, we have some overlap in coverage here (e.g. 3 separate features to avoid JavaScript running). We have learned of particular browser bugs where there were temporary limitations in any one of these indvidiual approaches. A reminder that security in layers is often best.
 
 ## Bringing it together...
 
@@ -142,7 +142,7 @@ Based on this, we can make sure we _only_ display the plaintext email variant (i
 
 ## Known limitations
 
-One can invision additional enhancements where we _would_ want to parse and modify the email HTML before rendering it. One example would be if we wanted to try to rewrite and proxy all image URLs ([similar to Gmail](https://gmail.googleblog.com/2013/12/images-now-showing.html)) to protect our users' privacy.
+One can envision additional enhancements where we _would_ want to parse and modify the email HTML before rendering it. One example would be if we wanted to try to rewrite and proxy all image URLs ([similar to Gmail](https://gmail.googleblog.com/2013/12/images-now-showing.html)) to protect our users' privacy.
 
 Similarly, we do have a problem where browsers will show a Mixed Content warning (since our site is `https://`) after you display an email that includes an `<img>` with an `http://` `src`. Those warnings are still fairly unobtrusive, however, but ultimately we should proxy them to be served over https.
 
@@ -154,7 +154,7 @@ There were a lot of other details to get right. Each of them could deserve their
 
 - We have to convert "inline" images (images that are embedded within the email itself, not referencing an external URL) to be displayable by the web browser.
 - We have to deal with understanding quoting parts. We wrote [quotequail](https://github.com/closeio/quotequail) for this. (Mailgun later open sourced a similar library called [talon](https://github.com/mailgun/talon)). You can see in the screenshot at the top of this post a little "..." button where the quoted part of the email is collapsed by default, but expandable.
-- We want avoid to the "extra scrollbar" issue you typically experience with iframes, so we carefully (this is surprisingly tricky) detect the height of the iframe email contents and then set the iframe to that height, giving it a seamless look on the page.
+- We want to avoid the "extra scrollbar" issue you typically experience with iframes, so we carefully (this is surprisingly tricky) detect the height of the iframe email contents and then set the iframe to that height, giving it a seamless look on the page.
 - We need to consider how composing email works too. We needed a WYSIWYG editor for HTML Email that also prevents any XSS. We currently use [Froala Editor](https://froala.com/wysiwyg-editor/) for this, after having tested many editors for security.
 
 ## Thoughts?
