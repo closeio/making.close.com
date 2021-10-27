@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'How We Improved Reliability Of Our WebSocket Connections'
-date: 2021-10-25
+date: 2021-10-27
 permalink: /posts/reliable-websockets/
 author: Stefan Wójcik
 thumbnail: ''
