@@ -89,8 +89,9 @@ Chromium-based browsers like MS Edge, Electron, and, well, Chrome), you can't
 see the Control Frames in the Network Monitor *at all*. Fortunately, Firefox
 has a way to make them visible:
 
-![How to see WebSocket Control Frames in Firefox](./ff_control_frames.png)
-![Ping & Pong Control Frames, containing random 4 bytes](./close_ping_pong.png)
+![How to see WebSocket Control Frames in Firefox](./ff_control_frames2.png)
+![Ping & Pong Control Frames, containing random 4
+bytes](./close_ping_pong2.png)
 
 Alright, we've confirmed our first assumption – pings and pongs are flowing
 nicely. Time to move on to the second assumption – is the
