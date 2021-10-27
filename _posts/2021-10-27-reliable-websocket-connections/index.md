@@ -46,13 +46,13 @@ We chose the latter.
 After a few rounds of logging improvements, we could walk through each step of
 the "call answered" event's journey and see where it veers off course. We saw
 that:
-1. When the callee answers the problematic call, Twilio ([our telephony
-   provider](https://twilio.com)) recognizes this fact and sends a webhook
-   about it to our backend servers.
+1. When the callee answers the problematic call, [Twilio](https://twilio.com)
+   (our telephony provider) recognizes this fact and sends a webhook about it
+   to our backend servers.
 2. Our backend receives the Twilio webhook and processes it successfully. This
-   includes publishing a "this call is now in progress" event to SocketShark
-   ([our open-source tool for managing WebSocket connections, based on Redis
-   and Python/asyncio](https://github.com/closeio/socketshark)).
+   includes publishing a "this call is now in progress" event to
+   [SocketShark](https://github.com/closeio/socketshark) (our open-source tool
+   for managing WebSocket connections, based on Redis and Python/asyncio).
 3. SocketShark receives the Redis event and *attempts to* deliver it via a
    WebSocket to the relevant user. **However, in case of the problematic calls,
    this turned out to be a no-op because the target user didn't have an active
