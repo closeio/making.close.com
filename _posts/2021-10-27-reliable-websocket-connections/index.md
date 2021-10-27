@@ -189,7 +189,7 @@ bugs since we've shipped it.
 
 # Conclusions
 
-Going forward, we'll keep a few lessons with us:
+There are a few lessons that we're going to take away from this bugfix:
 1. Always make sure that you periodically poke **both sides** of any long-lived
    TCP connection.
 2. Not every connection failure is easy to simulate with software. Sometimes it
