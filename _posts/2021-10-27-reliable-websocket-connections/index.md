@@ -56,7 +56,7 @@ that:
 3. SocketShark receives the Redis event and *attempts to* deliver it via a
    WebSocket to the relevant user. **However, in case of the problematic calls,
    this turned out to be a no-op because the target user didn't have an active
-   WebSocket connection at that time.**
+   WebSocket connection.**
 
 This came as a surprise. Our system is set up in a way where you should
 *always* have an active WebSocket connection. We ensure this is the case in two
