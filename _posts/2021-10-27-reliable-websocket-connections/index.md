@@ -174,7 +174,7 @@ everything we knew:
    serve either as a keepalive or **as a means to verify that the remote
    endpoint is still responsive.**" (emphasis ours).
 4. The backend side of the connection already sends `Ping`s and receives
-   client-sent `Pongs` to determine whether it's still connected to the UI.
+   client-sent `Pong`s to determine whether it's still connected to the UI.
 
 This is when it hit us: **Our UI needs the equivalent ping/pong mechanism as
 the backend to ensure connectivity on its side of the connection.**
