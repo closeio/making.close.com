@@ -139,10 +139,10 @@ As described in [RFC 6455](https://datatracker.ietf.org/doc/html/rfc6455),
 WebSockets use [TCP](https://datatracker.ietf.org/doc/html/rfc793) for the
 underlying connection. The fact that the UI immediately recognized that the
 server closed its side of the WebSocket connection showed us that the TCP
-packet containing the FIN flag (responsible for communicating the closure of
-the connection) was successfully received by the client. Could we break the
-connection in a way where the server-sent TCP FIN packet never made it to the
-client?
+packet containing the FIN flag (responsible for communicating the [closure of
+the connection](https://www.geeksforgeeks.org/tcp-connection-termination/)) was
+successfully received by the client. Could we break the connection in a way
+where the server-sent TCP FIN packet never made it to the client?
 
 Replicating this scenario turned out to be quite simple, once we set our mind
 on it:
