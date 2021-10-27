@@ -133,7 +133,7 @@ our users could have no active WebSocket connection for minutes or even hours.
 
 This last attempt failed at reproducing the problem, but it informed our next
 steps. **This is another important lesson in debugging tricky problems – you
-sometimes have to try unlikely scenarios, first to rule them out, and second to
+sometimes have to try unlikely scenarios, partly to rule them out, but also to
 inspire your next steps.**
 
 As described in [RFC 6455](https://datatracker.ietf.org/doc/html/rfc6455),
@@ -196,6 +196,9 @@ There are a few lessons that we're going to take away from this bugfix:
 2. Not every connection failure is easy to simulate with software. Sometimes it
    makes sense to play with the good old hardware, power things down, unplug
    some cables, etc.
-3. When in doubt, add more logging. Pull a thread till you find where it snaps.
-4. Go through many possible failure scenarios, even the unlikely ones, first to
-   rule them out and second to inspire your next steps.
+3. When in doubt and feeling stuck, add more logging. Pull a thread till you
+   find where it snaps.
+4. Don't outright dismiss the complex, unlikely scenarios. Certainly, go
+   through the likelier steps first, but recognize that there's value in
+   eventually pursuing the long shots. Worst case, you'll have one extra
+   scenario that you've ruled out. Best case, it'll inspire your next steps.
