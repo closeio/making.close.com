@@ -68,10 +68,10 @@ ways:
    frame](https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.3)
    ("matching" means that it contains the same random 4 bytes of "application
    data") within a reasonable time, it closes the connection.
-2. Our UI uses the
-   [`reconnecting-websocket`](https://github.com/pladaria/reconnecting-websocket)
-   library and attempts to establish a new connection quite aggressively as
-   soon as it determines that the previous connection was closed.
+2. Our UI uses the [`reconnecting-websocket`
+   library](https://github.com/pladaria/reconnecting-websocket) and attempts to
+   establish a new connection quite aggressively as soon as it determines that
+   the previous connection was closed.
 
 What were we missing then?
 
