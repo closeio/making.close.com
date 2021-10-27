@@ -105,10 +105,9 @@ reestablished it as soon as we got back online.
 
 The second attempt involved playing with the Network Monitor built into the
 browser and its throttling options. Sadly, it turns out that both
-[Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1421357)) and
+[Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=1421357) and
 [Chrome](https://bugs.chromium.org/p/chromium/issues/detail?id=423246) only
-support throttling for *HTTP connections* and not for *WebSockets*. Moving
-on…
+support throttling for *HTTP connections* and not for *WebSockets*. Moving on…
 
 The third attempt was a bit more complicated:
 1. We looked up the current IPs of our Load Balancer using `nslookup`.
