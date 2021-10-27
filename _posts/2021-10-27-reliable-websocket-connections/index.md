@@ -11,7 +11,7 @@ tags: [Engineering, WebSockets]
 
 We have recently squashed two long-standing calling bugs in Close with a single
 fix: Making our WebSocket connections bidirectionally robust. The final
-solution turned out to be a no-brainer, but getting there required
+solution turned out to be quite simple, but getting there required
 understanding browser limitations, playing with our networking hardware,
 refreshing our knowledge of the Internet's foundational RFCs, and digging into
 several layers of logging. Let's start at the beginning though...
