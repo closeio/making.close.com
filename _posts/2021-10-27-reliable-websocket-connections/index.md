@@ -14,7 +14,7 @@ fix: Making our WebSocket connections bidirectionally robust. The final
 solution turned out to be quite simple, but getting there required
 understanding browser limitations, playing with our networking hardware,
 refreshing our knowledge of the Internet's foundational RFCs, and digging into
-several layers of logging. Let's start at the beginning though...
+several layers of logging. Let's start at the beginning though…
 
 # The Problem
 
@@ -148,9 +148,11 @@ where the server-sent TCP FIN packet never made it to the client?
 Replicating this scenario turned out to be quite simple, once we set our mind
 on it:
 1. We opened the Close app and waited for the WebSocket to connect.
-2. We unplugged the Ethernet cable from the router and waited for SocketShark's
-   pings to time out and close the connection. **This time, the TCP FIN packet
-   would not make it to the UI client**.
+2. We unplugged the Ethernet cable from the router (the one connecting the
+   router to the Internet at large, *not* the one connecting the router to the
+   computer [0]) and waited for SocketShark's pings to time out and close the
+   connection. **This time, the TCP FIN packet would not make it to the UI
+   client**.
 3. We plugged the Ethernet cable back in and waited for the Internet connection
    to come back… **And there it was! The UI never recognized that its WebSocket
    connection was broken and never attempted to reconnect.**
@@ -202,3 +204,20 @@ There are a few lessons that we're going to take away from this bugfix:
    through the likelier steps first, but recognize that there's value in
    eventually pursuing the long shots. Worst case, you'll have one extra
    scenario that you've ruled out. Best case, it'll inspire your next steps.
+
+---
+
+[0] You might be wondering: Why does it matter which cable exactly we
+disconnect from the router? Also, why didn't turning off the Wi-Fi (or
+unplugging the router from the computer in case of a wired connection)
+reproduce the issue? The thing is, the browser handles the "I'm not connected
+to anything" scenario (what happens when you turn off Wi-Fi or unplug the
+Ethernet cable from your computer) differently from the "I seem connected to
+the Internet, but my packets are falling off a cliff" scenario (what finally
+reproduced the issue). If your computer recognizes that its network connection
+has changed (i.e. what happens when you turn Wi-Fi off/unplug the laptop), the
+browser will trigger a "network change" event, which in turn will make the
+browser send a test `Ping` control frame over all of its active WebSockets to
+see if there's still connectivity. Of course, there won't be any, so the
+WebSocket connection will be deemed closed. The `reconnecting-websocket`
+library takes care of the rest.
