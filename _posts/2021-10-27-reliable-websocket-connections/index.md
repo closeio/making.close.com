@@ -101,8 +101,8 @@ nicely. Time to move on to the second assumption – is the
 
 Our first attempt at permanently breaking the WebSocket connection was quite
 naive. We simply turned the Wi-Fi off and on again. That worked fine: The UI
-immediately recognized that the WebSocket connection got severed and
-reestablished it as soon as we got back online.
+quickly recognized that the WebSocket connection got severed and reestablished
+it as soon as we got back online.
 
 The second attempt involved playing with the Network Monitor built into the
 browser and its throttling options. Sadly, it turns out that both
