@@ -19,8 +19,9 @@ several layers of logging. Let's start at the beginning though...
 # The Problem
 
 [Our customers love Close](https://www.g2.com/products/close/reviews) for many
-reasons, but one of the top ones is our built-in calling. However, in recent
-months, we'd sporadically receive concerning bug reports about this feature:
+reasons, but one of the top ones is our built-in calling. However, over the
+last few months we'd sporadically receive concerning bug reports about this
+feature:
 * Sometimes, when a Close user called a contact, the far end would pick up, but
   our UI still looked as if the call was ringing.
 * Other times, a contact would call a Close user, but the ringtone would keep
