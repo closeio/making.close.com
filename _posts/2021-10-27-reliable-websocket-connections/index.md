@@ -157,9 +157,8 @@ on it:
 # The Fix
 
 The elation from finding reliable reproduction steps didn't last long. We still
-needed to figure out how to implement a correct fix.
-
-First, we did a recap of everything we knew:
+needed to figure out how to implement a correct fix. First, we did a recap of
+everything we knew:
 1. Our WebSocket reconnects as soon as it recognizes that its previous
    connection is closed.
 2. There is a networking failure scenario in which the UI side of our WebSocket
