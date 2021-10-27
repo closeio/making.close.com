@@ -181,7 +181,7 @@ the backend to ensure connectivity on its side of the connection.**
 Unfortunately, browsers do not expose an API for sending `Ping` control frames
 to the server nor acting on received `Pong` frames. [The request to expose such
 APIs has been rejected by the W3C years
-ago](https://www.w3.org/Bugs/Public/show_bug.cgi?id=13104)). We were thus
+ago](https://www.w3.org/Bugs/Public/show_bug.cgi?id=13104). We were thus
 forced to implement this mechanism ourselves, using regular data frames. This
 is [exactly what we did](https://github.com/closeio/socketshark/pull/73) and it
 worked like a charm! We haven't received a single report of the aforementioned
