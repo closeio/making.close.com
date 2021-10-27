@@ -16,9 +16,9 @@ understanding browser limitations, playing with our networking hardware,
 refreshing our knowledge of the Internet's foundational RFCs, and digging into
 several layers of logging. Let's start at the beginning though...
 
-## The Problem
+# The Problem
 
-[Our customers love Close](https://www.g2.com/products/close/reviews)) for many
+[Our customers love Close](https://www.g2.com/products/close/reviews) for many
 reasons, but one of the top ones is our built-in calling. However, in recent
 months, we'd sporadically receive concerning bug reports about this feature:
 * Sometimes, when a Close user called a contact, the far end would pick up, but
@@ -40,7 +40,7 @@ choose from:
 
 We chose the latter.
 
-## Pulling The Thread
+# Pulling The Thread
 
 After a few rounds of logging improvements, we could walk through each step of
 the "call answered" event's journey and see where it veers off course. We saw
@@ -74,7 +74,7 @@ ways:
 
 What were we missing then?
 
-## A Healthy Dose Of Self-Doubt
+# A Healthy Dose Of Self-Doubt
 
 When it comes to debugging unexpected behavior, it's often good to start with
 challenging your assumptions. It's not enough to read a comment or glance at
@@ -95,7 +95,7 @@ Alright, we've confirmed our first assumption – pings and pongs are flowing
 nicely. Time to move on to the second assumption – is the
 `reconnecting-websocket` working as advertised?
 
-## Breaking A WebSocket Connection
+# Breaking A WebSocket Connection
 
 Our first attempt at permanently breaking the WebSocket connection was quite
 naive. We simply turned the Wi-Fi off and on again. That worked fine: The UI
@@ -154,7 +154,7 @@ on it:
    to come back… **And there it was! The UI never recognized that its WebSocket
    connection was broken and never attempted to reconnect.**
 
-## The Fix
+# The Fix
 
 The elation from finding reliable reproduction steps didn't last long. We still
 needed to figure out how to implement a correct fix.
@@ -188,7 +188,7 @@ is [exactly what we did](https://github.com/closeio/socketshark/pull/73) and it
 worked like a charm! We haven't received a single report of the aforementioned
 bugs since we've shipped it.
 
-## Conclusions
+# Conclusions
 
 Going forward, we'll keep a few lessons with us:
 1. Always make sure that you periodically poke **both sides** of any long-lived
