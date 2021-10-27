@@ -136,14 +136,17 @@ steps. **This is another important lesson in debugging tricky problems – you
 sometimes have to try unlikely scenarios, partly to rule them out, but also to
 inspire your next steps.**
 
-As described in [RFC 6455](https://datatracker.ietf.org/doc/html/rfc6455),
-WebSockets use [TCP](https://datatracker.ietf.org/doc/html/rfc793) for the
-underlying connection. The fact that the UI immediately recognized that the
-server closed its side of the WebSocket connection showed us that the TCP
-packet containing the FIN flag (responsible for communicating the [closure of
-the connection](https://www.geeksforgeeks.org/tcp-connection-termination/)) was
-successfully received by the client. Could we break the connection in a way
-where the server-sent TCP FIN packet never made it to the client?
+The fact that the UI immediately recognized the WebSocket connection as closed
+showed us that either a) the browser somehow realized it on its own, or b) the
+server-sent TCP packet containing the FIN flag (responsible for communicating
+the [closure of the
+connection](https://www.geeksforgeeks.org/tcp-connection-termination/)) was
+successfully received by the client (as described in [RFC
+6455](https://datatracker.ietf.org/doc/html/rfc6455), WebSockets use
+[TCP](https://datatracker.ietf.org/doc/html/rfc793) for the underlying
+connection). Could we break the connection in a way where the server-sent TCP
+FIN packet never made it to the client, and the browser was be left believing
+the connection was still up?
 
 Replicating this scenario turned out to be quite simple, once we set our mind
 on it:
@@ -215,9 +218,10 @@ to anything" scenario (what happens when you turn off Wi-Fi or unplug the
 Ethernet cable from your computer) differently from the "I seem connected to
 the Internet, but my packets are falling off a cliff" scenario (what finally
 reproduced the issue). If your computer recognizes that its network connection
-has changed (i.e. what happens when you turn Wi-Fi off/unplug the laptop), the
-browser will trigger a "network change" event, which in turn will make the
-browser send a test `Ping` control frame over all of its active WebSockets to
-see if there's still connectivity. Of course, there won't be any, so the
-WebSocket connection will be deemed closed. The `reconnecting-websocket`
-library takes care of the rest.
+has changed (i.e. what happens when you turn Wi-Fi off/unplug the laptop), it
+will trigger a "network change" event, which in turn will make the browser send
+a test `Ping` control frame over all of its active WebSockets. If the
+corresponding `Pong` isn't received within a reasonable timeout (Firefox uses
+10 seconds currently), then the browser assumed that the connection is severed
+and closes it on its side. The `reconnecting-websocket` library takes care of
+the rest.
