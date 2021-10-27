@@ -78,9 +78,9 @@ What were we missing then?
 # A Healthy Dose Of Self-Doubt
 
 When it comes to debugging unexpected behavior, it's often good to start with
-challenging your assumptions. It's not enough to read a comment or glance at
-a piece of code. **You need prove that what you *think* your code does is truly
-what happens.**
+challenging your own assumptions. It's not enough to read a comment or glance
+at a piece of code. **You need prove that what you *think* your code does is
+truly what happens.**
 
 That was our next step. We fired up the Close app, waited for our WebSocket
 to connect, and verified if the `Ping` and `Pong` control frames are sent back
