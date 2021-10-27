@@ -145,8 +145,8 @@ successfully received by the client (as described in [RFC
 6455](https://datatracker.ietf.org/doc/html/rfc6455), WebSockets use
 [TCP](https://datatracker.ietf.org/doc/html/rfc793) for the underlying
 connection). Could we break the connection in a way where the server-sent TCP
-FIN packet never made it to the client, and the browser was be left believing
-the connection was still up?
+FIN packet never made it to the client, and the browser was believing the
+connection was still up?
 
 Replicating this scenario turned out to be quite simple, once we set our mind
 on it:
