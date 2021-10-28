@@ -222,6 +222,6 @@ has changed (i.e. what happens when you turn Wi-Fi off/unplug the laptop), it
 will trigger a "network change" event, which in turn will make the browser send
 a test `Ping` control frame over all of its active WebSockets. If the
 corresponding `Pong` isn't received within a reasonable timeout (Firefox uses
-10 seconds currently), then the browser assumed that the connection is severed
+10 seconds currently), then the browser assumes that the connection is severed
 and closes it on its side. The `reconnecting-websocket` library takes care of
 the rest.
