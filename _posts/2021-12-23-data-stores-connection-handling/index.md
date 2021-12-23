@@ -119,6 +119,12 @@ Could we do something to make the TCP stack aware that the connection is dead be
 
 With TCP keepalives, we can tell the TCP stack: if this connection goes idle for that many seconds, probe the connection that many times. If the probes are not replied to, the TCP stack will declare the connection dead, and let the application know it when it tries to use the connection.
 
+### An important note
+
+It's important to note that every proposed solution here wasn't about avoiding an exception or even fixing the connection. The application will still raise an exception that needs to be handled correctly to tell the user what to do next, or avoid losing and corrupting data. This was all to not have processes hang for a long time doing nothing. This will allow web workers and asynchronous task workers to detect a dead connection and immediately return a HTTP 500 error, or retry a task, or pick up the next job in line, etc.
+
+If you want to recover without an exception, you need to implement this logic. Your stack may or may not offer something. For example, SQLAlchemy offers what they call ["pessimistic" connection handling](https://docs.sqlalchemy.org/en/14/core/pooling.html#disconnect-handling-pessimistic), which is a way to detect a dead connection when checking it out from the pool, and reestablishing the connection before handling it to client code completely transparently, so the client code will never know it would have gotten a broken connection in the first place. This plays nicely with TCP keepalives, since if a connection was idle in the pool for a long time, the pool will immediately learn the connection is dead and reestablish the connection without any delays.
+
 ## Other data stores
 
 The same principles applied above can also be applied for other data stores:
