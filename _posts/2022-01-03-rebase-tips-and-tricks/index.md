@@ -45,19 +45,19 @@ The benefit of using rebase is that the git history will be clean, not introduci
 
 When developing a feature, you may end up changing your mind a few times while implementing, maybe due to something that appeared while developing or the part of the project requires to use something else. Another reason could be missed logic when planning or other unpredictable things. When this happens, and you commit each change, you end up having a bunch of commits, or maybe more than a half are not related anymore to the current logic. In this case, you can use an interactive rebase to change your commits in a feature branch.
 
-Intereactive rebase — commits in your current branch:
+Interactive rebase — commits in your current branch, pass `-i` option with a particular commit:
 
 ```sh
 git rebase -i HEAD~{number of commits} 
 ```
 
-Interactive rebase — from another branch, pass `-i` option to the command:
+Interactive rebase — from another branch, pass `-i` option with reference to the `main` branch:
 
 ```sh
 git rebase -i main
 ```
 
-Rebase is not recommended to use in a public branch. As we know so far, the rebase can change git history and, affect other developers' work. Also, the history will be affected. In this case, it is recommended to use merge.
+Rebase is not recommended to use in a public branch. As we know so far, the rebase can change git history and, affect other developers' work. In this case, it is recommended to use merge.
 
 ```sh
 git checkout staging
@@ -101,7 +101,7 @@ You can access all interactive rebase actions by typing: `git rebase -i HEAD~{nu
 
 # What happens if I mess up a rebase?
 
-Before force pushing, I highly recommend checking again if everything looks as it should be, commits and code. If something doesn't look right, you can reset your local changes and pull from update with the remote, or if you are in the middle of a rebase, you can abort it.
+Before force pushing, I highly recommend checking again if everything looks as it should be, commits and code. If something doesn't look right, you can reset your local changes and pull from your pushed branch, or if you are in the middle of a rebase, you can abort it.
 
 Finished rebase, not force pushed, reset your branch to origin:
 
@@ -124,7 +124,7 @@ As described before, you should avoid using it on a branch that someone else may
 
 # How to learn git rebase?
 
-My journey with rebase was straightforward because I've had a great mentor, Scott, who masters rebasing. He explained how interactive rebase works with some coding-showing examples.
+My journey with rebase was straightforward because I've had a great mentor, [Scott](https://github.com/essmahr), who masters rebasing. He explained how interactive rebase works with some coding-showing examples.
 
 After learning the basics, I highly recommend starting with baby steps because rebase may put your current code at risk. I cannot say I master rebase, but I've started with baby steps, and now using rebase is part of my daily work.
 
