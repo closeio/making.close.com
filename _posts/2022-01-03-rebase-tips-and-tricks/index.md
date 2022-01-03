@@ -137,4 +137,4 @@ Tips if you want to start working with rebase:
 ### What changed after introducing rebase?
 
 After getting familiar with rebase, I've noticed I use it very often, and it is part of my work now. I can keep commits clean and make the feature branch history readable and reviewable. Overall, I can say that everything is more pristine and nicer with `rebase`.
-My colleagues noticed that rebase had improved my git commits, and I am happy for their help with my journey with rebase. 🚀 
+My colleagues noticed that I communicate much better through my commit history, and I am happy for their help with my journey with rebase. 🚀 
