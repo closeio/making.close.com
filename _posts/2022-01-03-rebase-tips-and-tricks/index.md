@@ -126,7 +126,7 @@ As described before, you should avoid using it on a branch that someone else may
 
 My journey with rebase was straightforward because I've had a great mentor, [Scott](https://github.com/essmahr), who masters rebasing. He explained how interactive rebase works with some coding-showing examples.
 
-After learning the basics, I highly recommend starting with baby steps because rebase may put your current code at risk. I cannot say I master rebase, but I've started with baby steps, and now using rebase is part of my daily work.
+After learning the basics, I highly recommend starting with baby steps because rebase may put your current code at risk. I cannot say I've mastered rebase yet, but I've started with baby steps, and now using rebase is part of my daily work.
 
 Tips if you want to start working with rebase:
 
