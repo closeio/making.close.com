@@ -19,7 +19,7 @@ Prior to learning how to rebase, I'd add new commits for every little change. I 
 
 # When can you use rebase?
 
-## Resolving conflicts with a parent branch
+### Resolving conflicts with a parent branch
 
 When you want to develop a feature or fix a bug, you create a branch from your main branch and make your changes. 
 
@@ -41,7 +41,7 @@ git rebase main
 
 The benefit of using rebase is that the git history will be clean, not introducing a new commit for merging. Also, another advantage is that it enables you to resolve conflicts commit by commit, which is easier to track.
 
-## Cleaning up or altering git history for clearer pull requests
+### Cleaning up or altering git history for clearer pull requests
 
 When developing a feature, you may end up changing your mind a few times while implementing, maybe due to something that appeared while developing or the part of the project requires to use something else. Another reason could be missed logic when planning or other unpredictable things. When this happens, and you commit each change, you end up having a bunch of commits, or maybe more than a half are not related anymore to the current logic. In this case, you can use an interactive rebase to change your commits in a feature branch.
 
@@ -99,7 +99,7 @@ You can access all interactive rebase actions by typing: `git rebase -i HEAD~{nu
 # .
 ```
 
-## What happens if I mess up a rebase?
+# What happens if I mess up a rebase?
 
 Before force pushing, I highly recommend checking again if everything looks as it should be, commits and code. If something doesn't look right, you can reset your local changes and pull from update with the remote, or if you are in the middle of a rebase, you can abort it.
 
@@ -118,11 +118,11 @@ git rebase --abort
 If you force push, there is no way to undo your changes.
 
 
-## When should you not use it?
+# When should you not use it?
 
 As described before, you should avoid using it on a branch that someone else may be working on, public branches, or anything else that may negatively impact the git history.
 
-## How to learn git rebase?
+# How to learn git rebase?
 
 My journey with rebase was straightforward because I've had a great mentor, Scott, who masters rebasing. He explained how interactive rebase works with some coding-showing examples.
 
