@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Automating MongoDB with Ansible'
-date: 2022-01-07
+date: 2022-04-07
 permalink: /posts/mongodb-automation/
 author: Doug Greenbaum
 thumbnail: ''
