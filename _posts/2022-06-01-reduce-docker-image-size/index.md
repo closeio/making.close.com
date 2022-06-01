@@ -9,10 +9,10 @@ metaDescription: ''
 tags: [Engineering, Dev-Env]
 ---
 
-At Close, we build docker images with our frontend code for multiple purposes like:
+At Close, we build Docker images with our Frontend code for multiple purposes like:
 
-- for frontend software engineers to develop the frontend app
-- for backend software engineers to run the app
+- for Frontend software engineers to develop the Frontend app
+- for Backend software engineers to run the app
 - to be used in staging
 - to be used in production
 
@@ -59,13 +59,13 @@ COPY --from=stage_build /opt/app/ui/dist/ /var/www/dist
 
 As you can see above, we start with the `stage_0` image definition. It is done for caching purposes. This way we don’t need to re-install packages whenever any part of the code changes. `stage_0` will be rebuilt only if dependencies are changed (`package.json` or `yarn.lock`).
 
-Then, there is the `stage_dev`, where we copy all files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. It is also used by frontend developers to run the frontend app in the Docker environment.
+Then, there is the `stage_dev`, where we copy all files needed for the Frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. It is also used by Frontend developers to run the Frontend app in the Docker environment.
 
-Finally, we have the `stage_build` stage where the static app is built. The built app is then copied to a lightweight NGINX image. When backend developers don’t need to edit frontend code, they can run just the backend part of the stack together with this pre-built frontend image. It has the advantage of spinning up very quickly.
+Finally, we have the `stage_build` stage where the static app is built. The built app is then copied to a lightweight NGINX image. When Backend developers don’t need to edit Frontend code, they can run just the Backend part of the stack together with this pre-built Frontend image. It has the advantage of spinning up very quickly.
 
 ## Large Docker images issue
 
-When initially the frontend dev image was built, we ended up with a huge 1.5GB image. This became too large for a couple of reasons:
+When initially the Frontend dev image was built, we ended up with a huge 1.5GB image. This became too large for a couple of reasons:
 
 - it slowed down the CI/CD jobs because multiple jobs had to download the image
 - it was able to exhaust CI/CD memory resources causing jobs to fail randomly
@@ -90,13 +90,13 @@ RUN yarn cache clean
 
 It didn’t make much difference though. We ended up with the same final image size due to the fact how Docker Layer Caching Works.
 
-When building an image from Dockerfile, Docker will create a "cache layer" for each line of the Dockerfile. In our case, this means that the `RUN yarn install --frozen-lockfile` created a large cache layer (with both node modules installed and yarn’s cache saved to the disk). The next command `RUN yarn cache clean` removed the access to the yarn’s cache from the final image but it had no way to remove it from the Docker Layer Cache for the previous line. This resulted in the unchanged image size.
+When building an image from Dockerfile, Docker will create a "cache layer" for each line of the Dockerfile. In our case this means that the `RUN yarn install --frozen-lockfile` created a large cache layer (with both node modules installed and yarn’s cache saved to the disk). The next command `RUN yarn cache clean` removed the access to the yarn’s cache from the final image but it had no way to remove it from the Docker Layer Cache for the previous line. This resulted in the unchanged image size.
 
 If you are curious about the details of Docker Layer Caching for your images, I encourage you to try out [a great open-source tool `dive`](https://github.com/wagoodman/dive) that will output useful information for each line of your Dockerfile.
 
 ### Installing packages without Yarn’s cache
 
-As mentioned before, there is no way to install node modules with yarn not creating its cache. To solve this, we can leverage the fact that Docker Layer Cache is created after a line in the Dockerfile is done running. This means, we need to edit the Dockerfile to look like this:
+As mentioned before, there is no way to install node modules with yarn not creating its cache. To solve this we can leverage the fact that Docker Layer Cache is created after a line in the Dockerfile is done running. This means we need to edit the Dockerfile to look like this:
 
 ```docker
 RUN yarn install --frozen-lockfile && \
