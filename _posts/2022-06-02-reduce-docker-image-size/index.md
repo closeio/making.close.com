@@ -59,7 +59,7 @@ COPY --from=stage_build /opt/app/ui/dist/ /var/www/dist
 
 Above, we start with the `stage_0` image definition. It is done for caching purposes. This way we don't need to re-install packages whenever any part of the code changes. `stage_0` will rebuild only if dependencies are changed (`package.json` or `yarn. lock`).
 
-Then, there is the `stage_dev`, where we copy all the files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. frontend developers also uses it to run the frontend app in the Docker environment.
+Then, there is the `stage_dev`, where we copy all the files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. frontend developers also use it to run the frontend app in the Docker environment.
 
 Finally, we have the `stage_build` stage where the static app is built. The built app is then copied to a lightweight NGINX image. When backend developers don’t need to edit frontend code, they can run just the backend part of the stack together with this pre-built frontend image. It has the advantage of spinning up very quickly.
 
@@ -90,7 +90,7 @@ RUN yarn cache clean
 
 It didn't make much difference, though. We ended up with the same final image size due to the fact how Docker Layer Caching Works.
 
-When building an image from Dockerfile, Docker will create a "cache layer" for each line of the Dockerfile. In our case, this means that the `RUN yarn install --frozen-lock` file created a large cache layer. It's because we installed node modules and saved yarn's cache to the disk. The next  `RUN yarn cache clean` command removes access to the yarn cache from the final image. That said, it has no way to remove it from the Docker Layer Cache for the previous line. Adding the "cache clean" command, resulted in the unchanged Docker image size.
+When building an image from Dockerfile, Docker will create a "cache layer" for each line of the Dockerfile. In our case, this means that the `RUN yarn install --frozen-lock` file created a large cache layer. It's because we installed node modules and saved yarn's cache to the disk. The next  `RUN yarn cache clean` command removes access to the yarn cache from the final image. That said, it has no way to remove it from the Docker Layer Cache for the previous line. Adding the "cache clean" command resulted in the unchanged Docker image size.
 
 If you are curious about the details of Docker Layer Caching for your images, I encourage you to try out [a great open-source tool `dive`](https://github.com/wagoodman/dive) that will output useful information for each line of your Dockerfile.
 
