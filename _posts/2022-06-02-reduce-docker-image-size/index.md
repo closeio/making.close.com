@@ -16,6 +16,8 @@ At Close, we build Docker images with our frontend code for multiple purposes li
 - to use in staging
 - to use in production
 
+We recently started to see Circle CI jobs failing randomly. Only the jobs involved in the Docker image building process were failing. Failing jobs were the initial motivation for investigating further what was happening. This investigation led to the optimization of our CI/CD pipeline.
+
 ## Leveraging Docker Layer Caching
 
 Multiple images built during our CI/CD process are based on the same image. We are using Docker Layer Caching to speed up the build process. Instead of re-building the same part of the image multiple times, we read from the cache.
