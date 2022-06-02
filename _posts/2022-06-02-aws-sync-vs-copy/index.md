@@ -91,7 +91,7 @@ As it turned out, it didn’t really matter how many files we were about to uplo
 
 ![time command 2:40 minutes](./time-2m.png)
 
-After digging more, it came out is that the `sync` command takes some much time because of how big our S3 bucket is. We keep thousands of files there. The `sync` needs to list all of the existing files in the bucket to compare them against the currently uploaded. With each next deployment, it took more time to run the job for uploading static assets.
+After digging more, it came out is that the `sync` command takes so much time because of how big our S3 bucket is. We keep thousands of files there. The `sync` needs to list all of the existing files in the bucket to compare them against the currently uploaded files. With each next deployment, it took more time to run the job for uploading static assets.
 
 ## `cp` to the rescue
 
