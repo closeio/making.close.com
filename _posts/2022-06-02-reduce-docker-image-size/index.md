@@ -9,10 +9,10 @@ metaDescription: ''
 tags: [Engineering, Dev-Env]
 ---
 
-At Close, we build Docker images with our Frontend code for multiple purposes like:
+At Close, we build Docker images with our frontend code for multiple purposes like:
 
-- for Frontend software engineers to develop the Frontend app
-- for Backend software engineers to run the app
+- for frontend software engineers to develop the frontend app
+- for backend software engineers to run the app
 - to use in staging
 - to use in production
 
@@ -59,9 +59,9 @@ COPY --from=stage_build /opt/app/ui/dist/ /var/www/dist
 
 Above, we start with the `stage_0` image definition. It is done for caching purposes. This way we don't need to re-install packages whenever any part of the code changes. `stage_0` will rebuild only if dependencies are changed (`package.json` or `yarn. lock`).
 
-Then, there is the `stage_dev`, where we copy all the files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. Frontend developers also uses it to run the frontend app in the Docker environment.
+Then, there is the `stage_dev`, where we copy all the files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. frontend developers also uses it to run the frontend app in the Docker environment.
 
-Finally, we have the `stage_build` stage where the static app is built. The built app is then copied to a lightweight NGINX image. When Backend developers don’t need to edit Frontend code, they can run just the Backend part of the stack together with this pre-built Frontend image. It has the advantage of spinning up very quickly.
+Finally, we have the `stage_build` stage where the static app is built. The built app is then copied to a lightweight NGINX image. When backend developers don’t need to edit frontend code, they can run just the backend part of the stack together with this pre-built frontend image. It has the advantage of spinning up very quickly.
 
 ## Large Docker images issue
 
