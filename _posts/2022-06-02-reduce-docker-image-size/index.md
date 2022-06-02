@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Reducing Docker image size (Docker Layer Caching)'
-date: 2022-06-01
+date: 2022-06-02
 permalink: /posts/reduce-docker-image-size
 author: Bart Gryszko
 thumbnail: ''
