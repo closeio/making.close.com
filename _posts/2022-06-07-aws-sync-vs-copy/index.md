@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'AWS sync vs cp — reducing assets upload time by 36 minutes'
-date: 2022-06-02
+date: 2022-06-07
 permalink: /posts/aws-sync-vs-copy
 author: Bart Gryszko
 thumbnail: ''
