@@ -16,7 +16,7 @@ At Close, we build Docker images with our frontend code for multiple purposes li
 - to use in staging
 - to use in production
 
-We recently started to see Circle CI jobs randomly failing. Only the jobs involved in the Docker image building process were failing. This was the initial motivation for investigating further what was happening and it ultimately led to the optimization of our CI/CD pipeline.
+We recently started to see CircleCI jobs randomly failing. Only the jobs involved in the Docker image building process were failing. This was the initial motivation for investigating further what was happening and it ultimately led to the optimization of our CI/CD pipeline.
 
 ## Leveraging Docker Layer Caching
 
@@ -59,7 +59,7 @@ COPY --from=stage_build /opt/app/ui/dist/ /var/www/dist
 # ...some other NGINX related commands
 ```
 
-Above, we start with the `stage_0` image definition. It is done for caching purposes. This way we don't need to re-install packages whenever any part of the code changes. `stage_0` will rebuild only if dependencies are changed (`package.json` or `yarn. lock`).
+Above, we start with the `stage_0` image definition. It is done for caching purposes. This way we don't need to re-install packages whenever any part of the code changes. `stage_0` will rebuild only if dependencies are changed (`package.json` or `yarn.lock`).
 
 Then, there is the `stage_dev`, where we copy all the files needed for the frontend image to run. This image is later used in the CI/CD checks like linting or unit testing. frontend developers also use it to run the frontend app in the Docker environment.
 
