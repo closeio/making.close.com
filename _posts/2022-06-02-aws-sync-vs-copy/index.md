@@ -26,7 +26,7 @@ At some point, we’ve noticed that `aws cli` didn’t upload some of our files 
 
 There is an open issue about [the inability to set charset when mime-types are guessed](https://github.com/aws/aws-cli/issues/1346) in the official AWS CLI repo.
 
-Since there was no native support for setting the right charset, we wrote a script to set it for us. It ran in the CI/CD process and looked more or less like that:
+Since there was no native support for setting the right charset, we wrote a script to set it for us. It ran in the CI/CD process and looked more or less like this:
 
 ```bash
 UTF8_FILE_TYPES="\
@@ -68,7 +68,7 @@ sync_to_s3 "$UTF8_FILE_TYPES" "; charset=utf-8"
 sync_to_s3 "$OTHER_FILE_TYPES" ""
 ```
 
-We opted-out of AWS mime-type guessing and set it manually for each file type. We were also now running the `sync` command 11 times instead of just 1.
+We opted-out of AWS mime-type guessing and set it manually for each file type. We were also now running the `sync` command 11 times instead of just once.
 
 ## 38 minutes upload time
 
@@ -97,7 +97,7 @@ After digging more, it came out is that the `sync` command takes so much time be
 
 We used the `sync` command historically, but didn’t really need to. Most of our generated files are changed with each deployment anyway. We could just upload them to the S3 bucket without doing any comparison on the AWS side. 
 
-We’ve substituted `sync` with `cp` and confronted results. Our `sync_to_s3` function looks like this now:
+We’ve substituted `sync` with `cp` and compared results. Our `sync_to_s3` function looks like this now:
 
 ```bash
 sync_to_s3() {
@@ -128,11 +128,11 @@ The total time for the `assets-upload` job is now around 1:30 minutes. With the 
 
 ![1 minute job](./1m.png)
 
-## Key take aways
+## Key takeaways
 
 - The AWS CLI `sync` command needs to list all of the existing files in the S3 bucket to compare them against the currently uploaded files.
-- The bigger S3 bucket is, the slower the `sync` will be.
-- Make sure you really take advantage of `sync` and if not, consider using `cp`.
+- The bigger the S3 bucket is the slower the sync will be.
+- Make sure you really take advantage of `sync`'s features and if not, consider using `cp`.
 - In our case, a single `sync` command took ~2:30 minutes to complete, while copying the same files via `cp` took around 1 second.
 
 If you want to join our Engineering team, check out our open positions at [https://making.close.com/jobs/](https://making.close.com/jobs/)
