@@ -21,7 +21,7 @@ const BlogListTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet defer={false}>
         <title>{title}</title>
         <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
