@@ -17,7 +17,7 @@ const BlogTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet defer={false}>
         <title>
           {frontmatter.title} | {siteMetadata.title}
         </title>

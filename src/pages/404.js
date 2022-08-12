@@ -7,7 +7,7 @@ import { Link } from 'gatsby';
 const notFound = () => {
   return (
     <Layout>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Page not found</title>
       </Helmet>
       <HeroHeader title="404: Page not found" />

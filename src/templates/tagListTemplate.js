@@ -23,7 +23,7 @@ const TagListTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet defer={false}>
         <title>
           {title} | {site.siteMetadata.title}
         </title>

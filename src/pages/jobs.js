@@ -41,7 +41,7 @@ const Jobs = ({ data }) => {
 
   return (
     <Layout>
-      <Helmet>
+      <Helmet defer={false}>
         <title>Jobs at Close | {site.siteMetadata.title}</title>
       </Helmet>
       <HeroHeader
