@@ -27,7 +27,7 @@ const BlogTemplate = ({ data }) => {
       </Helmet>
 
       <div className={styles.container}>
-        {allLever.totalCount && (
+        {Boolean(allLever.totalCount) && (
           <Banner title="We’re hiring" url="/jobs/">
             <p>Find out about the roles currently available at Close.</p>
           </Banner>
