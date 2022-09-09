@@ -11,7 +11,7 @@ tags: [Engineering, Security, DNS]
 
 ## What are CAA resource records?
 
-In a nutshell it is a standard that is described in the following [RFC 8659](https://www.rfc-editor.org/rfc/rfc8659) that allows a DNS domain name holder to add Certificates Authorities (CA) that are authorized to issue a TLS certificate for the given domain name.  
+In a nutshell it is a standard that is described in the following [RFC 8659](https://www.rfc-editor.org/rfc/rfc8659) that allows a DNS domain name holder to specify which Certificate Authorities (CA) are authorized to issue a TLS certificate for the given domain name.  
 
 Basically speaking you add a CAA records that indicates who is allowed to issue a TLS certificate for your domain. For example if you use Let's Encrypt so you add CAA records for the domain that says, Lets Encrypt is allowed to issue certificates for that domain. If another CA is going to issue a certificate for the domain name, the certificates will not be issued. It is simple to implement and it adds some security. We should definitely consider adding it and reduce the risk of CA breaches. 
 
@@ -23,13 +23,13 @@ Technically speaking, breaches in CA could happen, so if you add those records i
 
 ## How that process works?
 
-If the CA is requested to issue certificate for the given domain name it will first check if the CAA records exists. If that CA is listed in a specific property tags such as `issue` or `issuewild` the process should be continued. Please note that CAA records are not mandatory, so if you didn’t specify them, the certificate should still be issued. 
+If the CA is requested to issue certificate for the given domain name it will first check if the CAA records exists. If that CA is listed in a specific property tags such as `issue` or `issuewild` the process should be continued. Please note that CAA records are optional. If you have no CAA records any CA can issue any certificate for you domain. However if any CAA records exist for your domain a compliant CA will not issue your cert unless a CAA record allowing it exists.
 
 Once you create a CAA records to authorize one of the existing CA e.g. Let’s Encrypt you explicitly exclude other CA from issuing a certificate for that domain. However, you can add another CAA record and add other CA’s if it is needed. 
 
-The entire configuration is hierarchical, so we can create CAA records for entire domain `example.com` or for a specific domain, e.g. `blog.example.com`. However, a good practice is to create a CAA record on a root domain and that record will be inherited to other subdomains. 
+The entire configuration is hierarchical, so we can create CAA records for entire domain `example.com` or for a specific subdomain, e.g. `blog.example.com`. However, a good practice is to create a CAA record on a root domain and that record will be inherited to other subdomains. 
 
-This is exactly what we have done at Close. We have created a CAA records for `close.com` to allow a specific CA to issue TLS certificate for root domain and then explicitly created additional records for e.g. `blog.close.com` and add here other CA for that specific subdomain. 
+This is exactly what we have done at Close. We have created a CAA records for `close.com` to allow a specific CA to issue TLS certificate for root domain and then explicitly created additional records for e.g. `blog.close.com` to allow a different CA to issue certifcates for that specific domains. 
 
 ## What property tags are available? 
 
@@ -61,9 +61,9 @@ Let’s consider another example:
 wild2.close.com     CAA 0 issuewild “sectigo.com”
 ```
 
-It allows to request TLS certificates for `wild2.example.com` and for `*.wild2.close.com` as well ass for `*.sub.wild2.close.com`.
+The above allows Sectigo to issue certificate for `wild2.example.com` and for `*.wild2.close.com` as well ass for `*.sub.wild2.close.com`.
 
-The important thing concerning `issuewild` that it add additional restriction on top of `issue`. If you provide the`issue` property tag and you do not specify `issuwild` allows both wildcard and non-wildcard certificates. 
+The important thing concerning `issuewild` is that it adds additional restriction on top of `issue`. If you provide the`issue` property tag and you do not specify `issuwild` both wildcard and non-wildcard certificates may be issued.
 
 Quotting [Jacob Hoffman-Andrews](https://www.eff.org/about/staff/jacob-hoffman-andrews) - one of the author of the RFC 8659: 
 > "Providing an `issuewild` record on top of an `issue` record provides further restriction. For instance you might allow 5 CAs to issue for your domain and subdomains in general, but restrict wildcard issuance to only 1 CA (for instance if that CA has stronger validation procedures for wildcard certificates). Or you might say `issuewild ";"` to indicate you do not want any wildcard issuance from any CA."
