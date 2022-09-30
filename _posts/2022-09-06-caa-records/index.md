@@ -21,7 +21,7 @@ The major benefit of using CAA records is that it happens **before** issuing a c
 
 Technically speaking, the CAA record reduces the risk of certificate misissuance. The validation process happens **before** the issuing happens. If someone is trying to issue a certificate from the CA that is not listed in CAA resource records the CA should not issue a certificate for that domain name. You may also be notified about that attempt. However, it is not obligatory and it depends on the CA configuration. 
 
-However, the standard does not prevent reliance on a certificate that has been mississued. That is a separate subject offered a mechanism avoiding reliance on misissued certificates called DANE and described in the [RFC 6698](https://www.rfc-editor.org/info/rfc6698).
+However, the standard does not prevent reliance on a certificate that has been misissued. That is a separate subject offered a mechanism avoiding reliance on misissued certificates called DANE and described in the [RFC 6698](https://www.rfc-editor.org/info/rfc6698).
 
 ## How does that process work?
 
