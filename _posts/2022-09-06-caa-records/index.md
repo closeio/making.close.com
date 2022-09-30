@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'DNS Certification Authority Authorization CAA records'
-date: 2022-09-07
+date: 2022-09-30
 permalink: /posts/caa-records
 author: Jakub Hajek
 thumbnail: ''
@@ -13,15 +13,15 @@ tags: [Engineering, Security, DNS]
 
 In a nutshell, CAA Records are a standard that is described in [RFC 8659](https://www.rfc-editor.org/rfc/rfc8659) that allows a DNS domain name holder to specify which Certificate Authorities (CA) are authorized to issue a TLS certificate for the given domain name.  
 
-Basically speaking you add CAA records to restrict who is allowed to issue a TLS certificate for your domain. For example, if you use Let's Encrypt you can add CAA records such that Let's Encrypt is the only CA allowed to issue certificates for your domain. If another CA tries to issue a certificate for the domain name, the certificate will not be issued. It is simple to implement and it reduces the risk of mis-issuance of a certificate.
+Basically speaking you add CAA records to restrict who is allowed to issue a TLS certificate for your domain. For example, if you use Let's Encrypt you can add CAA records such that Let's Encrypt is the only CA allowed to issue certificates for your domain. If another CA tries to issue a certificate for the domain name, the certificate will not be issued. It is simple to implement and it reduces the risk of misissuance of a certificate.
 
-The major benefit of using CAA records is that it happens **before** issuing a certificate. Other options detect mis-issuance **after** someone has already issued a certificate from an unauthorized CA. 
+The major benefit of using CAA records is that it happens **before** issuing a certificate. Other options detect misissuance **after** someone has already issued a certificate from an unauthorized CA. 
 
 ## What is the motivation behind this standard?
 
-Technically speaking, the CAA record reduces the risk of certificate mis-issuance. The validation process happens **before** the issuing happens. If someone is trying to issue a certificate from the CA that is not listed in CAA resource records the CA should not issue a certificate for that domain name. You may also be notified about that attempt. However, it is not obligatory and it depends on the CA configuration. 
+Technically speaking, the CAA record reduces the risk of certificate misissuance. The validation process happens **before** the issuing happens. If someone is trying to issue a certificate from the CA that is not listed in CAA resource records the CA should not issue a certificate for that domain name. You may also be notified about that attempt. However, it is not obligatory and it depends on the CA configuration. 
 
-However, the standard does not prevent reliance on a certificate that has been miss-issued. That is a separate subject offered a mechanism avoiding reliance on mis-issued certificates called DANE and described in the [RFC 6698](https://www.rfc-editor.org/info/rfc6698).
+However, the standard does not prevent reliance on a certificate that has been mississued. That is a separate subject offered a mechanism avoiding reliance on misissued certificates called DANE and described in the [RFC 6698](https://www.rfc-editor.org/info/rfc6698).
 
 ## How does that process work?
 
