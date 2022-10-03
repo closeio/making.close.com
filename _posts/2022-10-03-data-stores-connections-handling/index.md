@@ -1,35 +1,43 @@
 ---
-title: Exciting Title
-date: 2021-12-23
-permalink: /posts/exciting-title
+title: 'Resilient Database Connections'
+date: 2022-10-03
+permalink: /posts/database-resilient-connections
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
 tags: [Engineering, Databases]
 ---
 
-- [ ] Update date and title in the folder name
-- [ ] Update title, date and permalink in the `.md` file
-- [ ] Should I add any other tags?
 - [ ] `TCP_USER_TIMEOUT` in connection attempt
 
-We have recently tweaked some configuration in our application that we hope will make our services more resilient when facing failures of our backing data stores. Those should also help us when we need to do a proactive failover of data stores for example in order to upgrade software.
+We've recently tweaked how connections to our data stores are maintained. This
+led to more resiliency in the face of failures as well as smoother proactive 
+failovers. This post is a summary of everything we've learned in the process.
 
-The big takeaway from this investigation is that we need to think about three points when handling connections to external resources:
+The big takeaway is that, when thinking of connections to external resources,
+you need to ask yourself several questions:
 
 - How long do we wait for a connection to be successfully established?
-- How long do we wait for a request to be acknowledged or replied to?
-- How long can a connection go idle for without us checking its health status?
+- How long do we wait for a request to be acknowledged/replied to?
+- For how long can a connection go idle before we have to check its health?
 
-The answer to each of these questions vary depending on the data store and on how the application talks to that data store. In this post, we will share some configuration knobs specific to some data stores and stacks.
-
-We would like to share what we learned with all this, both as a service to the community, and as documentation for ourselves.
+The answer to these varies depending on the data store and how your application
+talks to it. In this post, we will share some configuration knobs specific to
+our current tech stack.
 
 ## The problem
 
-We had noticed that, sometimes, after a failover of a backing data store, some of our processes would hang for a long time before recovering. The hanging could go on for as long as 15 minutes, at times! In the context of most web applications, including ours, 15 minutes is an unacceptably long time to sit while doing nothing. These processes would hang even after the backing data store that failed over had already recovered. This made recovery take longer than it needed to on several occasions.
+We had noticed that, sometimes, after a failover of a data store, some of our
+processes would hang for a long time before recovering. The hanging could go on
+for as long as 15 minutes, at times! In the context of most web applications,
+including ours, 15 minutes is an unacceptably long time to sit while doing
+nothing. These processes would hang even after the backing data store that
+failed over had already recovered. This made recovery take longer than it
+needed to on several occasions.
 
-If this happened upon a reactive failover, we figured it could potentially also happen on a proactive failover, and sometimes those need to happen, for example when we want to execute a planned software upgrade.
+If this happened upon a reactive failover, we figured it could potentially also
+happen on a proactive failover, and sometimes those need to happen, for example
+when we want to execute a planned software upgrade.
 
 ## The configuration options
 
