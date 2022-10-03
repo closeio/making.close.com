@@ -1,43 +1,42 @@
 ---
-title: 'Resilient Database Connections'
+title: 'Connecting To PostgreSQL The Robust Way'
 date: 2022-10-03
-permalink: /posts/database-resilient-connections
+permalink: /posts/postgresql-resilient-connections
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
-tags: [Engineering, Databases]
+tags: [Engineering, Databases, PostgreSQL, Connections]
 ---
 
 - [ ] `TCP_USER_TIMEOUT` in connection attempt
 
-We've recently tweaked how connections to our data stores are maintained. This
+We've recently tweaked how connections to our PostgreSQL are maintained. This
 led to more resiliency in the face of failures as well as smoother proactive 
 failovers. This post is a summary of everything we've learned in the process.
 
-The big takeaway is that, when thinking of connections to external resources,
-you need to ask yourself several questions:
+The big takeaway is that, when thinking of connections to *any* external
+resources, you need to ask yourself several questions:
 
 - How long do we wait for a connection to be successfully established?
 - How long do we wait for a request to be acknowledged/replied to?
 - For how long can a connection go idle before we have to check its health?
 
 The answer to these varies depending on the data store and how your application
-talks to it. In this post, we will share some configuration knobs specific to
-our current tech stack.
+talks to it. In this post, we will primarily explore PostgreSQL and related
+parts of our tech stack, but we'll also touch on other data stores that we have
+experience with.
 
 ## The problem
 
-We had noticed that, sometimes, after a failover of a data store, some of our
-processes would hang for a long time before recovering. The hanging could go on
-for as long as 15 minutes, at times! In the context of most web applications,
-including ours, 15 minutes is an unacceptably long time to sit while doing
-nothing. These processes would hang even after the backing data store that
-failed over had already recovered. This made recovery take longer than it
-needed to on several occasions.
+We had noticed that, sometimes, after a failover of our PostgreSQL cluster,
+some of our processes would hang a long time prior to recovering and resuming
+regular operation. The hanging could go on for as long as 15 minutes, even if
+the database recovered much quicker! This made our application's recovery take
+longer than it needed to on several occasions.
 
-If this happened upon a reactive failover, we figured it could potentially also
-happen on a proactive failover, and sometimes those need to happen, for example
-when we want to execute a planned software upgrade.
+If this happened during an unplanned failover, we figured it could potentially
+also happen for a proactive failover, and sometimes those need to happen, for
+example when we want to execute a planned software upgrade.
 
 ## The configuration options
 
