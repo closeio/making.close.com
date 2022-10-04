@@ -109,7 +109,9 @@ more, since there are jitter and processing delays).
 
 This is fixed by `TCP_USER_TIMEOUT`: if the connection takes more than X
 seconds to be established, the TCP stack will give up and notify the
-application.
+application. The libpq library accepts a `tcp_user_timeout` argument, which can
+be sent via the SQLAlchemy interface. The libpq itself relays that value to the
+TCP stack.
 
 ![A TCP connection failure cut short by
 `TCP_USER_TIMEOUT`](tcp-conn-failed-tcp-user-timeout.png)
