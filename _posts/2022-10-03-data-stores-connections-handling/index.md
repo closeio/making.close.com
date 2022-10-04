@@ -1,7 +1,7 @@
 ---
-title: 'Connecting To PostgreSQL The Robust Way'
+title: 'Connecting To Data Stores The Robust Way'
 date: 2022-10-04
-permalink: /posts/postgresql-resilient-connections
+permalink: /posts/data-stores-robust-connections
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
@@ -81,8 +81,8 @@ patches psycopg2 and makes it cooperate with gevent.
 
 ![Our SQLAlchemy stack](sqla-stack.png)
 
-There is a non-obvious gotcha here though... To make a non-blocking network
-I/O, psycogreen uses a different function than what psycopg2 uses by default.
+There is a non-obvious gotcha here though… To make a non-blocking network I/O,
+psycogreen uses a different function than what psycopg2 uses by default.
 psycopg2 uses the synchronous
 [`PQconnectdb`](https://www.postgresql.org/docs/14/libpq-connect.html#LIBPQ-PQCONNECTDB)
 to connect to PostgreSQL, but psycogreen uses two different functions:
