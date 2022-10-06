@@ -245,7 +245,7 @@ The same principles applied above can also be applied for other data stores:
     enabled.
   - `socket_keepalive_options`: A dictionary mapping TCP keepalive options
     (`socket.TCP_KEEPIDLE`, `socket.TCP_KEEPCNT`, and `socket.TCP_KEEPINTVL`)
-    to their values. These options are analogous to the one we saw above.
+    to their values. These options are analogous to the ones we saw above.
 
 There's also other matters that need to be taken into consideration when
 thinking about this kind of problem, like SQL proxies, MongoDB routers, etc.
