@@ -146,10 +146,10 @@ whatever reason, and then comes back. If the TCP stack is late in the
 retransmit phase, it might wait for a long time, for up to two minutes, before
 retransmitting again, which would also be undesirable.
 
-We fix that situation with `TCP_USER_TIMEOUT`: a TCP socket with that setting
-will wait X seconds for a data packet to be acknowledged by the other side
-before giving up on the connection and letting the application know that the
-attempt to communicate failed and the connection is not good anymore.
+We also fix that situation with `TCP_USER_TIMEOUT`: a TCP socket with that
+setting will wait X seconds for a data packet to be acknowledged by the other
+side before giving up on the connection and letting the application know that
+the attempt to communicate failed and the connection is not good anymore.
 
 ### Idle connections need to be inspected
 
