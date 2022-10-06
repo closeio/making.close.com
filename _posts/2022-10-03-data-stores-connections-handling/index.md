@@ -29,7 +29,7 @@ learnings are generalizable to others as well.
 ## The problem
 
 We had noticed that, sometimes, after a failover in our PostgreSQL cluster,
-some of our processes would hang a long time – even as long as 15 minutes – and
+some of our processes would hang for a long time – even as long as 15 minutes – and
 even if the database itself recovered much quicker.
 
 At a glance, this did not make sense. We had already configured a timeout of 10
