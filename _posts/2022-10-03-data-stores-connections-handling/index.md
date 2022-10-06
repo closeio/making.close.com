@@ -53,7 +53,7 @@ they are scheduled to run in the context of the process that they exist in.
 
 The point of using user-space threads is that they cooperate more seamlessly
 among themselves than kernel-space threads – they always yield when they can't
-proceed. Because of that, they are not preeempted in favor of other threads at
+proceed. Because of that, they are not preempted in favor of other threads at
 arbitrary times, and, because of that, they also don't need to worry about
 races as often. If you are accessing some shared data, but you won't be doing
 any operation that yields to other threads (for example, network I/O), you
