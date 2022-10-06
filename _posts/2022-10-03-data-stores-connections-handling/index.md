@@ -181,11 +181,22 @@ from sqlalchemy import create_engine
 engine = create_engine(
     "postgresql+psycopg2://user:password@hostname/database_name",
     connect_args={
+        # Maximum time to wait while connecting, in seconds.
         "connect_timeout": 10,
+        # Number of *milliseconds* that transmitted data may remain
+        # unacknowledged before a connection is forcibly closed.
         "tcp_user_timeout": 10_000,
+        # Whether client-side TCP keepalives are used. 1 = use keepalives,
+        # 0 = don't use keepalives.
         "keepalives": 1,
+        # Number of seconds of inactivity after which TCP should send a
+        # keepalive message to the server.
         "keepalives_idle": 5,
+        # Number of TCP keepalives that can be lost before the client's
+        # connection to the server is considered dead.
         "keepalives_count": 5,
+        # Number of seconds after which a TCP keepalive message that is not
+        # acknowledged by the server should be retransmitted.
         "keepalives_interval": 1,
     },
 )
