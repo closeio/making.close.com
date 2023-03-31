@@ -188,7 +188,7 @@ function optimizeSvg(svgText: string) {
 ```
 ## 4. Saving the optimized SVGs to our output folder
 
-We can get the name of each SVG through the svgNode.name property returned in the response of [step 2](#2-filtering-out-only-components).
+We can get the name of each SVG through the `svgNode.name` property returned in the response of [step 2](#2-filtering-out-only-components).
 
 ```ts
 const svgLocalPath = path.join(downloadDir, `${svgNode.name}.svg`);  
