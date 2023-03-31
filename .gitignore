@@ -72,3 +72,5 @@ yarn-error.log
 # Tesing GitHub Actions
 github-event-mock.json
 .vercel
+
+.idea/
