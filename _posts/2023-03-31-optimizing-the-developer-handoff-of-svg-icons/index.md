@@ -12,24 +12,24 @@ Have you ever found yourself repeatedly exporting icons from Figma, running them
 
 If so, you're not alone. As a designer or developer, this task can become a tedious and time-consuming part of your workflow, particularly when you're working with a large number of icons.
 
-At Close, we offer a comprehensive sales automation platform that enables teams to manage their sales processes more efficiently.
+At Close, we offer a [comprehensive sales automation platform](https://www.close.com/product) that enables teams to manage their sales processes more efficiently.
 
 With features ranging from lead management to email automation and reporting, our web application is quite complex. That complexity makes it essential to have clear and consistent icons. Without them, our users could easily become confused and frustrated. They might even click the wrong button, triggering unintended consequences.
 
 For the reasons above, we rely heavily on icons throughout the codebase and keeping more than 300 icons aligned with design iterations is something that we wanted to automate.
 
 
-## Enter our figmaToSvg solution
+## Enter our `figmaToSvg` solution
 
 Considering all the points above, we had two main outcomes in mind for this automation:
 
 -   **Enforcing naming consistency between Figma and our codebase:** This would guarantee that when our designers changed an icon on Figma, a developer could easily retrace all the points in the codebase where that icon was used. It would also ensure we don't have duplicate entries.
--   **Unifying the approach we take to SVG Optimization:** SVGs can be large files, especially if they are complex or contain unnecessary metadata or code. This can impact web app performance, leading to slower load times, increased bandwidth usage, and decreased user satisfaction. By optimizing SVGs, we can remove any unnecessary code, compress the file size, and improve web app performance, making for a better user experience.
+-   **Unifying the approach we take to SVG Optimization:** SVGs files can be large, especially if they are complex or contain unnecessary metadata or code. This can impact web app performance, leading to slower load times, increased bandwidth usage, and decreased user satisfaction. By optimizing SVGs, we can remove any unnecessary code, compress the file size, and improve web app performance, making for a better user experience.
 
 This typescript implementation is largely split into 4 macro areas:
 
 -   [Step 1:](#1-fetching-all-children-nodes-from-a-parent-node) Fetching all children nodes from a parent node
--   [Step 2:](#2-filtering-out-only-components) Filtering out only COMPONENT which we will assume are all SVGs
+-   [Step 2:](#2-filtering-out-only-components) Filtering out only `COMPONENT` which we will assume are all SVGs
 -   [Step 3:](#3-downloading-and-optimizing-each-svg) Downloading and optimizing each SVG
 -   [Step 4:](#4-saving-the-optimized-svgs-to-our-output-folder) Saving the optimized SVGs to the output folder
 
