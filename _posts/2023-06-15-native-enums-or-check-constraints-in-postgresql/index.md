@@ -63,6 +63,9 @@ CREATE TABLE person (
 ALTER TABLE person
     DROP CONSTRAINT person_current_mood_check;
 
+-- Perform any data migrations that may be necessary to conform with the new
+-- constraint.
+
 -- Create the new one, but in a way that doesn't lock anything.
 -- Note the `NOT VALID` syntax.
 ALTER TABLE person
@@ -77,9 +80,10 @@ ALTER TABLE person
 
 Let's go through each of these commands in more detail:
 
-- First, drop the previous `CHECK` constraint. This is a `O(1)` operation. Nice and quick!
-- Then, create the constraint in the new form you need, but with `NOT VALID`. This is also an `O(1)` operation: the constraint will not be enforced for existing rows, but it will be enforced for rows being created or updated.
-- After that, we can run `VALIDATE CONSTRAINT` to make sure all rows are good. The validation command acquires a more permissive lock, the `SHARE UPDATE EXCLUSIVE` lock, which allows concurrent updates to the table: basically, only schema changes and vacuum operations are blocked while validating a `CHECK` constraint.
+- Drop the previous `CHECK` constraint. This is a `O(1)` operation. Nice and quick!
+- Migrate the data, to make it conform to the new constraint you are going to create. (If you are just dropping a value from the set of possible values, this can also be done before dropping the original constraint.)
+- Create the constraint in the new form you need, but with `NOT VALID`. This is also an `O(1)` operation: the constraint will not be enforced for existing rows, but it will be enforced for rows being created or updated.
+- Run `VALIDATE CONSTRAINT` to make sure all rows are good. The validation command acquires a more permissive lock, the `SHARE UPDATE EXCLUSIVE` lock, which allows concurrent updates to the table: basically, only schema changes and vacuum operations are blocked while validating a `CHECK` constraint.
 
 ## Conclusion
 
