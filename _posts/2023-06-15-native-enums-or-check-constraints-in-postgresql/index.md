@@ -10,7 +10,7 @@ tags: [Engineering, Databases, PostgreSQL, SQLAlchemy, Tips and Tricks]
 
 Recently, we had a discussion about whether we should use native enums in PostgreSQL, or rely on regular string columns with `CHECK` constraints. In the end, we decided that we wanted to go with regular string columns with `CHECK` constraints.
 
-Tag along if you want to learn the details.
+Tag along if you want to learn why.
 
 ## Native enums in PostgreSQL
 
