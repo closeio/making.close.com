@@ -25,7 +25,7 @@ CREATE TABLE person (
 );
 ```
 
-They come with ordering (from the order in which the values were declared) and type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type.
+They come with ordering (from the order in which the values were declared) and type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type (well, technically there are alternatives, see below).
 
 Creating a new enum, and swapping existing columns to use the new type, can be tricky. For the most straightforward cases, you will need something like this:
 
@@ -84,6 +84,21 @@ Let's go through each of these commands in more detail:
 - Migrate the data, to make it conform to the new constraint you are going to create. (If you are just dropping a value from the set of possible values, this can also be done before dropping the original constraint.)
 - Create the constraint in the new form you need, but with `NOT VALID`. This is also an `O(1)` operation: the constraint will not be enforced for existing rows, but it will be enforced for rows being created or updated.
 - Run `VALIDATE CONSTRAINT` to make sure all rows are good. The validation command acquires a more permissive lock, the `SHARE UPDATE EXCLUSIVE` lock, which allows concurrent updates to the table: basically, only schema changes and vacuum operations are blocked while validating a `CHECK` constraint.
+
+## Native enums: Alternatives to update without locking
+
+As I mentioned above, there are alternatives to sidestep the locking of the database when you want to update an enum:
+
+- You can alter the catalogue tables directly. However, by doing that, you will have to make sure data is consistent yourself instead of relying on the database for that, and there's always a chance of corrupting the database.
+- Removing a value from an enum requires more care:
+  - Add a constraint (with `NOT VALID`) requiring that the value that you want to drop from the enum is not used.
+  - Validate the constraint.
+  - Run `REINDEX CONCURRENTLY` for all indexes that use the enum.
+    - This is required because the enum value you are dropping may still be used internally in the index as a decision node to help the database know where to go when looking for a value, The internal functions that compare enums wouldn't know what to do once they find the dropped value.
+  - Remove the value from the catalogue tables directly.
+  - Drop the constraint.
+
+However, these methods are too involved for most use cases, and they do carry some risk of corrupting the database, since you are directly modifying tables that are supposed to be internal.
 
 ## Conclusion
 
