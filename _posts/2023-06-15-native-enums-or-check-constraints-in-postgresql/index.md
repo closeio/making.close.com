@@ -73,7 +73,11 @@ ALTER TABLE person
     VALIDATE CONSTRAINT person_current_mood_check;
 ```
 
-First, drop the `CHECK` constraint, this is a `O(1)` operation. Then, create the constraint in the new form you need, but with `NOT VALID`. This is also an `O(1)` operation: the constraint will not be enforced for existing rows, but it will be enforced for rows being created or updated. Then, we can run `VALIDATE CONSTRAINT` to make sure all rows are good. The validation command acquires a more permissive lock, the `SHARE UPDATE EXCLUSIVE`, which allows concurrent updates to the table: basically, only schema changes and vacuum operations are blocked while validating a `CHECK` constraint.
+Let's go through each of these commands in more detail:
+
+- First, drop the previous `CHECK` constraint. This is a `O(1)` operation. Nice and quick!
+- Then, create the constraint in the new form you need, but with `NOT VALID`. This is also an `O(1)` operation: the constraint will not be enforced for existing rows, but it will be enforced for rows being created or updated.
+- After that, we can run `VALIDATE CONSTRAINT` to make sure all rows are good. The validation command acquires a more permissive lock, the `SHARE UPDATE EXCLUSIVE` lock, which allows concurrent updates to the table: basically, only schema changes and vacuum operations are blocked while validating a `CHECK` constraint.
 
 ## Conclusion
 
