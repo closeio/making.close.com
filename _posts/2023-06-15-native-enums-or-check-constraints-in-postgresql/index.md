@@ -47,9 +47,7 @@ However, depending on the size of the table, the `ALTER TABLE` command can have 
 
 ## String columns with `CHECK` constraints
 
-String columns with `CHECK` constraints keep the most important property we want with enums: we can enforce data correctness in the database. But it also comes with more flexibility: updating a `CHECK` constraint in the most complex cases is more manageable.
-
-The procedure to update a `CHECK` constraint is a bit more complicated than the simpler enum update cases, but it is simpler in the most complex enum update cases. And there's one very good thing about it: it's the same for all cases, so you don't have to remember multiple options.
+String columns with `CHECK` constraints keep the most important property we want with enums: we can enforce data correctness in the database. But it also comes with more flexibility: updating a `CHECK` constraint in the most complex cases is more manageable. And because you use the same method in all cases, you don't have to remember multiple options.
 
 To update a `CHECK` constraint, we do something like this:
 
