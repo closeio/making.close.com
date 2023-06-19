@@ -83,4 +83,4 @@ Let's go through each of these commands in more detail:
 
 ## Conclusion
 
-Because of all the advantages of the `CHECK` constraint, and the relatively small disadvantage of the update procedure being a little more elaborate even in the simpler cases, we've decided to go with `CHECK` constraints instead of native enums in PostgreSQL.
+Because of not having to fully lock down the database for the migration of the `CHECK` constraint, and the relatively small disadvantage of the update procedure being a little more elaborate even in the simpler cases, we've decided to go with `CHECK` constraints instead of native enums in PostgreSQL.
