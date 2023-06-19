@@ -25,7 +25,7 @@ CREATE TABLE person (
 );
 ```
 
-They come with ordering (from the order in which the values were declared) and type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type (well, technically there are alternatives, see below).
+They come with ordering (from the order in which the values were declared), type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same), and space efficiency (they are stored in the tuples as references to the actual enum values that exist in the catalogue tables). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type (well, technically there are alternatives, see below).
 
 Creating a new enum, and swapping existing columns to use the new type, can be tricky. For the most straightforward cases, you will need something like this:
 
@@ -48,7 +48,7 @@ However, depending on the size of the table, the `ALTER TABLE` command can have 
 
 ## String columns with `CHECK` constraints
 
-String columns with `CHECK` constraints keep the most important property we want with enums: we can enforce data correctness in the database. But it also comes with more flexibility: updating a `CHECK` constraint in the most complex cases is more manageable. And because you use the same method in all cases, you don't have to remember multiple options.
+String columns with `CHECK` constraints keep the most important property we want with enums: we can enforce data correctness in the database. It also comes with more flexibility: updating a `CHECK` constraint in the most complex cases is more manageable. And because you use the same method in all cases of updating the constraint, you don't have to remember multiple options. But it does come with one big downside: it is less space efficient. Because the actual values are stored in the tuples themselves, and not just a reference to the values, it can potentially take a lot of disk space.
 
 To update a `CHECK` constraint, we do something like this:
 
@@ -102,4 +102,4 @@ However, these methods are too involved for most use cases, and they do carry so
 
 ## Conclusion
 
-Because of not having to fully lock down the database for the migration of the `CHECK` constraint, and the relatively small disadvantage of the update procedure being a little more elaborate even in the simpler cases, we've decided to go with `CHECK` constraints instead of native enums in PostgreSQL.
+Because of not having to fully lock down the database for the migration of the `CHECK` constraint, and the relatively small disadvantages of the update procedure being a little more elaborate even in the simpler cases, and the usage of space being less efficient, we've decided to go with `CHECK` constraints instead of native enums in PostgreSQL.
