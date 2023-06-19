@@ -25,7 +25,7 @@ CREATE TABLE person (
 );
 ```
 
-They come with ordering (from the order in which the values were declared) and type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum, and you cannot change the sorting order of existing values. To do those things, you need to create a new enum in the form you want it to have, and then change all columns to use that new type.
+They come with ordering (from the order in which the values were declared) and type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type.
 
 Creating a new enum, and swapping existing columns to use the new type, can be tricky. For the most straightforward cases, you will need something like this:
 
