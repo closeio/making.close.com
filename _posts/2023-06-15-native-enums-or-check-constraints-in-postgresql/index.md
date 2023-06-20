@@ -27,7 +27,7 @@ CREATE TABLE person (
 
 They come with ordering (from the order in which the values were declared), type safety (you cannot compare two values coming from different enums, even if their string or numerical representations are the same), and space efficiency (they are stored in the tuples as references to the actual enum values that exist in the catalogue tables). Although enums are intended for static sets of values, you can add values to the type and rename existing values. But enums also come with some limitations: for example, you cannot remove an existing value from an enum. To do that, you need to create a new enum in the form you want it to have, and then change all columns to use that new type (well, technically there are alternatives, see below).
 
-Creating a new enum, and swapping existing columns to use the new type, can be tricky. For the most straightforward cases, you will need something like this:
+Creating a new enum and swapping existing columns to use the new type can be tricky. For the most straightforward cases, you will need something like this:
 
 ```sql
 -- Rename the original enum type.
@@ -35,6 +35,8 @@ ALTER TYPE mood RENAME TO mood_old;
 
 -- Create the new enum.
 CREATE TYPE mood AS ENUM ('sad', 'happy');
+
+-- Perform data migration to remove the enum value that will be dropped.
 
 -- Update existing columns to use the new enum.
 ALTER TABLE person ALTER COLUMN current_mood
@@ -91,10 +93,11 @@ As I mentioned above, there are alternatives to sidestep the locking of the data
 
 - You can alter the catalogue tables directly. However, by doing that, you will have to make sure data is consistent yourself instead of relying on the database for that, and there's always a chance of corrupting the database.
 - Removing a value from an enum requires more care:
+  - Migrate the data.
   - Add a constraint (with `NOT VALID`) requiring that the value that you want to drop from the enum is not used.
   - Validate the constraint.
   - Run `REINDEX CONCURRENTLY` for all indexes that use the enum.
-    - This is required because the enum value you are dropping may still be used internally in the index as a decision node to help the database know where to go when looking for a value, The internal functions that compare enums wouldn't know what to do once they find the dropped value.
+    - This is required because the enum value you are dropping may still be used internally in the index as a decision node to help the database know where to go when looking for a value. The internal functions that compare enums wouldn't know what to do when they find the dropped value.
   - Remove the value from the catalogue tables directly.
   - Drop the constraint.
 
