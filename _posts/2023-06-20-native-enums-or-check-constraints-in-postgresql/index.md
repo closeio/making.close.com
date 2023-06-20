@@ -5,7 +5,7 @@ permalink: /posts/native-enums-or-check-constraints-in-postgresql
 author: João Sampaio
 thumbnail: ''
 metaDescription: ''
-tags: [Engineering, Databases, PostgreSQL, SQLAlchemy, Tips and Tricks]
+tags: [Engineering, Databases, PostgreSQL, Tips and Tricks]
 ---
 
 Recently, we had a discussion about whether we should use native enums in PostgreSQL, or rely on regular string columns with `CHECK` constraints. In the end, we decided that we wanted to go with regular string columns with `CHECK` constraints.
