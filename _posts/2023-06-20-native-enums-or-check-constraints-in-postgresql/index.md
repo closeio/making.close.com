@@ -1,6 +1,6 @@
 ---
 title: 'Native enums or CHECK constraints in PostgreSQL?'
-date: 2023-06-15
+date: 2023-06-20
 permalink: /posts/native-enums-or-check-constraints-in-postgresql
 author: João Sampaio
 thumbnail: ''
