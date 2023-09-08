@@ -30,8 +30,8 @@ the open source package we created as part of our solution.
 ## How we got here
 
 Our app was originally written in Backbone, and a few years ago we decided to
-migrate to React. Our codebase was much to big to take a "big rewrite" approach.
-Instead we have taken a gradual approach where Backbone and React live
+migrate to React. Our codebase was much too big to take a "big rewrite"
+approach. Instead we have taken a gradual approach where Backbone and React live
 side-by-side as we gradually migrate. If that sounds interesting to you, check
 out our blog post on
 ["Reactizing" a Complex Backbone View](https://github.com/closeio/backbone-testing-library)
@@ -73,7 +73,7 @@ With that in place, we ran our test suite and added log messages to our matching
 list. We continued to do so until the test run printed out nothing, indicating
 that we'd captured and tagged all of the log messages.
 
-The log matching and method patching looks like this:
+The log matching and method patching look like this:
 
 ```javascript
 import { patchConsoleMethods } from '@closeio/test-console';
