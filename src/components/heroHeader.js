@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/heroHeader.module.scss';
+import * as styles from '../styles/heroHeader.module.scss';
 
 const HeroHeader = ({ title, description }) => (
   <div className={styles.heroHeader}>

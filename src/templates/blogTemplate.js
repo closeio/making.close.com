@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Layout from '../components/layout';
 import Banner from '../components/banner';
-import styles from '../styles/post.module.scss';
+import * as styles from '../styles/post.module.scss';
 
 const BlogTemplate = ({ data }) => {
   const { site, markdownRemark, allLever } = data;
@@ -26,7 +26,7 @@ const BlogTemplate = ({ data }) => {
         )}
       </Helmet>
 
-      <div className={styles.container}>
+      <div>
         {Boolean(allLever.totalCount) && (
           <Banner title="We’re hiring" url="/jobs/">
             <p>Find out about the roles currently available at Close.</p>

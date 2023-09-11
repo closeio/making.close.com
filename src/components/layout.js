@@ -4,7 +4,7 @@ import useSiteMetadata from './siteMetadata';
 import Logo from '../components/logo';
 import ThemeChanger from '../components/themeChanger';
 import PropTypes from 'prop-types';
-import styles from '../styles/layout.module.scss';
+import * as styles from '../styles/layout.module.scss';
 
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata();

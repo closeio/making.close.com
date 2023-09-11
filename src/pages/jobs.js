@@ -6,8 +6,8 @@ import HeroHeader from '../components/heroHeader';
 import Job from '../components/job';
 import HeroImage from '../assets/close-collage.jpg';
 import PropTypes from 'prop-types';
-import jobsStyles from '../styles/jobs.module.scss';
-import postStyles from '../styles/post.module.scss';
+import * as jobsStyles from '../styles/jobs.module.scss';
+import * as postStyles from '../styles/post.module.scss';
 
 const Jobs = ({ data }) => {
   const { site, allLever } = data;
@@ -25,7 +25,7 @@ const Jobs = ({ data }) => {
           </div>
           <ul className={jobsStyles.jobslist}>
             {allLever.nodes.map((job) => (
-              <Job className={jobsStyles.jobs} key={job.id} job={job} />
+              <Job key={job.id} job={job} />
             ))}
           </ul>
         </Fragment>
