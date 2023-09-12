@@ -10,8 +10,9 @@ tags: [Engineering, Testing, Open Source]
 
 At Close we believe that, when done well, tests make code more understandable,
 safer, and speed up development. We don't aim for 100% test coverage, but we do
-try to write high value tests. We use Jest to test our front end, and over the
-years our frontend test suite has grown to ~500 test files with ~6000 tests.
+try to write high value tests. We use [Jest](https://jestjs.io/) to test our
+front end, and over the years our frontend test suite has grown to ~500 test
+files with ~6000 tests.
 
 However, there's one big problem: due to various warnings and their associated
 stack traces that print out during a test run, our full test suite's output is
@@ -34,7 +35,7 @@ migrate to React. Our codebase was much too big to take a "big rewrite"
 approach. Instead we have taken a gradual approach where Backbone and React live
 side-by-side as we gradually migrate. If that sounds interesting to you, check
 out our blog post on
-["Reactizing" a Complex Backbone View](https://github.com/closeio/backbone-testing-library)
+["Reactizing" a Complex Backbone View](https://making.close.com/posts/reactizing-a-complex-backbone-view)
 and take a look at
 [@closeio/backbone-testing-library](https://github.com/closeio/backbone-testing-library):
 our open source testing library that is helping us through this framework
