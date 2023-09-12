@@ -1,3 +1,13 @@
+---
+title: 'How we Picked a Platform for our Mobile App'
+date: 2023-09-25
+permalink: /posts/picking-a-mobile-app-platform
+author: Trey Cucco
+thumbnail: ''
+metaDescription: ''
+tags: [Engineering, Mobile App]
+---
+
 In 2023 we released the first version of our mobile app. When we set out on the
 road to build our mobile app we were quickly faced with an important question:
 what platform should we build on? There are many options, all with pros and
