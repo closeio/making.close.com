@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import generateTagSlug from '../utils/generateTagSlug';
-import styles from '../styles/taglist.module.scss';
+import * as styles from '../styles/taglist.module.scss';
 
 const TagList = ({ tags }) => (
   <ul className={styles.taglist}>

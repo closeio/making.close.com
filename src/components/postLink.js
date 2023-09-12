@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import TagList from './tagList';
 import PropTypes from 'prop-types';
-import styles from '../styles/post.module.scss';
+import * as styles from '../styles/post.module.scss';
 
 const PostLink = ({ post }) => (
   <article className={styles.card}>

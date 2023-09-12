@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import styles from '../styles/pagination.module.scss';
+import * as styles from '../styles/pagination.module.scss';
 
 const PaginationButton = ({ type = 'link', children, ...props }) => {
   if (type === 'span') {

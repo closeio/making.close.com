@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import styles from '../styles/banner.module.scss';
+import * as styles from '../styles/banner.module.scss';
 
 const Banner = ({ title, url, children }) => {
   return (
