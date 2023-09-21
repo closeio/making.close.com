@@ -150,7 +150,7 @@ while Flutter had a
 that the team was familiar with than [Flutter's](https://flutter.dev/showcase)
 does.
 
-**Performance**: Flutter is going to be more performant as it is compiled, while
+**Performance**: Flutter is going to be more performant,  since it is compiled to native code, while
 React Native relies on the JavaScript bridge for communication between native
 and JavaScript. However, in our research we determined that for our use case the
 performance difference wasn't likely to be a big differentiator.
