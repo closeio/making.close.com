@@ -178,7 +178,7 @@ to proceed with React Native for these reasons:
    something much quicker with React Native than we could with Flutter, as we'd
    have to get comfortable with both Dart and Flutter.
 
-While React, JavaScript, and npm all have many "rough edges", our team those
+While React, JavaScript, and npm all have many "rough edges", our team knows those
 issues well and has learned how to work with, and around them.
 
 ## Onward
