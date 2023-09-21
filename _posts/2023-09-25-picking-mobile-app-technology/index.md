@@ -147,7 +147,7 @@ while Flutter had a
 
 **Production App Examples**:
 [React Native's showcase](https://reactnative.dev/showcase) had many more apps
-that the team was familiar with than [Flutter](https://flutter.dev/showcase)
+that the team was familiar with than [Flutter's](https://flutter.dev/showcase)
 does.
 
 **Performance**: Flutter is going to be more performant as it is compiled, while
