@@ -79,7 +79,7 @@ technology we wanted to use. We researched many options, including:
 - [NativeScript](https://nativescript.org/)
 
 We then had to decide how to evaluate each of these options. For that we
-developed a framework, or general questions to ask of each technology
+developed a framework, or general questions to ask of each technology.
 
 ## The Framework
 
