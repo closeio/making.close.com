@@ -88,7 +88,7 @@ We'd rank each technology on each of these axes and hope the results pointed to
 a clear winner. These qualities were:
 
 **Popularity** Popularity is not a good metric by itself: just because something
-is popular does not imply that it is good. However, used a proxy measurement it
+is popular does not imply that it is good. However, used as a proxy measurement it
 can shed light on:
 
 - the size of the community
