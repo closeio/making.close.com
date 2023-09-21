@@ -8,16 +8,16 @@ metaDescription: ''
 tags: [Engineering, Mobile App]
 ---
 
-In 2023 we released the first version of our mobile app. When we set out on the
-road to build our mobile app we were quickly faced with an important question:
-what platform should we build on? There are many options, all with pros and
-cons, and (most interestingly) with implications reaching beyond the merely
-technical.
+In 2023 we released the first version of our
+[mobile app](https://help.close.com/docs/close-mobile-app). When we set out on
+the road to build our mobile app we were quickly faced with an important
+question: what platform should we build on? There are many options, all with
+pros and cons, and (most interestingly) with implications reaching beyond the
+merely technical. We realized we would need some kind of framework to help us
+evaluate our options.
 
-Since there are so many options, and since we didn't have a strong preference
-for a particular technology, we first had to come up with a framework for
-evaluating our options. In this post I'm going to describe the framework we
-used, and the results of applying that framework to our research.
+In this post I'm going to describe the framework we used to sort through our
+options, the approach we picked, and the factors that went in to our decision.
 
 ## Native App vs Progressive Web App (PWA)
 
@@ -30,9 +30,9 @@ efforts we put into our mobile project would directly benefit our web app.
 This path was very intriguing, and we want to add more PWA features anyway.
 However, for several reasons we decided this was not the right path forward:
 
-1. Our customers and potential customers expect us to have an app on the Apple
-   App Store and the Google Play Store. Having presence on the app stores is a
-   hard requirement and we can't do that with a PWA.
+1. Our customers expect us to have an app on the Apple App Store and the Google
+   Play Store. Having presence on the app stores is a hard requirement and we
+   can't do that with a PWA.
 2. Calling is an integral part of our web app and it had to be part of our
    mobile app too. While web-based outbound calling was very feasible on a PWA,
    there are real limitations for receiving inbound calls. We did create a proof
@@ -78,8 +78,8 @@ technology we wanted to use. We researched many options, including:
 - [Xamarin](https://dotnet.microsoft.com/en-us/apps/xamarin)
 - [NativeScript](https://nativescript.org/)
 
-We then had to decide how to evaluate each of these options. For that we
-developed a framework, or general questions to ask of each technology.
+With the options drawn up, it was time to apply our decision-making framework to
+each one.
 
 ## The Framework
 
@@ -88,8 +88,8 @@ We'd rank each technology on each of these axes and hope the results pointed to
 a clear winner. These qualities were:
 
 **Popularity** Popularity is not a good metric by itself: just because something
-is popular does not imply that it is good. However, used as a proxy measurement it
-can shed light on:
+is popular does not imply that it is good. However, used as a proxy measurement
+it can shed light on:
 
 - the size of the community
 - the availability and maturity of 3rd party libraries
@@ -104,7 +104,7 @@ speed up our development process.
 Again, this isn't a good metric by itself, but it can tell us some useful
 things:
 
-- If engineers like working with a technology it's more likely that the pros
+- if engineers like working with a technology it's more likely that the pros
   outweigh the cons
 - engineers are more likely to write libraries and resources (tutorials, blog
   posts, etc.) for things that are fun to work with
@@ -112,14 +112,15 @@ things:
   pro or a con for joining Close?
 
 **Production App Examples** Is anyone building serious apps with this
-technology? There are some really interesting looking technologies out there,
-but if nobody has shipped a major production app that's a red flag. We like to
-innovate and blaze trails, but we didn't want to unnecessarily be the test case
-for an unproven technology for a critical piece of our product offering.
+technology? Most platforms have a list of featured apps — are some of these apps
+we've heard of and used, from companies we're familiar with? If that's a red
+flag. We like to innovate and blaze trails, but we didn't want to unnecessarily
+be the test case for an unproven technology for a critical piece of our product
+offering.
 
 **Performance** Does the technology have a reputation for good performance? Can
 it be made to perform well? Are there examples of production apps that have good
-performance? Will the technology perform well for our particular use case?
+performance? Will the technology perform well for our use case?
 
 **Language / Developer Experience (DX)** Will our engineers have to learn a new
 language or framework? Will it be familiar to things we've already worked on, or
@@ -150,10 +151,11 @@ while Flutter had a
 that the team was familiar with than [Flutter's](https://flutter.dev/showcase)
 does.
 
-**Performance**: Flutter is going to be more performant,  since it is compiled to native code, while
-React Native relies on the JavaScript bridge for communication between native
-and JavaScript. However, in our research we determined that for our use case the
-performance difference wasn't likely to be a big differentiator.
+**Performance**: Flutter is going to be more performant, since it is compiled to
+native code, while React Native relies on the JavaScript bridge for
+communication between native and JavaScript. However, in our research we
+determined that for our use case the performance difference wasn't likely to be
+a big differentiator.
 
 **Language**: Flutter uses Dart, which is reputed to be a great language,
 although its only large-scale usage is Flutter. React Native apps are written
@@ -178,8 +180,8 @@ to proceed with React Native for these reasons:
    something much quicker with React Native than we could with Flutter, as we'd
    have to get comfortable with both Dart and Flutter.
 
-While React, JavaScript, and npm all have many "rough edges", our team knows those
-issues well and has learned how to work with, and around them.
+While React, JavaScript, and npm all have many "rough edges", our team knows
+those issues well and has learned how to work with, and around them.
 
 ## Onward
 
