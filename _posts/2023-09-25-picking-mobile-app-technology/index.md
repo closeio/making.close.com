@@ -113,10 +113,9 @@ things:
 
 **Production App Examples** Is anyone building serious apps with this
 technology? Most platforms have a list of featured apps — are some of these apps
-we've heard of and used, from companies we're familiar with? If that's a red
-flag. We like to innovate and blaze trails, but we didn't want to unnecessarily
-be the test case for an unproven technology for a critical piece of our product
-offering.
+we've heard of and used, from companies we're familiar with? If not that's a red
+flag. We like to innovate and blaze trails, but we didn't want to be the test
+case for an unproven technology for a critical piece of our product offering.
 
 **Performance** Does the technology have a reputation for good performance? Can
 it be made to perform well? Are there examples of production apps that have good
@@ -124,8 +123,8 @@ performance? Will the technology perform well for our use case?
 
 **Language / Developer Experience (DX)** Will our engineers have to learn a new
 language or framework? Will it be familiar to things we've already worked on, or
-would it be like trying to teach Haskell to a life-long COBOL coder? Will the
-learning curve set us back on our hopes of getting something out to our
+would it be like asking a life-long COBOL coder to ship an app with Haskell?
+Will the learning curve set us back on our hopes of getting something out to our
 customers within the year? Are our engineers excited about learning the
 language?
 
