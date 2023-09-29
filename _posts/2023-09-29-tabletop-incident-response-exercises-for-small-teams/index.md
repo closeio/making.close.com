@@ -1,7 +1,7 @@
 ---
 title: 'Tabletop Incident Response Exercises for Small Teams'
 date: 2023-09-29
-permalink: /posts/tabletop-tncident-response-exercises-small-teams
+permalink: /posts/tabletop-incident-response-exercises-small-teams
 author: Doug Greenbaum
 thumbnail: ''
 metaDescription: ''
