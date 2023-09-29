@@ -67,9 +67,9 @@ That’s cool and all, but how did I evaluate it? My grading rubric is as follow
 - Communication. Were the proper tools used the proper way?
     - 1 - Scenario was disregarded. Most communication occurred outside the rules of the exercise
     - 2 - Scenario partially respected. Minimal communication occurred outside of the rules
-    - 3 - Scenario fully respected. No communication occurred outside of the rules.
-    - 4 - Scenario fully respected. Post mortem is available at the end of the exercise.
-    - 5 - Scenario fully respected. Post mortem and simulated status page updates generated.
+    - 3 - Scenario fully respected. No communication occurred outside of the rules
+    - 4 - Scenario fully respected. Post mortem is available at the end of the exercise
+    - 5 - Scenario fully respected. Post mortem and simulated status page updates generated
 
 The perfect response actively follows published policies, is quick and full of good teamwork, and calls out when post mortems, customer communications, and escalations occur. A poor response does none of those things. Our response team did well, but with room for improvement. This gives us the opportunity to demonstrate that improvement the next time we run this exercise. 
 
