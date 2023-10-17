@@ -21,7 +21,7 @@ In this article I'll discuss the documentation problems we set out to solve, and
 the process and library we created to solve it. If you want to go straight to
 the code, check out
 [this npm package](https://www.npmjs.com/package/@closeio/best-practices-documentation)
-which was came out of our efforts toward solving this problem.
+which came out of our efforts toward solving this problem.
 
 ## Why We Need Documentation
 
@@ -42,7 +42,7 @@ Here at Close we do have a big codebase, and our team is growing. We have a
 great onboarding process where new engineers are exposed to our codebase in an
 orderly and progressive fashion, but we can't cover every detail.
 
-When new engineers questions about our preferred approach to doing things
+When new engineers have questions about our preferred approach to doing things
 (especially if there are several different approaches existing in our code) we
 typically have a conversation in Slack and then someone (usually) adds the
 information to our docs.
@@ -63,12 +63,12 @@ So what can we do?
 
 Ideally, documenting our coding practices should:
 
-1. live as close to the code as possible, to decrease the chance it will get out
+1. Live as close to the code as possible, to decrease the chance it will get out
    of sync
-2. not require us to write example code in markdown files
-3. be discoverable
-4. update automatically when the associated code changes
-5. be readable outside of a code editor
+2. Not require us to write example code in markdown files
+3. Be discoverable
+4. Update automatically when the associated code changes
+5. Be readable outside of a code editor
 
 To achieve these goals, we came up with a process and tooling that allows us to
 identify, tag, and maintain our coding best practices.
@@ -93,27 +93,15 @@ The process goes like this:
 To support this process we first defined a commenting standard that lets us tag
 sections of code as a best practice, it looks like this:
 
-```tsx
-{
-  /* @BestPractice General */
-}
-{
-  /* @BestPractice.subtitle Conditional Rendering pt. 1 - Simple Cases */
-}
-{
-  /* @BestPractice.description */
-}
-{
-  /*   For conditional rendering in JSX we prefer to use `&&` over `?:`. */
-}
-<span className={styles.icon}>
-  {isCollapsed && <IconSVG svg={expandIcon} />}
-  {!isCollapsed && <IconSVG svg={collapseIcon} />}
-</span>;
-{
-  /* @BestPractice.end */
-}
-```
+    { /* @BestPractice General */ }
+    { /* @BestPractice.subtitle Conditional Rendering pt. 1 - Simple Cases */ }
+    { /* @BestPractice.description */ }
+    { /*   For conditional rendering in JSX we prefer to use `&&` over `?:`. */ }
+    <span className={styles.icon}>
+      {isCollapsed && <IconSVG svg={expandIcon} />}
+      {!isCollapsed && <IconSVG svg={collapseIcon} />}
+    </span>;
+    { /* @BestPractice.end */ }
 
 And then we wrote a program that will scan through our code, extract the Best
 Practice blocks, and write these to markdown files in a special section of our
@@ -221,22 +209,22 @@ to maintain!
 
 ## You Can Try it Too!
 
-If you like the idea behind this, you're welcome to try it to! We took our
+If you like the idea behind this, you're welcome to try it out! We took our
 documentation building and checking code and turned it into a library:
 
 https://www.npmjs.com/package/@closeio/best-practices-documentation
 
-This package provides a `best-pracitces` executable that you can use to generate
-your own docs, and also exports all the functionality we use in the executable
-so you can customize the behavior if it the default behavior doesn't work well
-for you!
+This package provides a `best-practices` executable that you can use to generate
+your own docs. It also exports all the functionality we use in the executable so
+you can customize the behavior if the default behavior doesn't work well for
+you!
 
 There are a few limitations on this library that you should be aware of:
 
-1. it currently does not support multi-line comments. So `//` for JavaScript and
-   `TypeScript`, and `{/* ... */}` for `JSX`. Using an `AST` rather than a line
-   parser is a logical next iteration.
-2. it only looks at files with `.js`. , `.jsx`, `.ts`, and `.tsx` file
+1. It currently does not support multi-line comments. So use `//` for JavaScript
+   and `TypeScript`, and `{/* ... */}` for `JSX`. Using an `AST` rather than a
+   line parser is a logical next iteration.
+2. It only looks at files with `.js`. , `.jsx`, `.ts`, and `.tsx` file
    extensions. This is easily configurable, but for the sake of simplicity we
    didn't include that in the first version.
 
