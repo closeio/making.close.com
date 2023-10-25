@@ -106,18 +106,18 @@ This document contains more than just text. We incorporate basic mockups, giving
 
 While anyone on the team can start the pitch doc, currently, at Close, product managers are leading in this area. The sources of inspiration for our pitch docs and how we gather insights is a topic for another blog post.
 
-This is a structure the pitch doc might has:
+This is a structure the pitch doc might have:
 
 1. **Problem definition**
-    - The raw idea, or something we’ve seen that motivates us to work on this. May consists of a single specific story that shows why the status quo doesn’t work.
+    - The raw idea, or something we’ve seen that motivates us to work on this. May consist of a single specific story that shows why the status quo doesn’t work.
 2. **Use cases / Customer research**
     - Real life examples of how this will make our customer’s life easier.
     - Links to the docs with the raw User/Customer data (analytics, surveys, interviews, etc.)
 3. **User/Customer segment mostly impacted by the problem**
-    - What type of customers it impacts the most?
+    - What type of customers does it impact the most?
 4. **Rationale**
     - Why do we want to take care of this problem/idea?
-    - How much time do we want to spend and how that constrains the solution?
+    - How much time do we want to spend and how does that constrain the solution?
 5. **Proposed Solution**
     - High-level overview
     - Lo-fi mockups
@@ -130,7 +130,7 @@ The pitch doc serves as the foundation for our shaping process. At this stage, e
 
 We give this process the time it deserves, holding focused sync meetings within a broader, yet still as small team as possible: usually 1 or 2 developers,  product manager and a designers. During the shaping process, we might have a couple of these syncs spread across multiple weeks. Between the syncs we communicate asynchronously and work on adding more details to the pitch doc. The pitch doc slowly transforms into a product specification. 
 
-The product specification then sets the base for development speccing. Our aim is to have this document “Development Spec” (these are usually two separate — for backend and frontend work) ready at least two weeks before the cycle begins, ensuring we're all on the same page regarding delivery expectations.
+The product specification then sets the base for development speccing. Our aim is to have these “Development Spec” documents (these are usually two separate — for backend and frontend work) ready at least two weeks before the cycle begins, ensuring we're all on the same page regarding delivery expectations.
 
 So a high level process is that the Pitch Doc is a base for Product Spec, which is then a base for Development Spec.
 
@@ -161,12 +161,12 @@ This is how Github Project looked like for 2023C5 Workflow Automation project. T
 Every feature has its dedicated team, typically consisting of 1-3 developers. For larger projects, this number might go up to five. This team also includes a product manager, designer. For each cycle project we select one developer who becomes a project lead. The project lead:
 
 - confirms we have specced everything we need to start development process
-- ensures we stay on track with the plan, or change it accordingly to the situation (having this in mind: fixed time, flexible scope)
-- make sure we keep our focus on the project goals, helping prioritizing the work
-- communicate the state of the project on a weekly basis to the rest of the team (in the form of weekly summaries)
+- ensures we stay on track with the plan, or changes it according to the situation (having this in mind: fixed time, flexible scope)
+- makes sure we keep our focus on the project goals, helping prioritizing the work
+- communicates the state of the project on a weekly basis to the rest of the team (in the form of weekly summaries)
 - helps planning feature releases so they are exposed to the users as quickly as possible (coordinating beta periods with product managers, planning when a feature will be shipped publicly)
 - presents state of the project during mid-cycle demos (more on that later)
-- organizes and leads “retro” meeting by the end of thy cycle (more on that later)
+- organizes and leads a “retro” meeting at the end of the cycle (more on that later)
 - presents the final results to the whole Close team in a form of pre-recorded demo
 
 ## The Buffer Week: Our Safety Net
@@ -177,9 +177,9 @@ Our cycles are intentionally designed to leave the last week without any planned
 
 Transparency is vital. The project lead provides weekly summaries on progress, future goals, and any changes to the initial plan, keeping the entire team informed. Just to underline this: changing the plan is perfectly fine — again, fixed time, flexible scope. 
 
-All updates from all cycle project are added to the Weekly Updates doc each week. This doc is updated weekly by Project Leads by 10am ET before the Product/Engineering meeting to brief the team and allow for questions or discussion on our Product/Engineering Sync.
+All updates from all cycle projects are added to a running Weekly Updates doc. This doc is updated weekly by Project Leads by 10am ET before the Product/Engineering meeting to brief the team and allow for questions or discussion on our Product/Engineering Sync.
 
-Here is an example of how our weekly update for a 2023C5 Workflow Automation project looked like in the week 5 of the cycle:
+Here is an example of how our weekly update for a 2023C5 Workflow Automation project looked in week 5 of the cycle:
 
 **Legend:**
 
@@ -204,7 +204,7 @@ Midway through the cycle, we host demos showcasing what's been developed so far.
 
 ## Post-Cycle Reflection: The Retro Sync
 
-Once a cycle finishes, each cycle-team gather for a retrospective meeting. It’s a time for giving kudos and saying thank-you. Talking about what we’ve achieved and discussing potential improvements. Summarized insights from this session are then shared with the entire engineering team and presented by a project lead during the Product/Engineering Sync.
+Once a cycle finishes, each cycle-team gathers for a retrospective meeting. It’s a time for giving kudos and saying thank-you. Talking about what we’ve achieved and discussing potential improvements to our product development process. Summarized insights from this session are then shared with the entire engineering team and presented by a project lead during the Product/Engineering Sync.
 
 This is an outline of a template that we use for creating Retro document:
 
@@ -218,7 +218,7 @@ This is an outline of a template that we use for creating Retro document:
 
 ## Starting Anew: The Product Sync Meeting
 
-As we start the next cycle, we organize a all-team product sync meeting. This optional yet popular meeting is where we show summaries of the cycle project, play short videos (demos) of the developed features and outline plans for the upcoming cycle.
+As we start the next cycle, we organize a company-wide product sync meeting. This optional yet popular meeting is where we show summaries of the cycle project, play short videos (demos) of the developed features and outline plans for the upcoming cycle.
 
 ## Outro
 
