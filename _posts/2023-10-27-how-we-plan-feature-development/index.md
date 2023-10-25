@@ -224,8 +224,6 @@ As we start the next cycle, we organize a company-wide product sync meeting. Thi
 
 ## Outro
 
-I hope that this glimpse into our feature development process has provided insights you might find valuable in your own project. How does your feature development process compare? Are there any tools and planning strategies you would recommend?
+I hope that this glimpse into our feature development process has provided insights you might find valuable in your own project. How does your feature development process compare? Are there any tools and planning strategies you would recommend? Hit me up on X [@bartgryszko](https://twitter.com/bartgryszko).
 
 If you want to join our Engineering team, check out our open positions at https://making.close.com/jobs/
-
-Do you have any questions? Are you curious about how working at Close is? Feel free to hit me up on Twitter [@bartgryszko](https://twitter.com/bartgryszko).
