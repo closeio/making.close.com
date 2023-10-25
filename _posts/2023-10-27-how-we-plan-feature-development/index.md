@@ -130,13 +130,13 @@ This is a structure the pitch doc might have:
 
 The pitch doc serves as the foundation for our shaping process. At this stage, engineers help in evaluating the feasibility and cost of the proposed feature. Their inputs, combined with the product team's insights, help finalize the project's scope.
 
-We give this process the time it deserves, holding focused sync meetings within a broader, yet still as small team as possible: usually 1 or 2 developers, a product manager, and a designer. During the shaping process, we might have a couple of these syncs spread across multiple weeks. Between the syncs we communicate asynchronously and work on adding more details to the pitch doc. The pitch doc slowly transforms into a product specification. 
+We give this process the time it deserves, holding focused sync meetings within a broader, yet still as small team as possible: usually 1 or 2 developers, a product manager, and a designer. During the shaping process, we might have a couple of these syncs spread across multiple weeks. Between the syncs we communicate asynchronously and work on adding more details to the project. The product specification slowly gets created. 
 
-The product specification then sets the base for development speccing. Our aim is to have these “Development Spec” documents (these are usually two separate — for backend and frontend work) ready at least two weeks before the cycle begins, ensuring we're all on the same page regarding delivery expectations.
+The pitch doc and product specification then sets the base for development speccing. Our aim is to have this document “Development Spec” (these are usually two separate — for backend and frontend work) ready at least two weeks before the cycle begins, ensuring we're all on the same page regarding delivery expectations.
 
 So a high level process is that the Pitch Doc is a base for Product Spec, which is then a base for Development Spec.
 
-The Product Spec is usually split into feature sections with a priority assigned to each feature (form P0 — critical, without finishing it project doesn’t make sense to P3 — low, a nice to have). This is how these sections looked high-level for our Workflow Automation project:
+The Product Spec is usually split into feature sections with a priority assigned to each feature (form P0 — critical, without finishing it project doesn’t make sense to P3 — low, a nice to have). This is how these sections looked high-level for our 2023C5 Workflow Automation project:
 
 - **P0: Change workflow UI**
     - [mockups for the expected changes]
