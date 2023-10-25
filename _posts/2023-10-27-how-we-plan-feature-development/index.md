@@ -8,11 +8,11 @@ metaDescription: ''
 tags: [Engineering, Product, Strategy]
 ---
 
-At Close, we want to ensure that every feature we work on offers real value to our users. The path we follow from conceptualizing a feature to its development and ultimately its release has evolved over the years. A couple of years ago, we adopted Basecamp's Shape Up method and refined this approach to suit our needs. Let me give you a high-level overview of how the process looks from an engineer's perspective.
+At Close, we want to ensure that every feature we work on offers real value to our users. The path we follow from conceptualizing a feature to its development and ultimately its release has evolved over the years. A couple of years ago, we adopted [Basecamp's Shape Up method](https://basecamp.com/shapeup) and refined this approach to suit our needs. Let me give you a high-level overview of how the process looks from an engineer's perspective.
 
 ## The 6-Cycle Year: Our Development Calendar
 
-We divide our year into six cycles, each lasting six or seven weeks. For instance, a cycle might be a week longer if holidays fall within it, or if we have an all-team retreat planned. Between these cycles, we have a "gap week" that lasts for two weeks.
+We divide our year into six cycles, each lasting six or seven weeks. For instance, a cycle might be a week longer if holidays fall within it, or if we have an all-team retreat planned. Between these cycles, we have two "gap weeks".
 
 During cycle weeks, feature development takes place. The time is fixed, but the scope of the project remains flexible. We prefix cycle numbers with the current year for easier future reference: 2023C1, 2023C2, and so on.
 
@@ -123,12 +123,14 @@ This is a structure the pitch doc might have:
     - Lo-fi mockups
     - Rabbit holes — details about the solution worth calling out to avoid problems
     - Engineering effort
+6. **Goal metrics**
+    - E.g. 20% of workflow organizations using a customized schedule
 
 ## The Prep for Development
 
 The pitch doc serves as the foundation for our shaping process. At this stage, engineers help in evaluating the feasibility and cost of the proposed feature. Their inputs, combined with the product team's insights, help finalize the project's scope.
 
-We give this process the time it deserves, holding focused sync meetings within a broader, yet still as small team as possible: usually 1 or 2 developers,  product manager and a designers. During the shaping process, we might have a couple of these syncs spread across multiple weeks. Between the syncs we communicate asynchronously and work on adding more details to the pitch doc. The pitch doc slowly transforms into a product specification. 
+We give this process the time it deserves, holding focused sync meetings within a broader, yet still as small team as possible: usually 1 or 2 developers, a product manager, and a designer. During the shaping process, we might have a couple of these syncs spread across multiple weeks. Between the syncs we communicate asynchronously and work on adding more details to the pitch doc. The pitch doc slowly transforms into a product specification. 
 
 The product specification then sets the base for development speccing. Our aim is to have these “Development Spec” documents (these are usually two separate — for backend and frontend work) ready at least two weeks before the cycle begins, ensuring we're all on the same page regarding delivery expectations.
 
@@ -150,7 +152,7 @@ The Product Spec is usually split into feature sections with a priority assigned
     - [description of the business logic changes]
 - *More P2s and P3s…*
 
-Finally, when a developer (usually a project lead) work on development specification they’ll likely use these product priority sections in their own development spec document. Recently we’ve started to experiment with using Github Projects for the whole development specification, but a simple Dropbox Paper worked quite well for us so far. 
+Finally, when a developer (usually the project lead) works on the development specification they'll likely use these production priority sections as guidance. Recently we’ve started to experiment with using Github Projects for the whole development specification, but a simple Dropbox Paper document has worked quite well for us so far. 
 
 This is how Github Project looked like for 2023C5 Workflow Automation project. The issues are grouped in product priority groups taken from the Product Spec.
 
@@ -158,7 +160,7 @@ This is how Github Project looked like for 2023C5 Workflow Automation project. T
 
 ## Forming the Cycle Team
 
-Every feature has its dedicated team, typically consisting of 1-3 developers. For larger projects, this number might go up to five. This team also includes a product manager, designer. For each cycle project we select one developer who becomes a project lead. The project lead:
+Every feature has its dedicated team, typically consisting of 1-3 developers. For larger projects, this number might go up to five. This team also includes a product manager, and a designer. For each cycle project we select one developer who becomes the project lead. The project lead:
 
 - confirms we have specced everything we need to start development process
 - ensures we stay on track with the plan, or changes it according to the situation (having this in mind: fixed time, flexible scope)
@@ -204,7 +206,7 @@ Midway through the cycle, we host demos showcasing what's been developed so far.
 
 ## Post-Cycle Reflection: The Retro Sync
 
-Once a cycle finishes, each cycle-team gathers for a retrospective meeting. It’s a time for giving kudos and saying thank-you. Talking about what we’ve achieved and discussing potential improvements to our product development process. Summarized insights from this session are then shared with the entire engineering team and presented by a project lead during the Product/Engineering Sync.
+Once a cycle finishes, each cycle-team gathers for a retrospective meeting. It’s a time for giving kudos and saying thank you, talking about what we’ve achieved and discussing potential improvements to our product development process. Summarized insights from this session are then shared with the entire engineering team and presented by the project lead during the Product/Engineering Sync.
 
 This is an outline of a template that we use for creating Retro document:
 
