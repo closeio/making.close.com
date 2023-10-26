@@ -126,6 +126,15 @@ This is a structure the pitch doc might have:
 6. **Goal metrics**
     - E.g. 20% of workflow organizations using a customized schedule
 
+To estimate engineering effort (at a preliminary stage), we use the t-shirt sizes terminology:
+- `XS` — Minimal to no effort required.
+- `S` — Takes one engineer less than one cycle to complete.
+- `M` — Takes one engineer exactly one cycle to complete.
+- `L` — Takes two engineers one cycle to complete.
+- `XL` — Requires multiple engineers for multiple cycles.
+
+If a project's estimated effort approaches L or XL, we'll seek ways to reduce its scope to ensure manageability. While this wasn't always our method during the early stages of transitioning to this planning strategy, our current goal is to keep projects within a single-cycle duration. Even when planning for larger features or product areas, we structure the work within a cycle such that we consistently deliver significant value to our customers in each cycle.
+
 ## The Prep for Development
 
 The pitch doc serves as the foundation for our shaping process. At this stage, engineers help in evaluating the feasibility and cost of the proposed feature. Their inputs, combined with the product team's insights, help finalize the project's scope.
