@@ -32,7 +32,7 @@ waste your time building something nobody will use?
 
 But what if you have a big team? Or a big codebase that has been through many
 iterations of libraries, frameworks, and approaches? What if your team is
-growing and you keep having new engineers ask question like "How do we like to
+growing, and new engineers keep asking questions like "How do we like to
 do X?" or "I see we've done X three different ways, what is our preferred
 approach today?"
 
@@ -77,7 +77,7 @@ identify, tag, and maintain our coding best practices.
 
 The process goes like this:
 
-1. Someone on the team asks "How should I do X" or "We've done X several
+1. Someone on the team asks "How should I do X?" or "We've done X several
    different ways in the past, what is the preferred method now?"
 2. They check the best practices docs to see if that question is answered
 3. If the question isn't answered by our docs, we discuss as a team and decide
