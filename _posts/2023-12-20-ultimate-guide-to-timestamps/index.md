@@ -42,9 +42,9 @@ For our activities and messages, we use a mix of relative and absolute timestamp
 
 #### Activities
 
-![Activity Feed in Close](./activity-feed.png) 
-
 For recent activities on the Lead page, we use relative timestamps because they quickly communicate how recent something is.
+
+![Activity Feed in Close](./activity-feed.png) 
 
 - `Now`
 - `A few seconds ago`
@@ -62,9 +62,9 @@ If the timestamp is within the same year, we omit the year.
 
 #### Messages
 
-![Inbox in Close](./inbox.png) 
-
 For messages in our Inbox view, the absolute timestamp is more critical after the first hour, as it helps users track and reference conversations more precisely.
+
+![Inbox in Close](./inbox.png) 
 
 - Relative timestamps for messages sent or received within the past hour
   - `17m ago`
