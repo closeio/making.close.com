@@ -1,5 +1,5 @@
 ---
-title: ' The Ultimate Guide to Timestamps'
+title: 'The Ultimate Guide to Timestamps'
 date: 2023-12-20
 permalink: /posts/ultimate-guide-to-timestamps
 author: Drew Geraets
