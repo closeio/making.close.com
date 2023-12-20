@@ -14,15 +14,15 @@ Regardless, it shows up in our app a lot. So, we've spent a fair amount of time 
 
 Specifically, timestamps. We use timestamps on all activities logged in the app: Things like when a note was written, when an email was received, when a call was made, etc.
 
-Why put much thought into this? Well, we have a lot of views where we have a collection of messages (Inbox) or activities (Lead page) where this information is displayed repeatedly.
+Why put much thought into this? Well, we have a number of views with collections of messages (Inbox) or activities (Lead page) where this information is displayed repeatedly.
 
 Our main goals are:
 - Don't make the user think
-- Only display what's necessary (and hide the rest)
+- Only display what's necessary (and omit the rest)
 
 
 ## General Formatting
-- Use abbreviations for months (quicker to parse than numerals)
+- Use abbreviations for months
   - `Oct`, `Nov`, `Dec`
 - Omit periods in abbreviations
   - `Oct 12`,  `7:28 pm`
@@ -33,11 +33,17 @@ Our main goals are:
 - 12/24 hour display should determined by browser/OS/localization
   - `1:34 pm` = `13:34`
 
+You can see how the formatted timestamp is more readable than a version that contains numerals and periods for abbreviations.
+- `Dec 20, 2023 at 12:20 pm`
+- `12/20/2023 at 12:20 p.m.`
 
 ### Activities & Messages
 For our activities and messages, we use a mix of relative and absolute timestamps. 
 
 #### Activities
+
+![Activity Feed in Close](./activity-feed.png) 
+
 For recent activities on the Lead page, we use relative timestamps because they quickly communicate how recent something is.
 
 - `Now`
@@ -56,6 +62,8 @@ If the timestamp is within the same year, we omit the year.
 
 #### Messages
 
+![Inbox in Close](./inbox.png) 
+
 For messages in our Inbox view, the absolute timestamp is more critical after the first hour, as it helps users track and reference conversations more precisely.
 
 - Relative timestamps for messages sent or received within the past hour
@@ -67,7 +75,6 @@ For messages in our Inbox view, the absolute timestamp is more critical after th
 - Anything before yesterday we display as an absolute date
   - `Dec 16`
 
-
 ### Future 
 
 Future items include things like upcoming meetings or scheduled messages.
@@ -77,6 +84,7 @@ Future items include things like upcoming meetings or scheduled messages.
 - `in 6d`
 
 Outside of 7 days, display the month and day: `Oct 21`
+
 
 ## Tooltips
 
