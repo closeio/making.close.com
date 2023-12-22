@@ -59,7 +59,7 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { permalink: { eq: $path } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
         author
         permalink
         title
