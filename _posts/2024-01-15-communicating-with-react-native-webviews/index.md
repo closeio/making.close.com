@@ -317,7 +317,7 @@ adding new message posters.
 We want to keep the two systems as decoupled as possible. Being able to
 independently deploy the web app and native app was a hard requirement for us.
 
-The message passing system helps greatly with this, because the web app doesn't
+The advantage of a message-based communication API is that the web app doesn't
 have to care _how_ the native app will do something (like initiate a phone call)
 it just has to tell it "the user pressed a button to start a call" and the
 native app will receive that message and Do The Right Thing.
