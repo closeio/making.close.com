@@ -50,9 +50,8 @@ allows communication to native from web.
 To send information from the web app to the native app, you first attach a
 handler to the
 [`onMessage prop`](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onmessage)
-of the web view. This handler receives an event with a string data prop. The web
-view fires this event whenever the web app calls a global function provided by
-the web view: `window.ReactNativeWebView.postMessage`.
+of the `WebView`. This handler receives an event with a string data prop. The `WebView` fires this event whenever the web app calls a global function provided by
+the `WebView`: `window.ReactNativeWebView.postMessage`.
 
 So in React Native you'd create a web view component like this:
 
