@@ -8,30 +8,27 @@ metaDescription: ''
 tags: [Engineering, React, Mobile App]
 ---
 
-In 2023 we started work on our mobile app. The first thing we had to do was pick
-a platform: native app vs. progressive web app? platform-specific vs.
-cross-platform? If we picked cross-platform: React Native? Flutter? Something
-else?
+At Close, the frontend team has been lucky in that, for 10 years we've been
+maintaining a single web application and codebase. We do have an electron-based
+desktop application, but that primarily uses our web app code, with a very small
+amount of electron-specific changes.
 
-If you'd like to read more about how we made that descision, check out our blog
-post on
-[Picking a Mobile App Platform](https://making.close.com/posts/picking-a-mobile-app-platform).
-The tl;dr: we picked React Native to build a cross-platform app, and we decided
-to use a web view to include most of the functionality from our web app, and
-then augment that with native navigation and functionality.
+But then we released our mobile app. We decided to build our app with React
+Native[^1], and to reuse our web app as much as possible via `WebView`s.
+However, we also wanted to apply native mobile patterns and capabilities where
+it made sense, things like: navigation, calling, and push notifications.
 
-There are several options for using web views in React Native, and we picked the
-excellent
-[react-native-webview](https://github.com/react-native-webview/react-native-webview)
-library. It's a mature, actively developed, and popular library.
+With that came new challenges around communicating and coordinating between web
+app code and React Native code.
 
-Since we wanted to do more than _just_ have a web view, we knew we'd need
-two-way communication between the native app and the web app. Fortunately, React
-Native WebView provides several primitives for communicating between the native
-app and the web app.
+[^1]:
+    If you'd like to read more about how we made that decision, check out our
+    blog post on
+    [Picking a Mobile App Platform](https://making.close.com/posts/picking-a-mobile-app-platform).
 
 In this post I'm going to talk through the communication primitives provided by
-React Native WebView, some of the potential
+[React Native WebView](https://github.com/react-native-webview/react-native-webview)
+(the webview library we picked), some of the potential
 [developer footguns](https://en.wiktionary.org/wiki/footgun) we noticed, and the
 patterns we developed to make sure our native app and web app could evolve
 independently without breaking.
