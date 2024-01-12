@@ -110,7 +110,7 @@ return (
 );
 ```
 
-If that sounds scary or overwhelming to you then you're not alone. We
+If that sounds scary or overwhelming to you, you're not alone. We
 immediately recognized several big problems:
 
 - If the native app is directly running code in the web app, we have to make
