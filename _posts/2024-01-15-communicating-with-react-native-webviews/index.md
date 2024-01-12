@@ -327,7 +327,7 @@ doesn't have to be updated or re-deployed.
 
 However, there's still one more problem we ran in to that wasn't solved by the
 message passing system alone: when we add new features to the native app, and it
-expects new messages from the web app, how do we coordinate that? Let's taking
+expects new messages from the web app, how do we coordinate that? Take
 calling as an example.
 
 When we implemented native calling, we needed the web app to send a message to
