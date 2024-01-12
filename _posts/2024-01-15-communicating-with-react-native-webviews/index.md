@@ -16,7 +16,7 @@ else?
 If you'd like to read more about how we made that descision, check out our blog
 post on
 [Picking a Mobile App Platform](https://making.close.com/posts/picking-a-mobile-app-platform).
-The tl;dr of that post is: we picked React Native to build a cross-platform app,
+The tl;dr: we picked React Native to build a cross-platform app,
 and we decided to use a web view to include most of the functionality from our
 web app, and then augment that with native navigation and functionality.
 
