@@ -16,19 +16,19 @@ else?
 If you'd like to read more about how we made that descision, check out our blog
 post on
 [Picking a Mobile App Platform](https://making.close.com/posts/picking-a-mobile-app-platform).
-The tl;dr: we picked React Native to build a cross-platform app,
-and we decided to use a web view to include most of the functionality from our
-web app, and then augment that with native navigation and functionality.
+The tl;dr: we picked React Native to build a cross-platform app, and we decided
+to use a web view to include most of the functionality from our web app, and
+then augment that with native navigation and functionality.
 
 There are several options for using web views in React Native, and we picked the
 excellent
 [react-native-webview](https://github.com/react-native-webview/react-native-webview)
 library. It's a mature, actively developed, and popular library.
 
-Since we wanted to do more than _just_ have a web view, we knew we'd need two-way
-communication between the native app and the web app. Fortunately, React Native
-WebView provides several primitives for communicating between the native app and
-the web app.
+Since we wanted to do more than _just_ have a web view, we knew we'd need
+two-way communication between the native app and the web app. Fortunately, React
+Native WebView provides several primitives for communicating between the native
+app and the web app.
 
 In this post I'm going to talk through the communication primitives provided by
 React Native WebView, some of the potential
@@ -38,8 +38,10 @@ independently without breaking.
 
 ## Communication Patterns
 
-As [outlined in their docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native), React Native WebView provides several ways of communicating between native and web.
-web. If you want a full description, the project provides a
+As
+[outlined in their docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native),
+React Native WebView provides several ways of communicating between native and
+web. web. If you want a full description, the project provides a
 [dedicated section of the docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native)
 for that. We're going to focus on two of the options: `injectJavaScript` to
 communicate to web from native, and the `postMessage` / `onMessage` pair, which
@@ -50,8 +52,9 @@ allows communication to native from web.
 To send information from the web app to the native app, you first attach a
 handler to the
 [`onMessage prop`](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Reference.md#onmessage)
-of the `WebView`. This handler receives an event with a string data prop. The `WebView` fires this event whenever the web app calls a global function provided by
-the `WebView`: `window.ReactNativeWebView.postMessage`.
+of the `WebView`. This handler receives an event with a string data prop. The
+`WebView` fires this event whenever the web app calls a global function provided
+by the `WebView`: `window.ReactNativeWebView.postMessage`.
 
 So in React Native you'd create a web view component like this:
 
@@ -68,7 +71,7 @@ And in your web app JavaScript you can do something like this:
 
 ```TypeScript
 const sendMessageToNative = (message: string) => {
-	window.ReactNativeWebView.postMessage(message);
+  window.ReactNativeWebView.postMessage(message);
 }
 
 sendMessageToNative("Hello, React Native!");
@@ -79,15 +82,14 @@ the web app was run.
 
 ### Receiving Communications in Web
 
-Things are not as straightforward when communicating to the web app from the native
-app. Rather than exposing an event-based system, React Native WebView allows you
-to inject arbitrary JavaScript code into the `WebView` at any time. This means
-that you can do almost _anything_ at _any time_.
+Things are not as straightforward when communicating to the web app from the
+native app. Rather than exposing an event-based system, React Native WebView
+allows you to inject arbitrary JavaScript code into the `WebView` at any time.
+This means that you can do almost _anything_ at _any time_.
 
 Like this:
 
 ```JSX
-
 const webViewRef = useRef<WebView>();
 
 const sayHiFromReactNative = (code: string) => {
@@ -97,20 +99,20 @@ const sayHiFromReactNative = (code: string) => {
 // ... other code
 
 return (
-	<>
-		<WebView
-		  ref={webViewRef}
-		  {...otherProps}
-		/>
-		<TouchableOpacity onPress={sayHiFromReactNative}>
-			<Text>Say Hi</Text>
-		</TouchableOpacity>
-	</>
+  <>
+    <WebView
+      ref={webViewRef}
+      {...otherProps}
+    />
+    <TouchableOpacity onPress={sayHiFromReactNative}>
+      <Text>Say Hi</Text>
+    </TouchableOpacity>
+  </>
 );
 ```
 
-If that sounds scary or overwhelming to you, you're not alone. We
-immediately recognized several big problems:
+If that sounds scary or overwhelming to you, you're not alone. We immediately
+recognized several big problems:
 
 - If the native app is directly running code in the web app, we have to make
   sure we don't change things that the native app depends on.
@@ -144,7 +146,7 @@ would `JSON.stringify` the object before posting on the bridge. We settled on:
 type Message = { action: string; payload: any };
 
 const sendMessageToRN = (message: Message) => {
-	window.ReactNativeWebView.postMessage(JSON.stringify(message);
+  window.ReactNativeWebView.postMessage(JSON.stringify(message);
 }
 ```
 
@@ -152,8 +154,8 @@ Then, on the native side, we'd deserialize the method before handling it:
 
 ```TypeScript
 const handleMessage = useCallback((event: WebViewMessageEvent) => {
-	const { action, payload } = JSON.parse(event.data);
-	// take appropriate action
+  const { action, payload } = JSON.parse(event.data);
+  // take appropriate action
 }, []);
 ```
 
@@ -171,26 +173,26 @@ import { useEffect } from 'react';
 const RNEvents = new EventEmitter();
 
 export const registerRNHandler = (
-	action: string,
-	callback: (payload: any) => void,
+  action: string,
+  callback: (payload: any) => void,
 ) => {
-	RNEvents.on(action, callback);
-	return () => RNEvents.off(action, callback);
+  RNEvents.on(action, callback);
+  return () => RNEvents.off(action, callback);
 }
 
 export const useRNHandler = (
-	action: string,
-	callback: (payload: any) => void,
+  action: string,
+  callback: (payload: any) => void,
 ) => {
-	useEffect(() => {
-		const deregister = registerRNHandler(action, callback);
-		return () => deregister();
-	}, [action, callback]);
+  useEffect(() => {
+    const deregister = registerRNHandler(action, callback);
+    return () => deregister();
+  }, [action, callback]);
 }
 
 const onMessageFromRN = (message: string) => {
-	const { action, payload } = JSON.parse(message);
-	RNEvents.emit(action, payload);
+  const { action, payload } = JSON.parse(message);
+  RNEvents.emit(action, payload);
 }
 
 // Attach the handler to `window` so we can access it from
@@ -208,21 +210,21 @@ serialize it all into valid JavaScript code to be injected:
 
 ```TypeScript
 const buildMessageJavaScript = (action: string, payload: any) => {
-	const message = JSON.stringify({ action, payload });
-	// Stringify the message a second time to escape quotes etc.
-	const safeString = JSON.stringify(message);
+  const message = JSON.stringify({ action, payload });
+  // Stringify the message a second time to escape quotes etc.
+  const safeString = JSON.stringify(message);
 
-	return `window.onMessageFromRN(${safeString});`;
+  return `window.onMessageFromRN(${safeString});`;
 };
 
 const postMessageToWebApp = (
-	webViewRef: MutableRefObject<WebView>,
-	action: string,
-	payload: any,
+  webViewRef: MutableRefObject<WebView>,
+  action: string,
+  payload: any,
 ) => {
-	webViewRef.current.injectJavaScript(
-		buildMessageJavaScript(action, payload),
-	);
+  webViewRef.current.injectJavaScript(
+    buildMessageJavaScript(action, payload),
+  );
 }
 ```
 
@@ -244,31 +246,31 @@ with a types file that looks like this:
 ```TypeScript
 // Defines the actions and payloads that the web app can send to the native app
 export type FromWebActions = {
-	callInitiated: {
-		leadId: string;
-		contactId: string;
-		phoneNumber: string;
-	};
-	organizationChanged: {
-		organizationId: string;
-	};
-	appReady: {
-		organizationId: string;
-	}
-	// many more actions
+  callInitiated: {
+    leadId: string;
+    contactId: string;
+    phoneNumber: string;
+  };
+  organizationChanged: {
+    organizationId: string;
+  };
+  appReady: {
+    organizationId: string;
+  }
+  // many more actions
 };
 
 export type FromWebActionName = keyof FromWebActions;
 
 // Defines the actions and payloads that the native app can send to the web app
 export type FromNativeActions = {
-	profilePopoverToggled: null;
-	routeChanged: {
-		pathname: string;
-		options: { replace?: boolean; };
-	};
-	searchHidden: null;
-	// many more actions
+  profilePopoverToggled: null;
+  routeChanged: {
+    pathname: string;
+    options: { replace?: boolean; };
+  };
+  searchHidden: null;
+  // many more actions
 };
 
 export type FromNativeActionName = keyof FromNativeActions;
@@ -278,17 +280,17 @@ And we updated our message handling methods like this:
 
 ```TypeScript
 export const postMessageToRN = <T extends FromWebActionName>(
-	action: T,
-	payload: FromWebActions[T],
+  action: T,
+  payload: FromWebActions[T],
 ) => {
-	// same implementation as above
+  // same implementation as above
 }
 
 export const registerRNHandler = <T extends FromNativeActionName>(
-	action: T,
-	callback: (payload: FromNativeActions[T]) => void,
+  action: T,
+  callback: (payload: FromNativeActions[T]) => void,
 ) => {
-	// same implementation as above
+  // same implementation as above
 }
 ```
 
@@ -304,9 +306,12 @@ caught silly bugs quickly.
 
 We set up the type definitions so they could be used as-is between the two
 systems, but we still needed to figure out how to share those type definitions.
-Ultimately, we decided to just manually synchronize the file between the two codebases.
+Ultimately, we decided to just manually synchronize the file between the two
+codebases.
 
-Since making changes to it on one side almost always involves making changes on the other side (e.g. adding new handlers, or adding new message posters) this is adequate for now.
+Since making changes to it on one side almost always involves making changes on
+the other side (e.g. adding new handlers, or adding new message posters) this is
+adequate for now.
 
 ## Limiting Knowledge Between Systems
 
@@ -323,8 +328,8 @@ doesn't have to be updated or re-deployed.
 
 However, there's still one more problem we ran in to that wasn't solved by the
 message passing system alone: when we add new features to the native app, and it
-expects new messages from the web app, how do we coordinate that? Take
-calling as an example.
+expects new messages from the web app, how do we coordinate that? Take calling
+as an example.
 
 When we implemented native calling, we needed the web app to send a message to
 the native app saying "the user wants to initiate a call with this information".
@@ -352,10 +357,10 @@ window.ReactNativeWebView.IS_SEARCH_ENABLED = ${featureEnabled('search')};
 `;
 
 return (
-	<WebView
-		injectedJavaScriptBeforeContentLoaded={preScript}
-		{...otherProps}
-	/>
+  <WebView
+    injectedJavaScriptBeforeContentLoaded={preScript}
+    {...otherProps}
+  />
 );
 ```
 
@@ -364,22 +369,22 @@ actions come up, so it might:
 
 ```TypeScript
 const makeCall = (
-	leadId: string,
-	contactId: string,
-	phoneNumber: string
+  leadId: string,
+  contactId: string,
+  phoneNumber: string
 ) => {
-	if (window.ReactNativeWebView?.IS_CALLING_ENABLED) {
-		postMessageToRN(
-			'callInitiated',
-			 {
-				leadId,
-				contactId,
-				phoneNumber,
-			},
-		);
-	} else {
-		// Show calling not available modal
-	}
+  if (window.ReactNativeWebView?.IS_CALLING_ENABLED) {
+    postMessageToRN(
+      'callInitiated',
+       {
+        leadId,
+        contactId,
+        phoneNumber,
+      },
+    );
+  } else {
+    // Show calling not available modal
+  }
 }
 ```
 
