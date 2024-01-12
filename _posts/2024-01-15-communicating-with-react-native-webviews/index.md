@@ -25,7 +25,7 @@ excellent
 [react-native-webview](https://github.com/react-native-webview/react-native-webview)
 library. It's a mature, actively developed, and popular library.
 
-Since we wanted to do more than _just_ have a web view we knew we'd need two-way
+Since we wanted to do more than _just_ have a web view, we knew we'd need two-way
 communication between the native app and the web app. Fortunately, React Native
 WebView provides several primitives for communicating between the native app and
 the web app.
