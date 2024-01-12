@@ -81,7 +81,7 @@ the web app was run.
 
 Things are not as straightforward when communicating to the web app from the native
 app. Rather than exposing an event-based system, React Native WebView allows you
-to inject arbitrary JavaScript code into the web view at any time. This means
+to inject arbitrary JavaScript code into the `WebView` at any time. This means
 that you can do almost _anything_ at _any time_.
 
 Like this:
