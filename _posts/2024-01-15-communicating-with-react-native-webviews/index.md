@@ -305,8 +305,7 @@ caught silly bugs quickly.
 
 We set up the type definitions so they could be used as-is between the two
 systems, but we still needed to figure out how to share those type definitions.
-We thought of several ways we could share them, but in the ended we decided to
-just manually synchronize the file between the two code bases.
+Ultimately, we decided to just manually synchronize the file between the two codebases.
 
 This works very well because when we're making changes to it on one side, we're
 almost always making changes on the other side as well, adding new handlers or
