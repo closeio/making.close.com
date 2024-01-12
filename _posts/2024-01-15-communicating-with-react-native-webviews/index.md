@@ -232,7 +232,7 @@ structured messages between the native app and the web app.
 
 ### Strongly Typed Messages
 
-We used this pattern to work on our app for a few weeks, but the lack of type
+After a few weeks of developing with this messaging system, the lack of type
 safety on our messages became a real pain: it was easy to misspell an action
 name, or to give the wrong data in the payload. So we decided to strongly type
 our messages and make sure that on both sides, whenever we send a message, the
