@@ -42,7 +42,7 @@ web. web. If you want a full description, the project provides a
 [dedicated section of the docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native)
 for that. We're going to focus on two of the options: `injectJavaScript` to
 communicate to web from native, and the `postMessage` / `onMessage` pair, which
-allows communication to native from web.
+allows communication to Native from Web.
 
 ### Receiving Communications in Native
 
@@ -292,9 +292,9 @@ export const registerRNHandler = <T extends FromNativeActionName>(
 ```
 
 With that (and something similar on the native side) we now had type-safe
-message passing between the two systems! If we tried to give an action name that
+message passing between the two systems! If we try to give an action name that
 wasn't recognized, or if we gave a payload with the wrong shape or data,
-TypeScript would warn us.
+TypeScript warns us.
 
 This _greatly_ improved the DX of sending messages between the two systems, and
 caught silly bugs quickly.
@@ -322,6 +322,8 @@ native app will receive that message and Do The Right Thing.
 
 This even means that the implementation can change on one side and the other app
 doesn't have to be updated or re-deployed.
+
+## Coordinating Behavior Between Releases
 
 However, there's still one more problem we ran in to that wasn't solved by the
 message passing system alone: when we add new features to the native app, and it
