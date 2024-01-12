@@ -53,7 +53,7 @@ of the `WebView`. This handler receives an event with a string data prop. The
 `WebView` fires this event whenever the web app calls a global function provided
 by the `WebView`: `window.ReactNativeWebView.postMessage`.
 
-So in React Native you'd create a web view component like this:
+So in React Native you'd create a `WebView` component like this:
 
 ```jsx
 <WebView
