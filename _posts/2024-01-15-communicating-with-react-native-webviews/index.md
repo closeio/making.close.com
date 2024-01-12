@@ -38,7 +38,7 @@ independently without breaking.
 
 ## Communication Patterns
 
-React Native WebView provides several ways of communicating between native and
+As [outlined in their docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native), React Native WebView provides several ways of communicating between native and web.
 web. If you want a full description the project provides a
 [dedicated section of the docs](https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native)
 for that. We're going to focus on two of the options: `injectJavaScript` to
