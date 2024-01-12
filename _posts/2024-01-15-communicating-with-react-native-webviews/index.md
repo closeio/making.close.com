@@ -307,9 +307,7 @@ We set up the type definitions so they could be used as-is between the two
 systems, but we still needed to figure out how to share those type definitions.
 Ultimately, we decided to just manually synchronize the file between the two codebases.
 
-This works very well because when we're making changes to it on one side, we're
-almost always making changes on the other side as well, adding new handlers or
-adding new message posters.
+Since making changes to it on one side almost always involves making changes on the other side (e.g. adding new handlers, or adding new message posters) this is adequate for now.
 
 ## Limiting Knowledge Between Systems
 
