@@ -158,7 +158,7 @@ const handleMessage = useCallback((event: WebViewMessageEvent) => {
 }, []);
 ```
 
-This made receiving data from the web app very structured, now we wanted to do
+This made receiving data from the web app very structured. Now, we wanted to do
 the same thing on the web app side.
 
 While our final solution ended up being a bit more involved than what I'll show
