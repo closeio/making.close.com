@@ -32,6 +32,8 @@ body.light {
   --contact-bdr: #d3d6e7;
   --input-bg: var(--background);
   --logoTextColor: #262e39;
+  --tableHeaderColor: #eaeaea;
+  --tableColor: #f9f9f9;
 }
 body.dark {
   --banner-background: #9984d5;
@@ -57,6 +59,8 @@ body.dark {
   --contact-bdr: var(--card-bg);
   --input-bg: var(--card-bg);
   --logoTextColor: #ffffff;
+  --tableColor: #313131;
+  --tableHeaderColor: #5a5a5a;
 }
 /* System Fonts as used by Medium and WordPress */
 body {

@@ -96,6 +96,22 @@
     margin: 3rem 0;
     background: var(--card-bdr);
   }
+
+  table {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 32px;
+
+    th {
+      background: var(--tableHeaderColor);
+      padding: 8px;
+    }
+
+    td {
+      background: var(--tableColor);
+      padding: 8px;
+    }
+  }
 }
 
 .thumbnail {
